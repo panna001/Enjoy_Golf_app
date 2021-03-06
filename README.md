@@ -22,15 +22,15 @@
 
 ## 設計書
 UI-flow
-https://drive.google.com/drive/folders/1x5c4-of3YRQ70QcW0qI1jtgSIi4oi2RB
-ワイヤーフレーム
-https://drive.google.com/drive/folders/1x5c4-of3YRQ70QcW0qI1jtgSIi4oi2RB
-ER図
-https://drive.google.com/drive/folders/1x5c4-of3YRQ70QcW0qI1jtgSIi4oi2RB
-テーブル定義書
-https://docs.google.com/spreadsheets/d/1BpopEFbu2j97wuOdfzbwDkfMcn1F8nZ_v_ea4AXKlec/edit#gid=1262670566
-詳細設計書
-https://docs.google.com/spreadsheets/d/1Zqs-Yx51bNa8qSWcz0tLbUVYXCErRL4AFlzTo8jr1A8/edit#gid=370617818
+https://drive.google.com/drive/folders/1x5c4-of3YRQ70QcW0qI1jtgSIi4oi2RB　　
+ワイヤーフレーム　　
+https://drive.google.com/drive/folders/1x5c4-of3YRQ70QcW0qI1jtgSIi4oi2RB　　
+ER図　　
+https://drive.google.com/drive/folders/1x5c4-of3YRQ70QcW0qI1jtgSIi4oi2RB　　
+テーブル定義書　　
+https://docs.google.com/spreadsheets/d/1BpopEFbu2j97wuOdfzbwDkfMcn1F8nZ_v_ea4AXKlec/edit#gid=1262670566　　
+詳細設計書　　
+https://docs.google.com/spreadsheets/d/1Zqs-Yx51bNa8qSWcz0tLbUVYXCErRL4AFlzTo8jr1A8/edit#gid=370617818　　
 
 ## 機能一覧
 https://docs.google.com/spreadsheets/d/1GauKHG0yMOHebA-KtqFoc457hnYFmAeuOi6Pbk-9KRE/edit#gid=0
