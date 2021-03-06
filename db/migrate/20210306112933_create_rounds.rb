@@ -5,7 +5,7 @@ class CreateRounds < ActiveRecord::Migration[5.0]
       t.date :date
       t.string :place
       t.string :weather
-      t.stirng :wind
+      t.string :wind
 
       t.timestamps
     end

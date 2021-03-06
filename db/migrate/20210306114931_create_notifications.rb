@@ -4,7 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
       t.references :post, foreign_key: true
       t.references :comment, foreign_key: true
       t.string :action
-      t.boolian :checked
+      t.boolean :checked
 
       t.timestamps
     end
