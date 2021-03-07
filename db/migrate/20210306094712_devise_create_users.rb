@@ -38,8 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :sex
       t.string :profile_image
       t.string :introduction
-      t.string :postal_code
-      t.string :address
+      t.string :prefectures
       t.string :phone_number
       t.integer :start_year
       t.integer :start_month
