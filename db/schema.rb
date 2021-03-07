@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20210306115132) do
     t.string   "sex"
     t.string   "profile_image"
     t.string   "introduction"
-    t.string   "prefectures"
+    t.string   "prefecture"
     t.string   "phone_number"
     t.integer  "start_year"
     t.integer  "start_month"
