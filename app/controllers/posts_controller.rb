@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -10,7 +11,8 @@ class PostsController < ApplicationController
   end
   
   def create
-    post = current_user.posts.new(post_params)
+    post = Post.new(post_params)
+    post.user_id = current_user.id
     if post.save
       redirect_to post_path(post)
     else
@@ -20,7 +22,8 @@ class PostsController < ApplicationController
 
   def edit
     post = Post.find(params[:id])
-    if post = current_user.posts.update(post_params)
+    post.user_id.current_user.id
+    if post.update(post_params)
       redirect_to post_path(post)
     else
       render :edit
