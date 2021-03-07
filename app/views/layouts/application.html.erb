@@ -27,6 +27,12 @@
                 <%= attachment_image_tag current_user, :profile_image, fallback: "no-image.jpg", size: "25x25" %>
               <% end %>
             </li>
+            <li>
+              <%= link_to destroy_user_session_path do %>
+                <i class="fas fa-sign-out-alt"></i>
+              <% end %>
+            </li>
+            
           <% else %>
             <li><%= link_to "login", new_user_session_path %></li>
             <li><%= link_to "signin", new_user_registration_path %></li>
