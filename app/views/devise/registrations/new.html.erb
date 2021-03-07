@@ -25,13 +25,8 @@
   </div>
   
   <div class="field">
-    <%= f.label :postal_code, "郵便番号（ハイフンなし）" %><br />
-    <%= f.text_field :postal_code, placeholder: "5500005" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :address, "住所" %><br />
-    <%= f.text_field :address, placeholder: "東京都千代田区丸の内1-1-1" %>
+    <%= f.label :prefectures, "都道府県" %><br />
+    <%= f.select :prefectures, :prefectures %>
   </div>
   
   <div class="field">
