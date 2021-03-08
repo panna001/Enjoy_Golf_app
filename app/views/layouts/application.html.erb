@@ -3,12 +3,45 @@
   <head>
     <title>EnjoyGolf</title>
     <%= csrf_meta_tags %>
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <div class="container">
+        <%= link_to "LOGO", root_path %>
+        <ul>
+          <% if user_signed_in? %>
+            <li>
+              <%= link_to notifications_path do %>
+                <i class="fas fa-bell"></i>
+              <% end %>
+            </li>
+              <!--chatリンク後々作成？-->
+              <!--｜-->
+              <!--｜-->
+            <li>
+              <%= link_to user_path(current_user) do %>
+                <%= attachment_image_tag current_user, :profile_image, fallback: "no-image.jpg", size: "25x25" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fas fa-sign-out-alt"></i>
+              <% end %>
+            </li>
+            
+          <% else %>
+            <li><%= link_to "login", new_user_session_path %></li>
+            <li><%= link_to "signin", new_user_registration_path %></li>
+            <li><%= link_to "about", about_path %></li>
+          <% end %>
+        </ul>
+      </div>
+      
+    </header>
     <%= yield %>
   </body>
 </html>

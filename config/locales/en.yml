@@ -16,8 +16,54 @@
 #
 # This would use the information in config/locales/es.yml.
 #
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
   hello: "Hello world"
+  datetime:
+    distance_in_words:
+      half_a_minute: "30minutes"
+      less_than_x_seconds:
+        one:   "1second"
+        other: "%{count}seconds"
+      x_seconds:
+        one:   "1second"
+        other: "%{count}seconds"
+      less_than_x_minutes:
+        one:   "1minute"
+        other: "%{count}minutes"
+      x_minutes:
+        one:   "1minute"
+        other: "{count}minutes"
+      about_x_hours:
+        one:   "1hour"
+        other: "%{count}hours"
+      x_days:
+        one:   "1day"
+        other: "%{count}days"
+      about_x_months:
+        one:   "1month"
+        other: "%{count}months"
+      x_months:
+        one:   "1month"
+        other: "%{count}months"
+      almost_x_years:
+        one:   "１year"
+        other: "%{count}years"
+      about_x_years:
+        one:   "1year"
+        other: "%{count}years"
+      over_x_years:
+        one:   "1year"
+        other: "%{count}years"
