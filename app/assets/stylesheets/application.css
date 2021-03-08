@@ -13,14 +13,3 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap";
- @import 'font-awesome-sprockets';
- @import 'font-awesome';
-
-* {
- font-size: 13px;
-}
-
-i {
- font-size: 20px;
-}
