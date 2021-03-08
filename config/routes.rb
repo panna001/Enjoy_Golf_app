@@ -16,3 +16,4 @@ Rails.application.routes.draw do
   delete "/notifications" => "notifications#destroy_all", as: "destroy_all_notifications"
   resources :chats, only: [:show, :create]
 end
+

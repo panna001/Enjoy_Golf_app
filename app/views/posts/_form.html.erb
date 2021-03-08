@@ -1,0 +1,13 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <%= form_with model: post, local: true do |f| %>
+        <div class="form_group">
+          <%= f.attachment_field :post_image, class: "mb-3"  %>
+          <%= f.text_area :body, placeholder: "説明をここに", rows: "10", class: "form-control mb-3" %>
+          <%= f.submit btn, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
