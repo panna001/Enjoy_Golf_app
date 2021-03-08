@@ -5,7 +5,10 @@
       <%= post.user.account_name %>
       <% if post.user == current_user %>
         <%= link_to edit_post_path(post) do %>
-          <i class="fas fa-cog"></i>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <%= link_to post_path(post), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+          <i class="fas fa-trash-alt"></i>
         <% end %>
       <% else %>
         <!--フォローフォロワー機能実装後編集-->
@@ -49,7 +52,7 @@
               <%= link_to edit_comment_path(post_id: post, id: comment) do %>
                 <i class="fas fa-edit"></i>
               <% end %>
-              <%= link_to post_comment_path(post_id: post, id: comment), method: :delete, data_confirm: "本当に削除しますか？" do %>
+              <%= link_to post_comment_path(post_id: post, id: comment), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>
             <% end %>
