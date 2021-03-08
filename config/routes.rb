@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
     resource :favorites, only: [:create, :destroy]
-    resources :bookmarks, only: [:index, :create, :destroy]
+    resource :bookmarks, only: [:create, :destroy]
+    collection do
+      get :bookmarks 
+    end
   end
   resources :notifications, only: [:index]
   delete "/notifications" => "notifications#destroy_all", as: "destroy_all_notifications"
