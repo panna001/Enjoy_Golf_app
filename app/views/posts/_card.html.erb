@@ -26,7 +26,9 @@
       <li class="favorite-link">
         <%= render "favorites/link", post:post %>
       </li>
-      <li><i class="fas fa-tag"></i></li>
+      <li class="bookmark-link">
+        <%= render "bookmarks/link", post:post %>
+      </li>
     </ul>
     <div class="card-text">
       <%= link_to post.user.account_name, user_path(post.user) %>

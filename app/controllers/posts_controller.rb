@@ -39,6 +39,10 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def bookmarks
+    @bookmark_posts = current_user.bookmark_posts.includes(:user).order(created_at: :desc)
+  end
+  
   private
   def post_params
     params.require(:post).permit(:post_image, :body)
