@@ -38,18 +38,19 @@
       <% end %>
       <% post.comments.each do |comment| %>
         <div class="row">
-          <div class="col-lg-2">
+          <div class="col-lg-1">
             <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.jpg", size: "30x30" %>
           </div>
           <div class="col-lg-3">
             <%= comment.user.account_name %>
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-6">
             <%= comment.post_comment %>
+            <p class="text-secondary"><%= "#{time_ago_in_words(comment.created_at)} ago" %></p>
           </div>
           <div class="col-lg-2">
             <% if current_user == comment.user %>
-              <%= link_to edit_comment_path(post_id: post, id: comment) do %>
+              <%= link_to edit_post_comment_path(post_id: post, id: comment) do %>
                 <i class="fas fa-edit"></i>
               <% end %>
               <%= link_to post_comment_path(post_id: post, id: comment), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
@@ -57,9 +58,8 @@
               <% end %>
             <% end %>
           </div>
-          <div class="row">
-            <%= comment.created_at %>
-          </div>
+        </div>
+        <div class="row">
         </div>
       <% end %>
       <%=link_to "comment", new_post_comment_path(post), class: "d-block" %>
