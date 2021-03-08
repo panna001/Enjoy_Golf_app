@@ -28,6 +28,12 @@ class CommentsController < ApplicationController
     end
   end
   
+  def destroy
+    comment = current_user.comments.find_by(post_id: params[:post_id])
+    comment.destroy
+    redirect_back(fallback_location: root_path)
+  end
+  
   private
   def comment_params
     params.require(:comment).permit(:post_comment)
