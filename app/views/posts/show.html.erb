@@ -1,55 +1,7 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-lg-6 mx-auto">
-      
-      <div class="card">
-        <div class="card-title">
-          <%= link_to user_path(@post.user) do %>
-            <%= attachment_image_tag @post.user, :profile_image, fallback: "no-image.jpg", size: "30x30" %>
-            <%= @post.user.account_name %>
-          <% end %>
-        </div>
-        <%= attachment_image_tag @post, :post_image, size: "100%", class: "card-img-top" %>
-        <div class="card-body">
-          <ul>
-            <li><i class="fas fa-comment-dots"></i></li>
-            <li><i class="fas fa-thumbs-up"></i></li>
-            <li><i class="fas fa-tag"></i></li>
-          </ul>
-          <div class="card-text">
-            <%= @post.user.account_name %>
-            <%= @post.body %>
-            <% @post.comments.each do |comment| %>
-              <div class="row">
-                <div class="col-lg-2">
-                  <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.jpg", size: "30x30" %>
-                </div>
-                <div class="col-lg-3">
-                  <%= comment.user.account_name %>
-                </div>
-                <div class="col-lg-5">
-                  <%= comment.post_comment %>
-                </div>
-                <div class="col-lg-2">
-                  <% if current_user == comment.user %>
-                    <%= link_to edit_comment_path(post_id: @post, id: comment) do %>
-                      <i class="fas fa-edit"></i>
-                    <% end %>
-                    <%= link_to post_comment_path(post_id: @post, id: comment), method: :delete, data_confirm: "本当に削除しますか？" do %>
-                      <i class="fas fa-trash-alt"></i>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class="row">
-                  <%= comment.created_at %>
-                </div>
-              </div>
-            <% end %>
-            <%=link_to "comment", new_post_comment_path(@post), class: "d-block" %>
-          </div>
-        </div>
-      </div>
-      
+      <%= render "posts/card", post:@post %>
     </div>
   </div>
 </div>
