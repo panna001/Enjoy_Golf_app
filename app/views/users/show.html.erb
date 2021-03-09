@@ -1,2 +1,31 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div>
+      
+      <%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", size: "100x100" %>
+      
+      <%= @user.account_name %>
+      <%= "投稿　#{@user.posts.count} 件" %>
+      <%= "フォロー　#{@user.followings.count} 人" %>
+      <%= "フォロワー　#{@user.followers.count} 人" %>
+      <%= @user.first_name + @user.last_name %>
+      <%= @user.introduction %>
+      
+    </div>
+  </div>
+  <div class="row">
+    
+    <!--スコアについて記載-->
+    <!--｜-->
+    <!--｜-->
+    <!--｜-->
+    <!--｜-->
+    <!--｜-->
+    
+  </div>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-5">
+    <% @user.posts.each do |post| %>
+     <%= render "users/card", post:post %>
+    <% end %>
+  </div>
+</div>

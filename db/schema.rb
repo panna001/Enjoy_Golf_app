@@ -138,4 +138,3 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
   end
 
 end
-rai
