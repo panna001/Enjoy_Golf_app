@@ -8,10 +8,14 @@ class Post < ApplicationRecord
   validates :body, presence: true
   
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    favorites.find_by(user_id: user.id).present?
   end
   
   def bookmarked_by?(user)
-    bookmarks.where(user_id: user.id).exists?
+    bookmarks.find_by(user_id: user.id).present?
+  end
+  
+  def followed_by?(user)
+    passive_relationships.find_by(follower_id: user.id).present?
   end
 end

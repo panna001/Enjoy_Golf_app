@@ -4,4 +4,10 @@ class UsersController < ApplicationController
 
   def edit
   end
+  
+  def followings
+  end
+
+  def followers
+  end
 end
