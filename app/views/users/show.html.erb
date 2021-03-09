@@ -7,8 +7,10 @@
         
       </div>
       <div class="col-9">
-        
-        <h4><%= @user.account_name %></h4>
+        <div>
+          <span class="h4"><%= @user.account_name %></span>
+          <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-sm btn-secondary d-inline-block mx-3 shadow , mb-2" %>
+        </div>
         <span class="d-inline-block mr-3"><%= "投稿 #{@user.posts.count} 件" %></span>
         <span class="d-inline-block mr-3">
           <%= link_to followings_user_path(@user), class: "text-dark" do %>
