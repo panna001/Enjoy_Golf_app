@@ -28,7 +28,6 @@
         
     </div>
     <div class="row">
-      
       <!--スコアについて記載-->
       <!--｜-->
       <!--｜-->
@@ -37,7 +36,7 @@
       <!--｜-->
       
     </div>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-5 border-top">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-5 pt-5 border-top">
       <% @user.posts.each do |post| %>
        <%= render "users/card", post:post %>
       <% end %>
