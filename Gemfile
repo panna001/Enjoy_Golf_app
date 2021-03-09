@@ -50,6 +50,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootsnap', require: false
 gem 'bootstrap', '~>4.5'
 gem 'jquery-rails'
+gem 'pry-rails'
 gem 'pry-byebug'
 gem 'dotenv-rails'
 gem 'devise'
