@@ -6,8 +6,12 @@
       
       <%= @user.account_name %>
       <%= "投稿　#{@user.posts.count} 件" %>
-      <%= "フォロー　#{@user.followings.count} 人" %>
-      <%= "フォロワー　#{@user.followers.count} 人" %>
+      <%= link_to followings_user_path(@user) do %>
+        <%= "フォロー　#{@user.followings.count} 人" %>
+      <% end %>
+      <%= link_to followings_user_path(@user) do %>
+        <%= "フォロワー　#{@user.followers.count} 人" %>
+      <% end %>
       <%= @user.first_name + @user.last_name %>
       <%= @user.introduction %>
       
@@ -23,7 +27,7 @@
     <!--｜-->
     
   </div>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-5">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-5 border-top">
     <% @user.posts.each do |post| %>
      <%= render "users/card", post:post %>
     <% end %>
