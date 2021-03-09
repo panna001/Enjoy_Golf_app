@@ -35,11 +35,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :account_name
       t.string :first_name
       t.string :last_name
-      t.string :sex
+      t.integer :sex
       t.string :profile_image_id
       t.string :introduction
-      t.string :prefecture
-      t.string :phone_number
+      t.integer :prefecture
       t.integer :start_year
       t.integer :start_month
       t.timestamps null: false
