@@ -63,3 +63,55 @@ User.create!(
     }
   ]
 )
+
+User.find(1).posts.create!(
+  [
+    {
+      body: "初ラウンド。景色もよく最高でした。",
+      post_image: open("./app/assets/images/sample_post/sample_post_1.jpg"),
+    },
+    {
+      body: "あのウッズさんにレッスンしてもらいました",
+      post_image: open("./app/assets/images/sample_post/sample_post_2.jpg"),
+    },
+  ]
+)
+
+User.find(2).posts.create!(
+  [
+    {
+      body: "パター新調しました。",
+      post_image: open("./app/assets/images/sample_post/sample_post_3.jpg"),
+    },
+    {
+      body: "本日の練習はゴルフ場で",
+      post_image: open("./app/assets/images/sample_post/sample_post_4.jpg"),
+    },
+  ]
+)
+
+User.find(3).posts.create!(
+  [
+    {
+      body: "雨スタートでも、天気がよくなりました。",
+      post_image: open("./app/assets/images/sample_post/sample_post_5.jpg"),
+    },
+    {
+      body: "バンカーショットが難しい↓↓↓",
+      post_image: open("./app/assets/images/sample_post/sample_post_6.jpg"),
+    },
+  ]
+)
+
+User.find(4).posts.create!(
+  [
+    {
+      body: "ダフらないコツは前傾です。",
+      post_image: open("./app/assets/images/sample_post/sample_post_7.jpg"),
+    },
+    {
+      body: "バンカーのコツはフェースを開くこと。ハンドファーストに構えると砂に刺さります。",
+      post_image: open("./app/assets/images/sample_post/sample_post_8.jpg"),
+    },
+  ]
+)
