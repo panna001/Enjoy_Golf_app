@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show
@@ -12,9 +12,9 @@ class PostsController < ApplicationController
   end
   
   def create
-    post = current_user.posts.new(post_params)
-    if post.save
-      redirect_to post_path(post)
+    @post = current_user.posts.new(post_params)
+    if @post.save
+      redirect_to post_path(@post)
     else
       render :new
     end
