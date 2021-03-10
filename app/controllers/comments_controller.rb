@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @comment = Comment.new
     @post = Post.find(params[:post_id])
@@ -17,6 +19,9 @@ class CommentsController < ApplicationController
   def edit
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
+    unless @comment.user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
   
   def update
