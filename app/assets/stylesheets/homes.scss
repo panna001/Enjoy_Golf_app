@@ -2,7 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.jumbotron {
-  background: url(mv.jpg);
-  background-size: cover;
-}
+  .BgCarousel {
+    width: 100vw;
+    height: calc(100vh - 56px);
+  }
+  
+  .BgCarouselItem {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .BgCarouselItem:nth-child(1) {
+    background-image: url(mv/mv_4.jpg);
+  }
+  
+  .BgCarouselItem:nth-child(2) {
+    background-image: url(mv/mv_sanset.jpg);
+  }
+  
+  .BgCarouselItem:nth-child(3) {
+    background-image: url(mv/mv_lake.jpg);
+  }
+  
+  .BgCarouselItem h1 {
+    font-size: 80px;
+    color: #FFFFFF;
+    opacity: 0.8;
+  }
