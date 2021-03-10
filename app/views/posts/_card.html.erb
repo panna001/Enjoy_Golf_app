@@ -25,11 +25,11 @@
   <div class="card-body">
     <ul>
       <li><i class="fas fa-comment-dots"></i></li>
-      <li class="favorite-link">
+      <li class="favorite-link_<%= post.id %>">
         <%= render "favorites/link", post:post %>
       </li>
-      <li class="bookmark-link">
-        <%= render "bookmarks/link", post:post %>
+      <li class="bookmark-link_<%= post.id %>">
+      
       </li>
     </ul>
     <div class="card-text">
