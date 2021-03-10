@@ -16,6 +16,9 @@ class CommentsController < ApplicationController
 
   def edit
     @post = Post.find(params[:post_id])
+    unless @post.user == current_user
+      redirect_back(fallback_location: root_path)
+    end
     @comment = @post.comments.find(params[:id])
   end
   

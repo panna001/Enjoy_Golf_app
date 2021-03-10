@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   
-  attachment :post_image
   validates :body, :post_image, presence: true
+  attachment :post_image
   
   def favorited_by?(user)
     favorites.find_by(user_id: user.id).present?

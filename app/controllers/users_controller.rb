@@ -5,6 +5,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
   
   def update
