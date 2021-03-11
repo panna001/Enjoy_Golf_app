@@ -1,0 +1,65 @@
+<div class="container">
+  <%= form_with(model:[@user, @round], local: true) do |f| %>
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>HOLE</th>
+          <% 9.times do |i| %>
+            <th><%=  i + 1 %></th>
+            <%= f.fields_for :scores do |score| %>
+              <%= score.hidden_field :hole_number, :value => (i + 1) %>
+            <% end %>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>PAR</th>
+          <% 9.times do |i| %>
+            <%= f.fields_for :scores do |score| %>
+              <td>
+                <%= score.text_field :par_count %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <th>SCORE</th>
+          <% 9.times do |i| %>
+            <%= f.fields_for :scores do |score| %>
+              <td>
+                <%= score.text_field :stroke_count %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <th>PUTT</th>
+          <% 9.times do |i| %>
+            <%= f.fields_for :scores do |score| %>
+              <td>
+                <%= score.text_field :putt_count %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+        <tr>
+          <th>FAIRWAY</th>
+          <% 9.times do |i| %>
+            <%= f.fields_for :scores do |score| %>
+              <td>
+                <%= score.select :fairway_keep, Score.fairway_keeps.keys %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit "登録" %>
+  <% end %>
+</div>
+
+
+
+<!--ストロングパラメータ-->
+, scores_attributes: [:hole_number, :par_count, :stroke_count, :putt_count, :fairway_keep, :ob_count, :penalty_count, :par_on]

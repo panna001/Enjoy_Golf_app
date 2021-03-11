@@ -7,23 +7,22 @@ class RoundsController < ApplicationController
   end
 
   def show
+    @round = Round.find(params[:id])
   end
 
   def new
-    @user = current_user
-    @round = Round.new
+    @round = current_user.rounds.build
     @round.scores.build
   end
   
   def create
-    @user = current_user
     @round = current_user.rounds.build(round_params)
     @round.save
-    # if @round.save
-      redirect_to user_round_path(user_id: current_user, id: @round.id)
-    # else
-    #   render :new
-    # end
+    redirect_to round_path(@round)
+    if @round.save
+    else
+      render :new
+    end
   end
 
   def edit
@@ -31,7 +30,7 @@ class RoundsController < ApplicationController
   
   private
   def round_params
-    params.require(:round).permit(:date, :place, :weather, :wind, scores_attributes: [:hole_number, :par_count, :stroke_count, :put_count, :fairway_keep, :ob_count, :penalty_count, :par_on])
+    params.require(:round).permit(:play_date, :place, :weather, :wind, scores_attributes: [:hole_number, :par_count, :stroke_count, :putt_count, :fairway_keep, :ob_count, :penalty_count, :id])
   end
   
 end
