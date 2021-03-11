@@ -5,12 +5,12 @@
       <%= attachment_image_tag post, :post_image, size: "100%", class: "card-img-top" %>
     <% end %>
     <div class="card-body">
-      <ul>
-        <li><i class="fas fa-comment-dots"></i></li>
-        <li class="favorite-link_<%= post.id %>">
+      <ul class="text-right">
+        <li class="list-inline-item"><i class="fas fa-comment-dots"></i><span class="ml-1"><%= post.comments.count %></span></li>
+        <li class="list-inline-item favorite-link_<%= post.id %>">
           <%= render "favorites/link", post:post %>
         </li>
-        <li class="bookmark-link_<%= post.id %>">
+        <li class="list-inline-item bookmark-link_<%= post.id %>">
           <%= render "bookmarks/link", post:post %>
         </li>
       </ul>
