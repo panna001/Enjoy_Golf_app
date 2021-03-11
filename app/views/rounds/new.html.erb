@@ -1,2 +1,28 @@
-<h1>Rounds#new</h1>
-<p>Find me in app/views/rounds/new.html.erb</p>
+<div class="container">
+  <%= form_with(model:[@user, @round], local: true) do |f| %>
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>HOLE</th>
+          <% 9.times do |i| %>
+            <th><%=  i + 1 %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>PAR</th>
+          <% 9.times do |i| %>
+            <%= f.fields_for :scores do |score| %>
+              <td>
+                <%= score.text_field :par_count %>
+              </td>
+            <% end %>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit "登録" %>
+  <% end %>
+</div>
+
