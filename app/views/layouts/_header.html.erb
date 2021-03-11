@@ -3,13 +3,13 @@
     <div class="container">
       <% if user_signed_in? %>
         <%= link_to "LOGO", posts_path, class: "navbar-brand" %>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav d-flex align-items-center">
           <li class="nav-item">
-            <%= link_to "＋", new_post_path, class: "btn btn-sm btn-secondary rounded-circle shadow" %>
+            <%= link_to "＋", new_post_path, class: "mr-1 btn btn-sm btn-secondary rounded-circle" %>
           </li>
           <li class="nav-item">
-            <%= link_to notifications_path, class: "nav-link text-light" do %>
-              <i class="fas fa-bell"></i>
+            <%= link_to notifications_path, class: "nav-link text-light rounded-circle" do %>
+              <i class="fas fa-bell fa-lg"></i>
             <% end %>
           </li>
             <!--chatリンク後々作成？-->
@@ -17,12 +17,12 @@
             <!--｜-->
           <li class="nav-item">
             <%= link_to user_path(current_user), class: "nav-link text-light" do %>
-              <%= attachment_image_tag current_user, :profile_image, fallback: "no-image.jpg", size: "25x25" %>
+              <%= attachment_image_tag current_user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to destroy_user_session_path, class: "nav-link text-light", method: :delete do %>
-              <i class="fas fa-sign-out-alt"></i>
+              <i class="fas fa-sign-out-alt fa-lg"></i>
             <% end %>
           </li>
         </ul>
