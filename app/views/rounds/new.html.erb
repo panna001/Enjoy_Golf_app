@@ -1,23 +1,53 @@
 <div class="container">
-  <%= form_with(model:[@user, @round], local: true) do |f| %>
+  <%= form_with model: @round, local: true do |f| %>
+    <%= f.label :date, "ラウンド日" %>
+    <%= f.date_field :play_date %>
+    <%= f.label :place, "場所" %>
+    <%= f.text_field :place, placeholder: "ゴルフ場名" %>
+    <%= f.label :weather ,"天気" %>
+    <%= f.select :weather, ["晴れ","曇り","雨","雪"] %>
+    <%= f.label :wind, "風" %>
+    <%= f.select :wind, ["無風","微風","強風"] %>
+    <%= f.submit %>
+</div>
+
+<div class="container">
     <table class="table table-bordered text-center">
       <thead>
         <tr>
           <th>HOLE</th>
-          <% 9.times do |i| %>
-            <th><%=  i + 1 %></th>
-          <% end %>
+          <th>PAR</th>
+          <th>SCORE</th>
+          <th>PUTT</th>
+          <th>FAIRWAY</th>
+          <th>OB</th>
+          <th>PENALTY</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th>PAR</th>
-          <% 9.times do |i| %>
-            <%= f.fields_for :scores do |score| %>
-              <td>
-                <%= score.text_field :par_count %>
-              </td>
-            <% end %>
+          <%= f.fields_for :scores do |score| %>
+            <th>1</th>
+            <%= score.hidden_field :hole_number, :value => 1 %>
+            <td>
+              <%= score.text_field :par_count %>
+            </td>
+            <td>
+              <%= score.text_field :stroke_count %>
+            </td>
+            <td>
+              <%= score.text_field :putt_count %>
+            </td>
+            <td>
+              <%= score.select :fairway_keep, Score.fairway_keeps.keys %>
+            </td>
+            <td>
+              <%= score.text_field :ob_count %>
+            </td>
+            <td>
+              <%= score.text_field :penalty_count %>
+            </td>
+            <%= score.hidden_field :id, value: score.object.id %>
           <% end %>
         </tr>
       </tbody>
@@ -25,4 +55,3 @@
     <%= f.submit "登録" %>
   <% end %>
 </div>
-

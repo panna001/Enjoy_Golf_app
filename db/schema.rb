@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer "user_id"
-    t.date "date"
+    t.date "play_date"
     t.string "place"
     t.string "weather"
     t.string "wind"
