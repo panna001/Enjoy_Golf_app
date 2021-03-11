@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @posts = Post.all.includes(:bookmarks ,:favorites ,user: :comments).order(created_at: :desc)
+    @posts = Post.all.includes(:comments, :user).order(created_at: :desc)
   end
 
   def show
