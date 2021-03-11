@@ -20,7 +20,7 @@
         <!--非同期通信導入検討↓-->
           <span><%= link_to "続きを読む", post_path(post) %></span>
       <% end %>
-      <% post.comments.each do |comment| %>
+      <% Comment.all.includes(:post).each do |comment| %>
         <div class="row">
           <div class="col-lg-1">
             <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
