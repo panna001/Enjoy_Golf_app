@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer "user_id"
-    t.date "date"
+    t.date "play_date"
     t.string "place"
     t.string "weather"
     t.string "wind"
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
   end
 
   create_table "scores", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "round_id"
     t.integer "hole_number"
     t.integer "par_count"
@@ -103,7 +102,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["round_id"], name: "index_scores_on_round_id"
-    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|

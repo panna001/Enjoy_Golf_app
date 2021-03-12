@@ -3,8 +3,7 @@
       
     <div class="row mx-auto">
       <div class="col-3">
-        <%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", size: "100x100" %>
-        
+        <%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", size: "120x120", class: "rounded-circle" %>
       </div>
       <div class="col-9">
         <div>
