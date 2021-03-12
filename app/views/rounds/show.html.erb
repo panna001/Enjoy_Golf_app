@@ -1,4 +1,78 @@
-<%= @round.play_date %>
-<%= @round.place %>
-<%= @round.weather %>
-<%= @round.wind %>
+<div class="container pt-5">
+  <div class="row mb-5">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-2">
+      <p>日付: <%= @round.play_date.strftime("%Y/%m/%d") %></p>
+      <p>場所: <%= @round.place %></p>
+      <p>天候: <%= @round.weather %></p>
+      <p>風: <%= @round.wind %></p>
+    </div>
+    
+    <div class="col-lg-4 text-center">
+      <h1><strong>TOTAL</strong></h1>
+      <p class="h3">
+        <strong class="h1"><%= @round.scores.sum(:stroke_count) %></strong><br>
+        <%= "(#{@round.scores.sum(:putt_count)})" %>
+      </p>
+    </div>
+    <div class="col-lg-2">
+      <p>フェアウェイキープ: <%= @fairway_keep_rate %></p>
+      <p>パーオン率: </p>
+      <p>OB: <%= @round.scores.sum(:ob_count) %>回</p>
+      <p>ペナルティ: <%= @round.scores.sum(:penalty_count) %>回</p>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+  
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>HOLE</th>
+            <% 18.times do |i| %>
+              <th><%= i + 1 %></th>
+            <% end %>
+            <th>OUT</th>
+            <th>IN</th>
+            <th>TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>PAR</th>
+            <% @round.scores.each do |score| %>
+              <td><%= score.par_count %></td>
+            <% end %>
+            <td></td>
+            <td></td>
+            <td><%= @round.scores.sum(:par_count) %></td>
+          </tr>
+          <tr>
+            <th>PUTT</th>
+            <% @round.scores.each do |score| %>
+              <td><%= score.putt_count %></td>
+            <% end %>
+            <td></td>
+            <td></td>
+            <td><%= @round.scores.sum(:putt_count) %></td>
+          </tr>
+          <tr>
+            <th></th>
+            <% @round.scores.each do |score| %>
+              <td><%= score.stroke_count - score.par_count %></td>
+            <% end %>
+            <td></td>
+            <td></td>
+            <td><%= @round.scores.sum(:stroke_count) - @round.scores.sum(:par_count) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+  <div class="row text-center pt-5">
+    <div class="col-6"><%= link_to "編集", edit_round_path(@round), class: "btn btn-lg btn-secondary shadow" %></div>
+    <div class="col-6"><%= link_to "削除", round_path(@round), class: "btn btn-lg btn-danger shadow", method: :delete %></div>
+  </div>
+</div>

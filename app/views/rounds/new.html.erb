@@ -44,8 +44,8 @@
             </tr>
           </thead>
           <tbody>
-            <%= f.fields_for :scores do |score| %>
-              <% 9.times do |i| %>
+            <% 9.times do |i| %>
+              <%= f.fields_for :scores do |score| %>
                 <tr>
                 <td><%= i + 1 %></td>
                 <td><%= score.select :par_count, 3..5, {selected: 4}, {class: "form-control"} %></td>
@@ -77,8 +77,8 @@
             </tr>
           </thead>
           <tbody>
-            <%= f.fields_for :scores do |score| %>
-              <% 9.times do |i| %>
+            <% 9.times do |i| %>
+              <%= f.fields_for :scores do |score| %>
                 <tr>
                 <td><%= i + 10 %></td>
                 <td><%= score.select :par_count, 3..5, {selected: 4}, {class: "form-control"} %></td>
@@ -89,6 +89,7 @@
                 <td><%= score.select :fairway_keep, Score.fairway_keeps.keys, class: "form-control" %></td>
                 <%= score.hidden_field :hole_number, :value => i + 1 %>
                 <%= score.hidden_field :id, value: score.object.id %>
+                <%= score.hidden_field :courese, value: "out" %>
                 </tr>
               <% end %>
             <% end %>

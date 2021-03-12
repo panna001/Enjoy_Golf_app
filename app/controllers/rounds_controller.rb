@@ -8,6 +8,7 @@ class RoundsController < ApplicationController
 
   def show
     @round = Round.find(params[:id])
+    @fairway_keep_rate = @round.scores.sum(:fairway_keep)
   end
 
   def new
