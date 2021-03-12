@@ -14,18 +14,21 @@
           <tr>
             <th>day</th>
             <% @rounds.each do |round| %>
-              <td><%= round.date %></td>
+              <td><%= round.play_date %></td>
             <% end %>
           </tr>
           <tr>
             <th>score</th>
-            <% @rounds.each do |raound| %>
+            <% @rounds.each do |round| %>
+            
+            <!--sumでエラー-->
+            
               <td><%= round.scores.sum(:stroke_count) %></td>
             <% end %>
           </tr>
           <tr>
             <th>score</th>
-            <% @rounds.each do |raound| %>
+            <% @rounds.each do |round| %>
               <td><%= round.scores.sum(:put_count) %></td>
             <% end %>
           </tr>
