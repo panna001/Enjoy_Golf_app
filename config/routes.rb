@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get :followings, on: :member
     get :followers, on: :member
+    resources :rounds, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
-  resources :rounds, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
     resource :favorites, only: [:create, :destroy]
