@@ -30,10 +30,12 @@ class RoundsController < ApplicationController
   end
 
   def edit
+    @user = current_user
     @round = current_user.rounds.find(params[:id])
   end
 
   def update
+    @user = current_user
     @round = current_user.rounds.find(params[:id])
     if @round.update(round_params)
       redirect_to round_path(@round)
