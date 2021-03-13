@@ -1,1 +1,101 @@
-<%= render "rounds/form", user:@user, round:@round %>
+<%= form_with(model:[@user, @round], local: true) do |f| %>
+  <div class="container pt-4">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :date, "ラウンド日" %>
+          <%= f.date_field :play_date, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :place, "場所" %>
+          <%= f.text_field :place, placeholder: "ゴルフ場名", class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :weather ,"天気" %>
+          <%= f.select :weather, ["晴れ","曇り","雨","雪"], {}, {class: "form-control"} %>
+        </div>
+        <div class="form-group">
+          <%= f.label :wind, "風" %>
+          <%= f.select :wind, ["無風","微風","強風"], {}, {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    
+    <div class="row d-flex justify-content-center pt-2">
+      <%= f.submit class: "btn btn-secondary " %>
+    </div>
+    
+    <div class="row">
+      <div class="col-10 mx-auto pt-5">
+        <table class="table table-sm table-bordered text-center">
+          <thead>
+            <tr>
+              <th>HOLE</th>
+              <th>PAR</th>
+              <th>SCORE</th>
+              <th>PUTT</th>
+              <th>OB</th>
+              <th>PENALTY</th>
+              <th>FAIRWAY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% 9.times do |i| %>
+              <%= f.fields_for :scores do |score| %>
+                <tr>
+                <td><%= i + 1 %></td>
+                <td><%= score.select :par_count, 3..5, {selected: 4}, {class: "form-control"} %></td>
+                <td><%= score.select :stroke_count, 1..15, {include_blank: "--"}, {class: "form-control"} %></td>
+                <td><%= score.select :putt_count, 0..9, {include_blank: "--"}, class: "form-control" %></td>
+                <td><%= score.select :ob_count, 0..5, {selected: 0}, class: "form-control" %></td>
+                <td><%= score.select :penalty_count, 0..5, {selected: 0}, class: "form-control" %></td>
+                <td><%= score.select :fairway_keep, Score.fairway_keeps.keys, class: "form-control" %></td>
+                <%= score.hidden_field :hole_number, :value => i + 1 %>
+                <%= score.hidden_field :id, value: score.object.id %>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="col-10 mx-auto pt-5">
+        <table class="table table-sm table-bordered text-center">
+          <thead>
+            <tr>
+              <th>HOLE</th>
+              <th>PAR</th>
+              <th>SCORE</th>
+              <th>PUTT</th>
+              <th>OB</th>
+              <th>PENALTY</th>
+              <th>FAIRWAY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% 9.times do |i| %>
+              <%= f.fields_for :scores do |score| %>
+                <tr>
+                <td><%= i + 10 %></td>
+                <td><%= score.select :par_count, 3..5, {selected: 4}, {class: "form-control"} %></td>
+                <td><%= score.select :stroke_count, 1..15, {include_blank: "--"}, {class: "form-control"} %></td>
+                <td><%= score.select :putt_count, 0..9, {include_blank: "--"}, class: "form-control" %></td>
+                <td><%= score.select :ob_count, 0..5, {selected: 0}, class: "form-control" %></td>
+                <td><%= score.select :penalty_count, 0..5, {selected: 0}, class: "form-control" %></td>
+                <td><%= score.select :fairway_keep, Score.fairway_keeps.keys, class: "form-control" %></td>
+                <%= score.hidden_field :hole_number, :value => i + 10 %>
+                <%= score.hidden_field :id, value: score.object.id %>
+                <%= score.hidden_field :courese, value: "out" %>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>

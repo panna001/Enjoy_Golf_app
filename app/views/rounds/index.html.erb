@@ -29,7 +29,7 @@
           <tr>
             <th>score</th>
             <% @rounds.each do |round| %>
-              <td><%= round.scores.sum(:put_count) %></td>
+              <td><%= round.scores.sum(:putt_count) %></td>
             <% end %>
           </tr>
         </tbody>
