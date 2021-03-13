@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_115132) do
+ActiveRecord::Schema.define(version: 2021_03_08_120352) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_bookmarks_on_post_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
 
   create_table "chats", force: :cascade do |t|
     t.string "message"
@@ -71,7 +80,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_115132) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer "user_id"
-    t.date "date"
+    t.date "play_date"
     t.string "place"
     t.string "weather"
     t.string "wind"
@@ -81,7 +90,6 @@ ActiveRecord::Schema.define(version: 2021_03_06_115132) do
   end
 
   create_table "scores", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "round_id"
     t.integer "hole_number"
     t.integer "par_count"
@@ -94,7 +102,6 @@ ActiveRecord::Schema.define(version: 2021_03_06_115132) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["round_id"], name: "index_scores_on_round_id"
-    t.index ["user_id"], name: "index_scores_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|
@@ -115,11 +122,10 @@ ActiveRecord::Schema.define(version: 2021_03_06_115132) do
     t.string "account_name"
     t.string "first_name"
     t.string "last_name"
-    t.string "sex"
+    t.integer "sex"
     t.string "profile_image_id"
     t.string "introduction"
-    t.string "prefecture"
-    t.string "phone_number"
+    t.integer "prefecture"
     t.integer "start_year"
     t.integer "start_month"
     t.datetime "created_at", null: false

@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:comments, :user).order(created_at: :desc)
   end
 
   def show
@@ -12,9 +14,9 @@ class PostsController < ApplicationController
   end
   
   def create
-    post = current_user.posts.new(post_params)
-    if post.save
-      redirect_to post_path(post)
+    @post = current_user.posts.new(post_params)
+    if @post.save
+      redirect_to post_path(@post)
     else
       render :new
     end
@@ -22,12 +24,15 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    unless @post.user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
   
   def update
-    post = current_user.posts.find(params[:id])
-    if post.update(post_params)
-      redirect_to post_path(post)
+    @post = current_user.posts.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post)
     else
       render :edit
     end
@@ -37,6 +42,10 @@ class PostsController < ApplicationController
     post = current_user.posts.find(params[:id])
     post.destroy
     redirect_back(fallback_location: root_path)
+  end
+  
+  def bookmarks
+    @bookmark_posts = current_user.bookmark_posts.includes(:user).order(created_at: :desc)
   end
   
   private
