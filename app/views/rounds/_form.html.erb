@@ -87,7 +87,7 @@
                 <td><%= score.select :ob_count, 0..5, {selected: 0}, class: "form-control" %></td>
                 <td><%= score.select :penalty_count, 0..5, {selected: 0}, class: "form-control" %></td>
                 <td><%= score.select :fairway_keep, Score.fairway_keeps.keys, class: "form-control" %></td>
-                <%= score.hidden_field :hole_number, :value => i + 1 %>
+                <%= score.hidden_field :hole_number, :value => i + 10 %>
                 <%= score.hidden_field :id, value: score.object.id %>
                 <%= score.hidden_field :courese, value: "out" %>
                 </tr>
