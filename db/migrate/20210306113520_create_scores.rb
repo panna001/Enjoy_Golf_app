@@ -9,8 +9,6 @@ class CreateScores < ActiveRecord::Migration[5.0]
       t.integer :fairway_keep
       t.integer :ob_count
       t.integer :penalty_count
-      t.integer :par_on
-
       t.timestamps
     end
   end
