@@ -12,6 +12,6 @@ class Score < ApplicationRecord
   # end
   
   enum fairway_keep:{
-    ○:1,×:2
+    ○:1,×:0
   }
 end
