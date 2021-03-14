@@ -9,7 +9,7 @@
     <div class="col-lg-9">
       グラフ
       <% if @rounds.present? %>
-      <table>
+      <table class="table table bordered">
         <tbody>
           <tr>
             <th>day</th>
@@ -27,7 +27,7 @@
             <% end %>
           </tr>
           <tr>
-            <th>score</th>
+            <th>putt</th>
             <% @rounds.each do |round| %>
               <td><%= round.scores.sum(:putt_count) %></td>
             <% end %>
