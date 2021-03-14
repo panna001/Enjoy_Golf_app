@@ -55,7 +55,6 @@ gem 'bootstrap', '~>4.5'
 gem 'jquery-rails'
 gem 'pry-rails'
 gem 'pry-byebug'
-gem 'dotenv-rails'
 gem 'devise'
 gem 'ransack'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
@@ -64,3 +63,8 @@ gem 'carrierwave'
 gem 'chartkick'
 gem 'kaminari'
 gem 'font-awesome-sass'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
