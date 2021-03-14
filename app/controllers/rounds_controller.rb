@@ -9,7 +9,13 @@ class RoundsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @round = Round.find(params[:id])
-    @fairway_keep_rate = @round.scores.sum(:fairway_keep)
+    # フェアウェイキープ率の計算
+    @fairway_keep_rate = (@round.scores.map{|s|s.fairway_keep_before_type_cast}.sum / 18.to_f * 100).floor
+    # パーオン率の計算
+    @on_numbers = @round.scores.map{|s|s.par_count - (s.stroke_count - s.putt_count)}
+    @under_par_on_rate = (@on_numbers.count(3) / 18.to_f * 100).floor
+    @par_on_rate = (@on_numbers.count(2) / 18.to_f * 100).floor
+    # binding.pry
   end
 
   def new
@@ -38,7 +44,7 @@ class RoundsController < ApplicationController
     @user = current_user
     @round = current_user.rounds.find(params[:id])
     if @round.update(round_params)
-      redirect_to round_path(@round)
+      redirect_to user_round_path(@user, @round)
     else
       render :edit
     end
