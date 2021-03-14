@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
     t.integer "fairway_keep"
     t.integer "ob_count"
     t.integer "penalty_count"
-    t.integer "par_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["round_id"], name: "index_scores_on_round_id"
