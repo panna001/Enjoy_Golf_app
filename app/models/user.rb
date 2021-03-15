@@ -14,14 +14,17 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "follower_id"
   has_many :followers, through: :passive_relationships, source: :following
   has_many :rounds, dependent: :destroy
-  
+  # 直接値をとるためにスルーを指定
+  has_many :scores, through: :rounds
+
   validates :account_name, :first_name, :last_name, :sex, :prefecture, presence: true
   validates :account_name, uniqueness: true
   validates :introduction, length: { maximum: 100}
-  validates :start_year, length: { is: 4}
-  validates :start_month, length: { in: 1..2}
-  
-  
+  # 年月まとめたので、一旦解除
+  # validates :start_year, length: { is: 4}
+  # validates :start_month, length: { in: 1..2}
+
+
   # 住所選択用
   enum prefecture:{
      "---":0,
@@ -32,13 +35,13 @@ class User < ApplicationRecord
      滋賀県:25,京都府:26,大阪府:27,兵庫県:28,奈良県:29,和歌山県:30,
      鳥取県:31,島根県:32,岡山県:33,広島県:34,山口県:35,
      徳島県:36,香川県:37,愛媛県:38,高知県:39,
-     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46, 
+     福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
      沖縄県:47
    }
-  
-  
+
+
   attachment :profile_image
-  
+
   # フォロー済み確認
   def followed_by?(user)
     passive_relationships.where(following_id: user.id).present?
