@@ -1,6 +1,6 @@
 class RoundsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @user = User.find(params[:user_id])
     @rounds = @user.rounds.page(params[:page]).per(10)
@@ -9,12 +9,13 @@ class RoundsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @round = Round.find(params[:id])
+    @scores = @round.scores
     # フェアウェイキープ率の計算
-    @fairway_keep_rate = (@round.scores.map{|s|s.fairway_keep_before_type_cast}.sum / 18.to_f * 100).floor
+    @fairway_keep_rate = (@round.scores.map{|s|s.fairway_keep_before_type_cast}.sum(0.00) / @round.scores.size * 100).floor
     # パーオン率の計算
-    @on_numbers = @round.scores.map{|s|s.par_count - (s.stroke_count - s.putt_count)}
-    @under_par_on_rate = (@on_numbers.count(3) / 18.to_f * 100).floor
-    @par_on_rate = (@on_numbers.count(2) / 18.to_f * 100).floor
+    @on_numbers = @round.on_numbers
+    @under_par_on_rate = (@on_numbers.count(3) / @round.round_count * 100).floor
+    @par_on_rate = (@on_numbers.count(2) / @round.round_count * 100).floor
     # binding.pry
   end
 
@@ -23,7 +24,7 @@ class RoundsController < ApplicationController
     @round = current_user.rounds.build
     @round.scores.build
   end
-  
+
   def create
     @user = current_user
     @round = current_user.rounds.build(round_params)
@@ -49,16 +50,16 @@ class RoundsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @round = current_user.rounds.find(params[:id])
     @round.destroy
     redirect_to user_rounds_path(current_user)
   end
-  
+
   private
   def round_params
     params.require(:round).permit(:play_date, :place, :weather, :wind, scores_attributes: [:hole_number, :par_count, :stroke_count, :putt_count, :fairway_keep, :ob_count, :penalty_count, :id, :_destroy])
   end
-  
+
 end

@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-      
+
     <div class="row mx-auto">
       <div class="col-3">
         <%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", size: "120x120", class: "rounded-circle" %>
@@ -21,12 +21,34 @@
             <%= "フォロワー #{@user.followers.count} 人" %>
           <% end %>
         </span>
-        
+
         <p><%= @user.first_name + @user.last_name %></p>
         <p><%= @user.introduction %></p>
       </div>
-        
-        
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6  mx-auto">
+        <!--スコアについて記載-->
+        <% if @user.scores.present? %>
+          <p><%= @score %></p>
+          <p><%= @putt %></p>
+          <p><%= @fairway_keep_rate %>%</p>
+          <p><%= @par_on_rate %>%</p>
+          <p><%= @under_par_on_rate %>%</p>
+        <!--ゴルフ歴-->
+        <% else %>
+          <p>スコア登録をしましょう。</p>
+        <% end %>
+          <%= @carrer %>
+          <%= @user.prefecture %>
+      </div>
+
+        <p><%= @user.first_name + @user.last_name %></p>
+        <p><%= @user.introduction %></p>
+      </div>
+
+
     </div>
     <div class="row">
       <!--スコアについて記載-->
@@ -35,7 +57,7 @@
       <!--｜-->
       <!--｜-->
       <!--｜-->
-      
+
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-5 pt-5 border-top">
       <% @user.posts.each do |post| %>
