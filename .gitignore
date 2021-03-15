@@ -21,4 +21,4 @@
 .byebug_history
 
 .env
-config/master.key.bak
+config/master.key
