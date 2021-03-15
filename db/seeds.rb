@@ -115,3 +115,85 @@ User.find(4).posts.create!(
     },
   ]
 )
+
+User.find(1).rounds.create!(
+  [
+    {
+      play_date: "2020/10/01",
+      place: "ローズウッド",
+      weather: "くもり",
+      wind: "無風"
+    },
+    {
+      play_date: "2020/10/02",
+      place: "阪奈CC",
+      weather: "晴れ",
+      wind: "強風"
+    }
+  ]
+)
+
+User.find(2).rounds.create!(
+  [
+    {
+      play_date: "2020/11/01",
+      place: "白鵬CC",
+      weather: "雨",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/11/02",
+      place: "高槻CC",
+      weather: "晴れ",
+      wind: "無風"
+    }
+  ]
+)
+
+User.find(3).rounds.create!(
+  [
+    {
+      play_date: "2020/12/01",
+      place: "東條CC",
+      weather: "くもり",
+      wind: "強風"
+    },
+    {
+      play_date: "2020/12/02",
+      place: "阪奈CC",
+      weather: "雪",
+      wind: "強風"
+    }
+  ]
+)
+
+User.find(4).rounds.create!(
+  [
+    {
+      play_date: "2021/01/01",
+      place: "パインレークCC",
+      weather: "晴れ",
+      wind: "無風"
+    },
+    {
+      play_date: "2020/01/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    }
+  ]
+)
+
+8.times do |n|
+  18.times do |i| 
+    Round.find(n + 1).scores.create!(
+      hole_number: i + 1,
+      par_count: rand(3..5),
+      stroke_count: rand(3..7),
+      putt_count: rand(0..2),
+      fairway_keep: rand(0..1),
+      ob_count: rand(0..1),
+      penalty_count: rand(0..1)
+    )
+  end
+end
