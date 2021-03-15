@@ -20,6 +20,9 @@
           <tr>
             <th>score</th>
             <% @rounds.each do |round| %>
+
+            <!--sumでエラー-->
+
               <td><%= round.scores.sum(:stroke_count) %></td>
             <% end %>
           </tr>
