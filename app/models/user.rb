@@ -20,8 +20,9 @@ class User < ApplicationRecord
   validates :account_name, :first_name, :last_name, :sex, :prefecture, presence: true
   validates :account_name, uniqueness: true
   validates :introduction, length: { maximum: 100}
-  validates :start_year, length: { is: 4}
-  validates :start_month, length: { in: 1..2}
+  # 年月まとめたので、一旦解除
+  # validates :start_year, length: { is: 4}
+  # validates :start_month, length: { in: 1..2}
 
 
   # 住所選択用

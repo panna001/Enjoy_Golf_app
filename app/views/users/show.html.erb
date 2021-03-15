@@ -1,5 +1,4 @@
 <div class="container mt-5">
-  <div class="row">
 
     <div class="row mx-auto">
       <div class="col-3">
@@ -29,19 +28,25 @@
 
     </div>
     <div class="row">
-      <!--スコアについて記載-->
-      <%= @score %>
-      <%= @putt %>
-      <%= @fairway_keep_rate %>%
-      <%= @par_on_rate %>%
-      <%= @under_par_on_rate %>%
-      <!--ゴルフ歴-->
-
+      <div class="col-lg-6  mx-auto">
+        <!--スコアについて記載-->
+        <% if @user.scores.present? %>
+          <p><%= @score %></p>
+          <p><%= @putt %></p>
+          <p><%= @fairway_keep_rate %>%</p>
+          <p><%= @par_on_rate %>%</p>
+          <p><%= @under_par_on_rate %>%</p>
+        <!--ゴルフ歴-->
+        <% else %>
+          <p>スコア登録をしましょう。</p>
+        <% end %>
+          <%= @carrer %>
+          <%= @user.prefecture %>
+      </div>
     </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-5 pt-5 border-top">
       <% @user.posts.each do |post| %>
        <%= render "users/card", post:post %>
       <% end %>
     </div>
-  </div>
 </div>

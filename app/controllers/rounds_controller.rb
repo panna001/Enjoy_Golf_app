@@ -9,12 +9,13 @@ class RoundsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @round = Round.find(params[:id])
+    @scores = @round.scores
     # フェアウェイキープ率の計算
     @fairway_keep_rate = (@round.scores.map{|s|s.fairway_keep_before_type_cast}.sum(0.00) / @round.scores.size * 100).floor
     # パーオン率の計算
-    @on_numbers = @round.scores.map{|s|s.par_count - (s.stroke_count - s.putt_count)}
-    @under_par_on_rate = (@on_numbers.count(3) / @round.scores.size.to_f * 100).floor
-    @par_on_rate = (@on_numbers.count(2) / @round.scores.size.to_f * 100).floor
+    @on_numbers = @round.on_numbers
+    @under_par_on_rate = (@on_numbers.count(3) / @round.round_count * 100).floor
+    @par_on_rate = (@on_numbers.count(2) / @round.round_count * 100).floor
     # binding.pry
   end
 
