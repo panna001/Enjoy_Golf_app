@@ -1,5 +1,5 @@
 <div class="container mt-5">
-
+  <div class="row">
     <div class="row mx-auto">
       <div class="col-3">
         <%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", size: "120x120", class: "rounded-circle" %>
@@ -24,9 +24,8 @@
         <p><%= @user.first_name + @user.last_name %></p>
         <p><%= @user.introduction %></p>
       </div>
-
-
     </div>
+
     <div class="row">
       <div class="col-lg-6  mx-auto">
         <!--スコアについて記載-->
@@ -49,4 +48,5 @@
        <%= render "users/card", post:post %>
       <% end %>
     </div>
+  </div>
 </div>
