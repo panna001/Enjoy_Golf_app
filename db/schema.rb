@@ -13,11 +13,10 @@
 ActiveRecord::Schema.define(version: 2021_03_08_120352) do
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "user"
+    t.integer "user_id"
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_bookmarks_on_post_id"
   end
 
   create_table "chats", force: :cascade do |t|
