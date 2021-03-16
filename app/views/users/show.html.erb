@@ -8,7 +8,17 @@
       <div class="col-8">
         <div>
           <span class="h4"><%= @user.account_name %></span>
-          <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-sm btn-secondary d-inline-block mx-3 shadow mb-2" %>
+          <!--修正必要-->
+          <% if @user == current_user %>
+            <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-sm btn-secondary d-inline-block mx-3 shadow mb-2" %>
+          <% else %>
+            <% if @user.followed_by?(current_user) %>
+              <%= link_to "フォロー中", user_relationships_path(@user), class: "btn btn-sm btn-primary d-inline-block mx-3 shadow mb-2", method: :delete %>
+            <% else %>
+              <%= link_to "フォローする", user_relationships_path(@user), class: "btn btn-sm btn-outline-primary d-inline-block mx-3 shadow mb-2", method: :post %>
+            <% end %>
+          <% end %>
+          <!--〜〜〜〜〜〜〜-->
         </div>
         <span class="d-inline-block mr-3"><%= "投稿 #{@user.posts.count} 件" %></span>
         <span class="d-inline-block mr-3">
@@ -30,7 +40,7 @@
       <div class="col-lg-8 mx-auto">
         <div class="row">
           <div class="col-lg-4">
-            <p>ゴルフ歴：<%= @carrer %></p>
+            <p>ゴルフ歴：<%= "#{@user.experience_year}年#{@user.experience_month}ヶ月" %></p>
             <p>都道府県：<%= @user.prefecture %></p>
           </div>
           <% if @user.scores.present? %>

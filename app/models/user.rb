@@ -42,23 +42,23 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
+# 経験年数計算
   def experience_year
-    year = Date.today.year - start_year.year
-    month = Date.today.month - start_year.month
+    year = Date.today.year - start_year
+    month = Date.today.month - start_year
     if month < 0
       year -= 1
     end
     return year
   end
-  
+
   def experience_month
-    month = Date.today.month - start_year.month
+    month = Date.today.month - start_month
     if month < 0
       month += 12
     end
     return month
   end
-
 
   # フォロー済み確認
   def followed_by?(user)

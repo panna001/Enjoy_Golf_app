@@ -18,8 +18,8 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_1.jpg"),
       introduction: "John Adamsです。",
       prefecture: rand(1..47),
-      start_year: "2000/01/01",
-      start_month: 1
+      start_year: rand(2010..2020),
+      start_month: rand(1..12),
     },
     {
       account_name: "Sara",
@@ -31,8 +31,8 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_2.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: "2000/01/01",
-      start_month: 1
+      start_year: rand(2010..2020),
+      start_month: rand(1..12),
     },
     {
       account_name: "Tom",
@@ -44,8 +44,8 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_3.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: "2000/01/01",
-      start_month: 1
+      start_year: rand(2010..2020),
+      start_month: rand(1..12),
     },
     {
       account_name: "Tomas",
@@ -57,8 +57,8 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_4.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: "2003/01/01",
-      start_month: 1
+      start_year: rand(2010..2020),
+      start_month: rand(1..12),
     }
   ]
 )

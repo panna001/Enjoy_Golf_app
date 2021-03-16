@@ -35,7 +35,8 @@
 
         <div class="field mb-3">
           <%= f.label :start_year, "ゴルフ開始年月" %><br />
-          <%= f.date_select :start_year, {discard_day: true, use_month_numbers: true, end_year: Time.now.year, start_year: 1950, default: Time.now}  %>
+          <%= f.select :start_year, ((Date.today.year - 70)..(Date.today.year))  %>
+          <%= f.select :start_month, (1..12) %>
         </div>
 
         <div class="field mb-3">
