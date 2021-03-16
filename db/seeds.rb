@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 User.create!(
   [
     {
@@ -19,20 +18,20 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_1.jpg"),
       introduction: "John Adamsです。",
       prefecture: rand(1..47),
-      start_year: 2000,
+      start_year: "2000/01/01",
       start_month: 1
     },
     {
       account_name: "Sara",
       email: "sara@email.com",
       password: "123456",
-      first_name: "Sara",
-      last_name: "Anderson",
+      first_name: "Anderson",
+      last_name: "Sara",
       sex: 2,
       profile_image: open("./app/assets/images/sample_user/sample_user_2.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: 2000,
+      start_year: "2000/01/01",
       start_month: 1
     },
     {
@@ -45,7 +44,7 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_3.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: 2000,
+      start_year: "2000/01/01",
       start_month: 1
     },
     {
@@ -58,7 +57,7 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_4.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: 2000,
+      start_year: "2003/01/01",
       start_month: 1
     }
   ]
@@ -185,7 +184,7 @@ User.find(4).rounds.create!(
 )
 
 8.times do |n|
-  18.times do |i| 
+  18.times do |i|
     Round.find(n + 1).scores.create!(
       hole_number: i + 1,
       par_count: rand(3..5),
