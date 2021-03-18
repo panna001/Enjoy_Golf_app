@@ -1,28 +1,35 @@
-<div class="container">
-  <div class="row">
+<div class="container my-4">
+  <div class="row mb-4">
+    <div class="col"></div>
+    <div class="col-3 text-center">
+      <h2>Average</h2>
+      <span class="h4"><%= @score %></span>
+    </div>
+    <div class="col-3 text-center">
+      <h2>Putt</h2>
+      <span class="h4"><%= @putt %></span>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row my-5">
     <div class="col">
-      <p>ランク</p>
-      <p>スコア　パット</p>
+      <%= line_chart @round_data, curve: false, messages: {empty: "No data"}, label: "Value" %>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-9">
-      グラフ
       <% if @rounds.present? %>
-      <table class="table table bordered">
+      <table class="table table-bordered">
         <tbody>
           <tr>
             <th>day</th>
             <% @rounds.each do |round| %>
-              <td><%= round.play_date %></td>
+              <td><%= link_to round.play_date.strftime("%Y/%m/%d"), user_round_path(@user, round) %></td>
             <% end %>
           </tr>
           <tr>
             <th>score</th>
             <% @rounds.each do |round| %>
-
-            <!--sumでエラー-->
-
               <td><%= round.scores.sum(:stroke_count) %></td>
             <% end %>
           </tr>
@@ -39,7 +46,10 @@
       <% end %>
     </div>
     <div class="col-lg-3">
-      <%= link_to "スコア入力", new_user_round_path(@user) %>
+      <p>フェアウェイキープ率：<%= @fairway_keep_rate %>%</p>
+      <p>パーオン率：<%= @par_on_rate %>%</p>
+      <p>アンダーパーオン率：<%= @under_par_on_rate %>%</p>
+      <%= link_to "スコア入力", new_user_round_path(@user), class: "btn btn-sm btn-outline-secondary shadow"  %>
     </div>
   </div>
 </div>

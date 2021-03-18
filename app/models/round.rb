@@ -19,4 +19,31 @@ class Round < ApplicationRecord
   def round_count
     self.scores.size.to_f
   end
+
+  # ランク判定
+  # def rank?(score)
+  #   if score < 72
+  #     rank = "S"
+  #   elsif score < 81
+  #     rank = "A+"
+  #   elsif score < 90
+  #     rank = "A-"
+  #   elsif score < 99
+  #     rank = "B+"
+  #   elsif score < 108
+  #     rank = "B-"
+  #   elsif score < 117
+  #     rank = "C+"
+  #   elsif score < 126
+  #     rank = "C-"
+  #   elsif score < 135
+  #     rank = "D+"
+  #   elsif score < 144
+  #     rank = "D-"
+  #   else
+  #     rank = "E"
+  #   end
+  #   return  rank
+  # end
+  
 end

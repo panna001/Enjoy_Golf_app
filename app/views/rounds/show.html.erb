@@ -1,13 +1,15 @@
 <div class="container pt-5">
-  <div class="row mb-5">
+  <div class="row mb-2">
     <div class="col-lg-2"></div>
     <div class="col-lg-2">
-      <p>日付: <%= @round.play_date.strftime("%Y/%m/%d") %></p>
-      <p>場所: <%= @round.place %></p>
-      <p>天候: <%= @round.weather %></p>
-      <p>風: <%= @round.wind %></p>
+      <p>
+        日付: <%= @round.play_date.strftime("%Y/%m/%d") %><br>
+        場所: <%= @round.place %><br>
+        天候: <%= @round.weather %><br>
+        風: <%= @round.wind %>
+      </p>
     </div>
-    
+
     <div class="col-lg-4 text-center">
       <h1><strong>TOTAL</strong></h1>
       <p class="h3">
@@ -16,74 +18,110 @@
       </p>
     </div>
     <div class="col-lg-3">
-      <p>フェアウェイキープ: <%= @fairway_keep_rate %>%</p>
-      <p>パーオン率: <%= @par_on_rate %>%</p>
-      <p>アンダーパーオン率: <%= @under_par_on_rate %>%</p>
-      <p>OB: <%= @round.scores.sum(:ob_count) %>回</p>
-      <p>ペナルティ: <%= @round.scores.sum(:penalty_count) %>回</p>
+      <p>
+        フェアウェイキープ: <%= @fairway_keep_rate %>%<br>
+        パーオン率: <%= @par_on_rate %>%<br>
+        アンダーパーオン率: <%= @under_par_on_rate %>%<br>
+        OB: <%= @round.scores.sum(:ob_count) %>回<br>
+        ペナルティ: <%= @round.scores.sum(:penalty_count) %>回<br>
+      </p>
     </div>
     <div class="col-lg-1"></div>
   </div>
-  
+
+  <div class="row text-center py-2">
+    <div class="col-6"><%= link_to "編集", edit_user_round_path(@user, @round), class: "btn btn-success shadow" %></div>
+    <div class="col-6"><%= link_to "削除", user_round_path(@user, @round), class: "btn btn-danger shadow", method: :delete %></div>
+  </div>
+
   <div class="row">
-    <div class="col">
-      <table class="table table-bordered">
+
+    <div class="col-lg-6">
+      <table class="table table-sm table-bordered text-center">
         <thead>
           <tr>
             <th>HOLE</th>
-            <% 18.times do |i| %>
-              <th><%= i + 1 %></th>
-            <% end %>
-            <th>OUT</th>
-            <th>IN</th>
-            <th>TOTAL</th>
+            <th>PAR</th>
+            <th>SCORE</th>
+            <th>PUTT</th>
+            <th>OB</th>
+            <th>PENA</th>
+            <th>RESULT</th>
           </tr>
         </thead>
         <tbody>
+          <% @scores.slice(0..8).each.with_index do |score, i| %>
           <tr>
-            <th>PAR</th>
-            <% @round.scores.each do |score| %>
-              <td><%= score.par_count %></td>
-            <% end %>
-            <td></td>
-            <td></td>
-            <td><%= @round.scores.sum(:par_count) %></td>
+            <td><%= i + 1 %></td>
+            <td><%= score.par_count %></td>
+            <td><%= score.stroke_count %></td>
+            <td><%= score.putt_count %></td>
+            <td><%= score.ob_count %></td>
+            <td><%= score.penalty_count %></td>
+            <td><%= score.stroke_count - score.par_count %></td>
           </tr>
+          <% end %>
           <tr>
-          <tr>
-            <th>SCORE</th>
-            <% @round.scores.each do |score| %>
-              <td><%= score.stroke_count %></td>
-            <% end %>
-            <td></td>
-            <td></td>
-            <td><%= @round.scores.sum(:stroke_count) %></td>
-          </tr>
-          <tr>
-            <th>PUTT</th>
-            <% @round.scores.each do |score| %>
-              <td><%= score.putt_count %></td>
-            <% end %>
-            <td></td>
-            <td></td>
-            <td><%= @round.scores.sum(:putt_count) %></td>
-          </tr>
-          <tr>
-            <th></th>
-            <% @round.scores.each do |score| %>
-              <td><%= score.stroke_count - score.par_count %></td>
-            <% end %>
-            <td></td>
-            <td></td>
-            <td><%= @round.scores.sum(:stroke_count) - @round.scores.sum(:par_count) %></td>
+            <td>OUT</td>
+            <td><%= @scores.slice(0..8).pluck(:par_count).sum %></td>
+            <td><%= @scores.slice(0..8).pluck(:stroke_count).sum %></td>
+            <td><%= @scores.slice(0..8).pluck(:putt_count).sum %></td>
+            <td><%= @scores.slice(0..8).pluck(:ob_count).sum %></td>
+            <td><%= @scores.slice(0..8).pluck(:penalty_count).sum %></td>
+            <td><%= @scores.slice(0..8).pluck(:stroke_count).sum - @scores.slice(0..8).pluck(:par_count).sum %></td>
           </tr>
         </tbody>
       </table>
     </div>
-    
-  </div>
-  <div class="row text-center pt-5">
-    <div class="col-6"><%= link_to "編集", edit_user_round_path(@user, @round), class: "btn btn-lg btn-secondary shadow" %></div>
-    <div class="col-6"><%= link_to "削除", user_round_path(@user, @round), class: "btn btn-lg btn-danger shadow", method: :delete %></div>
+
+    <div class="col-lg-6">
+      <table class="table table-sm table-bordered text-center">
+        <thead>
+          <tr>
+            <th>HOLE</th>
+            <th>PAR</th>
+            <th>SCORE</th>
+            <th>PUTT</th>
+            <th>OB</th>
+            <th>PENA</th>
+            <th>RESULT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @scores.slice(9..17).each.with_index do |score, i| %>
+          <tr>
+            <td><%= i + 10 %></td>
+            <td><%= score.par_count %></td>
+            <td><%= score.stroke_count %></td>
+            <td><%= score.putt_count %></td>
+            <td><%= score.ob_count %></td>
+            <td><%= score.penalty_count %></td>
+            <td><%= score.stroke_count - score.par_count %></td>
+          </tr>
+          <% end %>
+          <tr>
+            <td>IN</td>
+            <td><%= @scores.slice(9..17).pluck(:par_count).sum %></td>
+            <td><%= @scores.slice(9..17).pluck(:stroke_count).sum %></td>
+            <td><%= @scores.slice(9..17).pluck(:putt_count).sum %></td>
+            <td><%= @scores.slice(9..17).pluck(:ob_count).sum %></td>
+            <td><%= @scores.slice(9..17).pluck(:penalty_count).sum %></td>
+            <td><%= @scores.slice(9..17).pluck(:stroke_count).sum - @scores.slice(0..8).pluck(:par_count).sum %></td>
+          </tr>
+          <tr>
+            <th>TOTAL</th>
+            <th><%= @scores.sum(:par_count) %></th>
+            <th><%= @scores.sum(:stroke_count) %></th>
+            <th><%= @scores.sum(:putt_count) %></th>
+            <th><%= @scores.sum(:ob_count) %></th>
+            <th><%= @scores.sum(:penalty_count) %></th>
+            <th><%= @scores.sum(:stroke_count) - @scores.sum(:par_count) %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
+
+
