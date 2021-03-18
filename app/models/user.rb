@@ -9,13 +9,17 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
   # フォロー・フォロワー
-  has_many :active_relationships, class_name: "Relationship", foreign_key: "following_id"
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
   has_many :followings, through: :active_relationships, source: :follower
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: "follower_id"
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :following
   has_many :rounds, dependent: :destroy
   # 直接値をとるためにスルーを指定
   has_many :scores, through: :rounds
+
+  # 通知機能
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
   validates :account_name, :first_name, :last_name, :sex, :prefecture, presence: true
   validates :account_name, uniqueness: true
@@ -42,8 +46,48 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
+# 経験年数計算
+  def experience_year
+    year = Date.today.year - start_year
+    month = Date.today.month - start_year
+    if month < 0
+      year -= 1
+    end
+    return year
+  end
+
+  def experience_month
+    month = Date.today.month - start_month
+    if month < 0
+      month += 12
+    end
+    return month
+  end
+
+  # 5ラウンド以内に絞り込み
+  def round_sort
+    scores.order(id: :DESC).limit(5).group(:round_id)
+  end
+
+  # ラウンド回数カウント5回以内
+  def round_count
+    self.rounds.limit(5).count.to_f
+  end
+
   # フォロー済み確認
   def followed_by?(user)
     passive_relationships.where(following_id: user.id).present?
+  end
+
+  # 通知機能
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+    end
+    notification.save if notification.valid?
   end
 end

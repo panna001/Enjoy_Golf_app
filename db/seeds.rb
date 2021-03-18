@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 User.create!(
   [
     {
@@ -19,21 +18,21 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_1.jpg"),
       introduction: "John Adamsです。",
       prefecture: rand(1..47),
-      start_year: 2000,
-      start_month: 1
+      start_year: rand(2010..2020),
+      start_month: rand(1..12),
     },
     {
       account_name: "Sara",
       email: "sara@email.com",
       password: "123456",
-      first_name: "Sara",
-      last_name: "Anderson",
+      first_name: "Anderson",
+      last_name: "Sara",
       sex: 2,
       profile_image: open("./app/assets/images/sample_user/sample_user_2.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: 2000,
-      start_month: 1
+      start_year: rand(2010..2020),
+      start_month: rand(1..12),
     },
     {
       account_name: "Tom",
@@ -45,8 +44,8 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_3.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: 2000,
-      start_month: 1
+      start_year: rand(2010..2020),
+      start_month: rand(1..12),
     },
     {
       account_name: "Tomas",
@@ -58,8 +57,8 @@ User.create!(
       profile_image: open("./app/assets/images/sample_user/sample_user_4.jpg"),
       introduction: "よろしくお願いします。",
       prefecture: rand(1..47),
-      start_year: 2000,
-      start_month: 1
+      start_year: rand(2010..2020),
+      start_month: rand(1..12),
     }
   ]
 )
@@ -170,7 +169,7 @@ User.find(3).rounds.create!(
 User.find(4).rounds.create!(
   [
     {
-      play_date: "2021/01/01",
+      play_date: "2020/01/01",
       place: "パインレークCC",
       weather: "晴れ",
       wind: "無風"
@@ -180,12 +179,66 @@ User.find(4).rounds.create!(
       place: "東大阪CC",
       weather: "晴れ",
       wind: "弱風"
-    }
+    },
+    {
+      play_date: "2020/03/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/04/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/05/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/06/01",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/07/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/08/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/09/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/10/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/11/01",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
   ]
 )
 
-8.times do |n|
-  18.times do |i| 
+17.times do |n|
+  18.times do |i|
     Round.find(n + 1).scores.create!(
       hole_number: i + 1,
       par_count: rand(3..5),
