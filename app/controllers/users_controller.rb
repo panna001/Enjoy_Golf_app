@@ -4,8 +4,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     on_numbers = @user.scores.order(id: :DESC).limit(90).map{|s|s.par_count - (s.stroke_count - s.putt_count)}
-    @score = (@user.scores.order(id: :DESC).limit(5).sum(:stroke_count) / @user.rounds.limit(5).count.to_f).round(1)
-    @putt = (@user.scores.order(id: :DESC).limit(5).sum(:putt_count) / @user.rounds.limit(5).count.to_f).round(1)
+    # 5件に絞り込みできず
+    # @score = (@user.scores.order(id: :DESC).limit(5).sum(:stroke_count) / @user.rounds.limit(5).count.to_f).round(1)
+    @score = @user.round_sort.sum(:stroke_count).values.inject(:+) / @user.round_count.round(1)
+    @putt = (@user.round_sort.sum(:putt_count).values.inject(:+) / @user.round_count).round(1)
     @fairway_keep_rate = (@user.scores.order(id: :DESC).limit(90).where(fairway_keep: "○").count / @user.scores.limit(90).count.to_f * 100).round(1)
     @par_on_rate = (on_numbers.count(2) / @user.scores.limit(90).count.to_f * 100).round(1)
     @under_par_on_rate = (on_numbers.count(3) / @user.scores.limit(90).count.to_f * 100).round(1)

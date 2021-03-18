@@ -3,7 +3,16 @@ class RoundsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    @rounds = @user.rounds.page(params[:page]).per(10)
+    @rounds = @user.rounds.page(params[:page]).order(id: :DESC).per(5)
+    # 以下userコントローラからコピー
+    on_numbers = @user.scores.order(id: :DESC).limit(90).map{|s|s.par_count - (s.stroke_count - s.putt_count)}
+    @score = @user.round_sort.sum(:stroke_count).values.inject(:+) / @user.round_count.round(1)
+    @putt = (@user.round_sort.sum(:putt_count).values.inject(:+) / @user.round_count).round(1)
+    @fairway_keep_rate = (@user.scores.order(id: :DESC).limit(90).where(fairway_keep: "○").count / @user.scores.limit(90).count.to_f * 100).round(1)
+    @par_on_rate = (on_numbers.count(2) / @user.scores.limit(90).count.to_f * 100).round(1)
+    @under_par_on_rate = (on_numbers.count(3) / @user.scores.limit(90).count.to_f * 100).round(1)
+    # グラフ表示
+    @round_data = @user.rounds.map{|r| [r.play_date.to_s, r.scores.sum(:stroke_count)]}
   end
 
   def show

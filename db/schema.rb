@@ -47,10 +47,12 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
   end
 
   create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
     t.integer "post_id"
     t.integer "comment_id"
-    t.string "action"
-    t.boolean "checked"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
@@ -125,7 +127,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
     t.string "profile_image_id"
     t.string "introduction"
     t.integer "prefecture"
-    t.integer "start_year"
+    t.date "start_year"
     t.integer "start_month"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

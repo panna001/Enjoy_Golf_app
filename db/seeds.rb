@@ -169,7 +169,7 @@ User.find(3).rounds.create!(
 User.find(4).rounds.create!(
   [
     {
-      play_date: "2021/01/01",
+      play_date: "2020/01/01",
       place: "パインレークCC",
       weather: "晴れ",
       wind: "無風"
@@ -179,11 +179,65 @@ User.find(4).rounds.create!(
       place: "東大阪CC",
       weather: "晴れ",
       wind: "弱風"
-    }
+    },
+    {
+      play_date: "2020/03/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/04/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/05/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/06/01",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/07/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/08/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/09/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/10/02",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
+    {
+      play_date: "2020/11/01",
+      place: "東大阪CC",
+      weather: "晴れ",
+      wind: "弱風"
+    },
   ]
 )
 
-8.times do |n|
+17.times do |n|
   18.times do |i|
     Round.find(n + 1).scores.create!(
       hole_number: i + 1,
