@@ -3,6 +3,16 @@
     <div class="container">
       <% if user_signed_in? %>
         <%= link_to "LOGO", posts_path, class: "navbar-brand" %>
+        <!--検索機能-->
+        <% if controller.controller_name == "posts" && action_name == "index" %>
+          <div classs="search-box">
+            <%= search_form_for @q do |f| %>
+              <%= f.search_field :body_cont, class: "text-secondary rounded px-1 border", style: "font-size: 13px; opacity: 0.9; background-color: white;" %>
+              <%= f.submit class: "btn btn-sm btn-light rounded text-secondary ml-1", style: "padding: 0.5px 3px; opacity: 0.9; background-color: white" %>
+            <% end %>
+          </div>
+        <% end %>
+
         <ul class="navbar-nav d-flex align-items-center">
           <li class="nav-item">
             <%= link_to "＋", new_post_path, class: "mr-1 btn btn-sm btn-secondary rounded-circle" %>
