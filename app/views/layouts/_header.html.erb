@@ -8,8 +8,15 @@
             <%= link_to "＋", new_post_path, class: "mr-1 btn btn-sm btn-secondary rounded-circle" %>
           </li>
           <li class="nav-item">
-            <%= link_to notifications_path, class: "nav-link text-light rounded-circle" do %>
-              <i class="fas fa-bell fa-lg"></i>
+            <% if unchecked_notifications.any? %>
+              <%= link_to notifications_path, class: "nav-link text-light rounded-circle" do %>
+                <i class="fas fa-bell fa-lg"></i>
+                <i class="fas fa-circle fa-lg"></i>
+              <% end %>
+            <% else %>
+              <%= link_to notifications_path, class: "nav-link text-light rounded-circle" do %>
+                <i class="fas fa-bell fa-lg"></i>
+              <% end %>
             <% end %>
           </li>
             <!--chatリンク後々作成？-->
@@ -26,7 +33,7 @@
             <% end %>
           </li>
         </ul>
-            
+
       <% else %>
         <%= link_to "LOGO", root_path, class: "navbar-brand" %>
         <ul class="navbar-nav">
@@ -37,5 +44,5 @@
       <% end %>
     </div>
   </nav>
-  
+
 </header>
