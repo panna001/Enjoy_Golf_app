@@ -21,12 +21,9 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
-  validates :account_name, :first_name, :last_name, :sex, :prefecture, presence: true
+  validates :account_name, :first_name, :last_name, :sex, :prefecture, :teens, presence: true
   validates :account_name, uniqueness: true
   validates :introduction, length: { maximum: 100}
-  # 年月まとめたので、一旦解除
-  # validates :start_year, length: { is: 4}
-  # validates :start_month, length: { in: 1..2}
 
 
   # 住所選択用
