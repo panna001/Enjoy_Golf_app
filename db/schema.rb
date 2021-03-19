@@ -17,8 +17,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_bookmarks_on_post_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "chats", force: :cascade do |t|
