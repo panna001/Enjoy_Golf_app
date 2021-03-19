@@ -1,21 +1,18 @@
-<div class="container mt-5 mx-auto">
-  <div class="row">
-    <h2 class="mx-auto border-bottom"><%= title %></h2>
-  </div>
+
   <% model.each do |follow| %>
     <div class="row">
-      <div class="col">
+      <div class="col text-right">
+        <%= link_to user_path(follow) do %>
+          <%= attachment_image_tag follow, :profile_image, fallback: "no-image.jpg", size: "50x50", class: "rounded-circle" %>
+        <% end %>
       </div>
-      <div class="col-auto">
-        <%= attachment_image_tag follow, :profile_image, fallback: "no-image.jpg", size: "50x50", class: "rounded-circle" %>
-      </div>
-      <div class="col-auto">
+      <div class="col-lg-2 col-4">
         <p class="text-center">
-          <strong><%= follow.account_name %></strong><br>
+          <strong><%= link_to follow.account_name, user_path(follow) %></strong><br>
           <span style="font-size: 14px;"><%= follow.first_name + follow.last_name %></span>
         </p>
       </div>
-      <div class="col-auto d-flex align-items-center">
+      <div class="col d-flex align-items-center text-left">
         <!--非同期＋部分テンプレート化修正検討-->
         <% if follow.followed_by?(current_user) %>
           <%= link_to "フォロー中", user_relationships_path(follow), class: "btn btn-sm btn-primary", method: :delete, data: {confirm: "フォローを解除しますか？"} %>
@@ -23,8 +20,5 @@
           <%= link_to "フォローする", user_relationships_path(follow), class: "btn btn-sm btn-outline-primary", method: :post %>
         <% end %>
       </div>
-      <div class="col">
-      </div>
     </div>
   <% end %>
-</div>
