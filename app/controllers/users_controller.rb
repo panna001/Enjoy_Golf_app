@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).order(id: :desc)
+    @users = @q.result.includes(:rounds, :scores).order(id: :desc)
   end
 
   def show

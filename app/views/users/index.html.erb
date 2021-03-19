@@ -1,17 +1,17 @@
 <div class="container mt-4">
-  <h4 class="text-center">ユーザー一覧</h4>
+  <h4 class="text-center">ユーザー一覧<%= "(#{@users.count}人)" %></h4>
   <div class="row">
     <div class="col-lg-4">
-
+      <%= render "users/search", q:@q %>
     </div>
     <div class="col-lg-8">
       <table class="table">
         <thead>
           <tr>
             <th></th>
-            <th>アカウント名</th>
-            <th>エリア</th>
-            <th>年齢</th>
+            <th><%= sort_link(@q, :account_name, "アカウント名") %></th>
+            <th><%= sort_link(@q, :prefecture, "エリア") %></th>
+            <th><%= sort_link(@q, :teens, "年齢層") %></th>
             <th>アベレージ</th>
             <th>ゴルフ歴</th>
             <th></th>
