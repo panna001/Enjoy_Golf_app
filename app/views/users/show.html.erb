@@ -25,7 +25,7 @@
         <% end %>
       </span>
       <span class="d-inline-block mr-3">
-        <%= link_to followings_user_path(@user), class: "text-dark" do %>
+        <%= link_to followers_user_path(@user), class: "text-dark" do %>
           <%= "フォロワー #{@user.followers.count} 人" %>
         <% end %>
       </span>
