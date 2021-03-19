@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_search
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
     posts_path
   end
-
+  
+  def set_search
+    @q = Post.ransack(params[:q])
+    @search_posts = @q.result(distinct: true)
+  end
 
 
   protected
