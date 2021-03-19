@@ -1,1 +1,10 @@
-<%= render "users/follow", model:@followings, title: "フォロー" %>
+<div class="container mt-4 mx-auto">
+  <div class="row">
+    <h2 class="mx-auto mb-4 border-bottom"><%= "#{@followings.count} follwings" %></h2>
+  </div>
+  <% if @followings.blank? %>
+    <p class="text-center">フォローしましょう</p>
+  <% else %>
+    <%= render "users/follow", model:@followings, user: @user %>
+  <% end %>
+</div>
