@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>ユーザー一覧</h2>
+  <div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col-6">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>アカウント名</th>
+            <th>エリア</th>
+            <th>年齢</th>
+            <th>アベレージ</th>
+            <th>フォロー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= attachment_image_tag user, :profile_image, rollback: "no-image.jpg", size: "30x30", class: "rounded-circle" %></td>
+            <td><%= user.account_name %></td>
+            <td><%= user.prefecture %></td>
+            <td><%= %></td>
+            <td><%= user.round_sort.sum(:stroke_count).values.inject(:+) / user.round_count.round(1) %></td>
+            <td><%= render "users/follow_btn", user:user %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-3">
+
+    </div>
+  </div>
+</div>

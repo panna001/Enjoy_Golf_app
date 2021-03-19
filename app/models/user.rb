@@ -46,7 +46,8 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-# 経験年数計算
+# ユーザー情報関連
+  # 経験年数計算
   def experience_year
     year = Date.today.year - start_year
     month = Date.today.month - start_year
@@ -56,6 +57,7 @@ class User < ApplicationRecord
     return year
   end
 
+  # 経験月数計算
   def experience_month
     month = Date.today.month - start_month
     if month < 0
@@ -64,6 +66,7 @@ class User < ApplicationRecord
     return month
   end
 
+# スコア関連
   # 5ラウンド以内に絞り込み
   def round_sort
     scores.order(id: :DESC).limit(5).group(:round_id)
@@ -74,12 +77,12 @@ class User < ApplicationRecord
     self.rounds.limit(5).count.to_f
   end
 
-  # フォロー済み確認
+# フォロー済み確認
   def followed_by?(user)
     passive_relationships.where(following_id: user.id).present?
   end
 
-  # 通知機能
+# 通知機能
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
     if temp.blank?

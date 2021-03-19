@@ -39,6 +39,11 @@ class UsersController < ApplicationController
     @followers = @user.followers
   end
 
+  def search
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).order(id: :desc)
+  end
+
   private
   def user_params
     params.require(:user).permit(:account_name, :first_name, :last_name, :introduction, :sex, :email, :prefecture, :start_year, :start_month, :profile_image)
