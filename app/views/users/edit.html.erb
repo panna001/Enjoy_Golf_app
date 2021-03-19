@@ -1,56 +1,61 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-lg-6 mx-auto">
-      
+
       <%= form_with model: @user, local:true do |f| %>
-        
+
         <div class="field mb-3">
           <%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", size: "50x50" %><br />
           <%= f.attachment_field :profile_image %>
         </div>
-      
+
         <div class="field mb-3">
           <%= f.label :account_name, "アカウント名" %><br />
           <%= f.text_field :account_name, autofocus: true, placeholder: "プロゴルファー猿" %>
         </div>
-      
+
         <div class="field mb-3">
           <%= f.label :first_name, "名前" %><br />
           <%= f.text_field :first_name, placeholder: "姓", class: "mr-5" %>
           <%= f.text_field :last_name, placeholder: "名" %>
         </div>
-        
+
         <div class="field mb-3">
           <%= f.label :introduction, "紹介文" %><br />
           <%= f.text_area :introduction, placeholder: "紹介文", rows: "5", style: "width: 400px;" %>
         </div>
-          
+
         <div class="field mb-3">
           <%= f.label :sex, "性別" %><br />
           <%= f.select :sex, {"男性": 1, "女性": 2}, { include_blank: "選択してください"} %>
         </div>
-      
+
         <div class="field mb-3">
           <%= f.label :email, "アドレス" %><br />
           <%= f.email_field :email, autocomplete: "email", placeholder: "sample@sample.com" %>
         </div>
-        
+
         <div class="field mb-3">
           <%= f.label :prefectures, "都道府県" %><br />
           <%= f.select :prefecture, User.prefectures.keys %>
         </div>
-        
+
         <div class="field mb-3">
           <%= f.label :start_year, "ゴルフ開始年月" %><br />
-          <%= f.text_field :start_year, placeholder: "2000", class: "mr-5" %>
-          <%= f.text_field :start_month, placeholder: "1" %>
+          <%= f.text_field :start_year, class: "mr-5" %>
+          <%= f.text_field :start_month %>
         </div>
-      
+
+        <div class="field mb-3">
+          <%= f.label :teens, "年齢層" %><br />
+          <%= f.select :teens, ["10代","20代","30代","40代","50代","60代","70代","80代"], {}  %>
+        </div>
+
         <div class="actions mb-3">
           <%= f.submit "変更を保存", class: "shadow btn btn-sm btn-secondary" %>
         </div>
       <% end %>
-      
+
     </div>
   </div>
 </div>

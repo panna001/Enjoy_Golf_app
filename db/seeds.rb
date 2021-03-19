@@ -20,6 +20,7 @@ User.create!(
       prefecture: rand(1..47),
       start_year: rand(2010..2020),
       start_month: rand(1..12),
+      teens: "10代"
     },
     {
       account_name: "Sara",
@@ -33,6 +34,7 @@ User.create!(
       prefecture: rand(1..47),
       start_year: rand(2010..2020),
       start_month: rand(1..12),
+      teens: "20代"
     },
     {
       account_name: "Tom",
@@ -46,6 +48,7 @@ User.create!(
       prefecture: rand(1..47),
       start_year: rand(2010..2020),
       start_month: rand(1..12),
+      teens: "30代"
     },
     {
       account_name: "Tomas",
@@ -59,6 +62,7 @@ User.create!(
       prefecture: rand(1..47),
       start_year: rand(2010..2020),
       start_month: rand(1..12),
+      teens: "20代"
     }
   ]
 )

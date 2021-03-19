@@ -50,7 +50,7 @@ class User < ApplicationRecord
   # 経験年数計算
   def experience_year
     year = Date.today.year - start_year
-    month = Date.today.month - start_year
+    month = Date.today.month - start_month
     if month < 0
       year -= 1
     end
