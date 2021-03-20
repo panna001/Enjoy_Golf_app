@@ -10,6 +10,7 @@
         <% if @user == current_user %>
           <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary d-inline-block mx-3 shadow mb-2" %>
         <% else %>
+          <%= link_to "チャット", chat_path(@user.id), class: "btn btn-sm btn-outline-secondary d-inline-block mx-3 shadow mb-2" %>
           <% if @user.followed_by?(current_user) %>
             <%= link_to "フォロー中", user_relationships_path(@user), class: "btn btn-sm btn-primary d-inline-block mx-3 shadow mb-2", method: :delete %>
           <% else %>
