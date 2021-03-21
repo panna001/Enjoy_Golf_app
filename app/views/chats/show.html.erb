@@ -1,2 +1,21 @@
-<h1>Chats#show</h1>
-<p>Find me in app/views/chats/show.html.erb</p>
+<div class="message">
+  <h4 id="room" data-room="<%= @room.id %>", data-user="<%= @user.id %>"><%= @user.account_name %>さんとのチャット</h1>
+  <% @chats.each do |chat| %>
+    <% if chat.user_id == current_user.id %>
+      <div class="text-right">
+        <%= chat.message %>
+        <%= chat.created_at.strftime("%m/%d %H:%M") %>
+      </div>
+    <% else %>
+      <div class="text-left">
+        <%= chat.message %>
+        <%= chat.created_at.strftime("%m/%d %H:%M") %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_with model: @chat, local: false do |f| %>
+  <%= f.text_field :message %>
+  <%= f.hidden_field :room_id %>
+<% end %>
