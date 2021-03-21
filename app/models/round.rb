@@ -7,43 +7,20 @@ class Round < ApplicationRecord
 
   validates :play_date, :place, presence: true
 
-  def fairway_count
-    self.scores.map{|s|s.fairway_keep_before_type_cast.sum(0.00)}
+  def fairway_keep_rate
+    self.scores.map{|s|s.fairway_keep_before_type_cast}.sum(0.00) / self.scores.size * 100
   end
 
   def on_numbers
     self.scores.map{|s|s.par_count - (s.stroke_count - s.putt_count)}
   end
 
-  # ％計算時の分母　ラウンド回数
-  def round_count
-    self.scores.size.to_f
+  def get_on_rate(i)
+    self.scores.map{|s|s.par_count - (s.stroke_count - s.putt_count)}.count(1) / self.scores.size.to_f * 100
   end
 
-  # ランク判定
-  # def rank?(score)
-  #   if score < 72
-  #     rank = "S"
-  #   elsif score < 81
-  #     rank = "A+"
-  #   elsif score < 90
-  #     rank = "A-"
-  #   elsif score < 99
-  #     rank = "B+"
-  #   elsif score < 108
-  #     rank = "B-"
-  #   elsif score < 117
-  #     rank = "C+"
-  #   elsif score < 126
-  #     rank = "C-"
-  #   elsif score < 135
-  #     rank = "D+"
-  #   elsif score < 144
-  #     rank = "D-"
-  #   else
-  #     rank = "E"
-  #   end
-  #   return  rank
-  # end
-  
+  def get_sum_score(range, column)
+    self.scores.slice(range).pluck(column).sum
+  end
+
 end

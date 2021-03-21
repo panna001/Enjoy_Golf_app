@@ -21,12 +21,15 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
-  validates :account_name, :first_name, :last_name, :sex, :prefecture, presence: true
+
+  # チャット機能
+  has_many :chats, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  has_many :rooms, through: :user_rooms
+  
+  validates :account_name, :first_name, :last_name, :sex, :prefecture, :teens, presence: true
   validates :account_name, uniqueness: true
   validates :introduction, length: { maximum: 100}
-  # 年月まとめたので、一旦解除
-  # validates :start_year, length: { is: 4}
-  # validates :start_month, length: { in: 1..2}
 
 
   # 住所選択用
@@ -46,16 +49,18 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-# 経験年数計算
+# ユーザー情報関連
+  # 経験年数計算
   def experience_year
     year = Date.today.year - start_year
-    month = Date.today.month - start_year
+    month = Date.today.month - start_month
     if month < 0
       year -= 1
     end
     return year
   end
 
+  # 経験月数計算
   def experience_month
     month = Date.today.month - start_month
     if month < 0
@@ -64,22 +69,12 @@ class User < ApplicationRecord
     return month
   end
 
-  # 5ラウンド以内に絞り込み
-  def round_sort
-    scores.order(id: :DESC).limit(5).group(:round_id)
-  end
-
-  # ラウンド回数カウント5回以内
-  def round_count
-    self.rounds.limit(5).count.to_f
-  end
-
-  # フォロー済み確認
+# フォロー済み確認
   def followed_by?(user)
     passive_relationships.where(following_id: user.id).present?
   end
 
-  # 通知機能
+# 通知機能
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
     if temp.blank?
@@ -90,4 +85,45 @@ class User < ApplicationRecord
     end
     notification.save if notification.valid?
   end
+
+  # スコア関連情報取得
+  def get_average_score(column)
+    self.scores.order(id: :DESC).limit(5).group(:round_id).sum(column).values.inject(:+) / self.rounds.limit(5).count.to_f.round(1)
+  end
+
+  def get_on_rate(i)
+    self.scores.order(id: :DESC).limit(90).map{|s|s.par_count - (s.stroke_count - s.putt_count)}.count(i) / self.scores.limit(90).count.to_f * 100
+  end
+
+  def get_fairway_keep_rate
+    self.scores.order(id: :DESC).limit(90).pluck(:fairway_keep).count("○") / self.scores.limit(90).count.to_f * 100
+  end
+
+  # ランク判定
+  def rank_check
+    score = self.get_average_score(:stroke_count)
+    if score < 72
+      rank = "S"
+    elsif score < 81
+      rank = "A+"
+    elsif score < 90
+      rank = "A-"
+    elsif score < 99
+      rank = "B+"
+    elsif score < 108
+      rank = "B-"
+    elsif score < 117
+      rank = "C+"
+    elsif score < 126
+      rank = "C-"
+    elsif score < 135
+      rank = "D+"
+    elsif score < 144
+      rank = "D-"
+    else
+      rank = "E"
+    end
+    return  rank
+  end
+
 end

@@ -5,12 +5,13 @@ class RoundsController < ApplicationController
     @user = User.find(params[:user_id])
     @rounds = @user.rounds.page(params[:page]).order(id: :DESC).per(5)
     # 以下userコントローラからコピー
-    on_numbers = @user.scores.order(id: :DESC).limit(90).map{|s|s.par_count - (s.stroke_count - s.putt_count)}
-    @score = @user.round_sort.sum(:stroke_count).values.inject(:+) / @user.round_count.round(1)
-    @putt = (@user.round_sort.sum(:putt_count).values.inject(:+) / @user.round_count).round(1)
-    @fairway_keep_rate = (@user.scores.order(id: :DESC).limit(90).where(fairway_keep: "○").count / @user.scores.limit(90).count.to_f * 100).round(1)
-    @par_on_rate = (on_numbers.count(2) / @user.scores.limit(90).count.to_f * 100).round(1)
-    @under_par_on_rate = (on_numbers.count(3) / @user.scores.limit(90).count.to_f * 100).round(1)
+    unless @user.rounds.blank?
+      @score = @user.get_average_score(:stroke_count)
+      @putt = @user.get_average_score(:putt_count)
+      @fairway_keep_rate = @user.get_fairway_keep_rate.round(1)
+      @par_on_rate = @user.get_on_rate(2).round(1)
+      @under_par_on_rate = @user.get_on_rate(3).round(1)
+    end
     # グラフ表示
     @round_data = @user.rounds.map{|r| [r.play_date.to_s, r.scores.sum(:stroke_count)]}
   end
@@ -18,14 +19,9 @@ class RoundsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @round = Round.find(params[:id])
-    @scores = @round.scores
-    # フェアウェイキープ率の計算
-    @fairway_keep_rate = (@round.scores.map{|s|s.fairway_keep_before_type_cast}.sum(0.00) / @round.scores.size * 100).floor
-    # パーオン率の計算
-    @on_numbers = @round.on_numbers
-    @under_par_on_rate = (@on_numbers.count(3) / @round.round_count * 100).floor
-    @par_on_rate = (@on_numbers.count(2) / @round.round_count * 100).floor
-    # binding.pry
+    @fairway_keep_rate = @round.fairway_keep_rate.floor
+    @under_par_on_rate = @round.get_on_rate(3).floor
+    @par_on_rate = @round.get_on_rate(2).floor
   end
 
   def new
@@ -37,9 +33,11 @@ class RoundsController < ApplicationController
   def create
     @user = current_user
     @round = current_user.rounds.build(round_params)
-    @round.save
-    redirect_to user_round_path(@user,@round)
     if @round.save
+      rank = current_user.rank_check
+      average = current_user.get_average_score(:stroke_count)
+      @user.update_attributes(rank: rank, average: average)
+      redirect_to user_round_path(@user, @round)
     else
       render :new
     end
@@ -54,6 +52,9 @@ class RoundsController < ApplicationController
     @user = current_user
     @round = current_user.rounds.find(params[:id])
     if @round.update(round_params)
+      rank = current_user.rank_check
+      average = current_user.get_average_score(:stroke_count)
+      @user.update_attributes(rank: rank, average: average)
       redirect_to user_round_path(@user, @round)
     else
       render :edit
