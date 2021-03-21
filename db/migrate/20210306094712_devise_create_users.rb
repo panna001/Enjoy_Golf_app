@@ -42,6 +42,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.integer :start_year
       t.integer :start_month
       t.string :teens
+      t.string :rank
+      t.float :average
       t.timestamps null: false
     end
 

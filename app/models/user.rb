@@ -63,17 +63,6 @@ class User < ApplicationRecord
     return month
   end
 
-# スコア関連
-  # 5ラウンド以内に絞り込み
-  def round_sort
-    scores.order(id: :DESC).limit(5).group(:round_id)
-  end
-
-  # ラウンド回数カウント5回以内
-  def round_count
-    self.rounds.limit(5).count.to_f
-  end
-
 # フォロー済み確認
   def followed_by?(user)
     passive_relationships.where(following_id: user.id).present?
@@ -90,4 +79,45 @@ class User < ApplicationRecord
     end
     notification.save if notification.valid?
   end
+
+  # スコア関連情報取得
+  def get_average_score(column)
+    self.scores.order(id: :DESC).limit(5).group(:round_id).sum(column).values.inject(:+) / self.rounds.limit(5).count.to_f.round(1)
+  end
+
+  def get_on_rate(i)
+    self.scores.order(id: :DESC).limit(90).map{|s|s.par_count - (s.stroke_count - s.putt_count)}.count(i) / self.scores.limit(90).count.to_f * 100
+  end
+
+  def get_fairway_keep_rate
+    self.scores.order(id: :DESC).limit(90).pluck(:fairway_keep).count("○") / self.scores.limit(90).count.to_f * 100
+  end
+
+  # ランク判定
+  def rank_check
+    score = self.get_average_score(:stroke_count)
+    if score < 72
+      rank = "S"
+    elsif score < 81
+      rank = "A+"
+    elsif score < 90
+      rank = "A-"
+    elsif score < 99
+      rank = "B+"
+    elsif score < 108
+      rank = "B-"
+    elsif score < 117
+      rank = "C+"
+    elsif score < 126
+      rank = "C-"
+    elsif score < 135
+      rank = "D+"
+    elsif score < 144
+      rank = "D-"
+    else
+      rank = "E"
+    end
+    return  rank
+  end
+
 end

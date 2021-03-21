@@ -2,12 +2,16 @@
   <div class="row mb-4">
     <div class="col"></div>
     <div class="col-3 text-center">
-      <h2>Average</h2>
-      <span class="h4"><%= @score %></span>
+      <h2 class="font-weight-bold">Average</h2>
+      <span class="h4 font-weight-bold"><%= @score %></span>
     </div>
     <div class="col-3 text-center">
-      <h2>Putt</h2>
-      <span class="h4"><%= @putt %></span>
+      <h2 class="font-weight-bold">Rank</h2>
+      <span class="h2 font-weight-bold"><%= @user.rank %></span>
+    </div>
+    <div class="col-3 text-center font-weight-bold">
+      <h2 class="font-weight-bold">Putt</h2>
+      <span class="h4 font-weight-bold"><%= @putt %></span>
     </div>
     <div class="col"></div>
   </div>

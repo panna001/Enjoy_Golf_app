@@ -8,13 +8,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    on_numbers = @user.scores.order(id: :DESC).limit(90).map{|s|s.par_count - (s.stroke_count - s.putt_count)}
     unless @user.rounds.blank?
-      @score = @user.round_sort.sum(:stroke_count).values.inject(:+) / @user.round_count.round(1)
-      @putt = (@user.round_sort.sum(:putt_count).values.inject(:+) / @user.round_count).round(1)
-      @fairway_keep_rate = (@user.scores.order(id: :DESC).limit(90).where(fairway_keep: "○").count / @user.scores.limit(90).count.to_f * 100).round(1)
-      @par_on_rate = (on_numbers.count(2) / @user.scores.limit(90).count.to_f * 100).round(1)
-      @under_par_on_rate = (on_numbers.count(3) / @user.scores.limit(90).count.to_f * 100).round(1)
+      @score = @user.get_average_score(:stroke_count)
+      @putt = @user.get_average_score(:putt_count)
+      @fairway_keep_rate = @user.get_fairway_keep_rate.round(1)
+      @par_on_rate = @user.get_on_rate(2).round(1)
+      @under_par_on_rate = @user.get_on_rate(3).round(1)
     end
   end
 

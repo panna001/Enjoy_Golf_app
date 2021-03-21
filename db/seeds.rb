@@ -20,7 +20,8 @@ User.create!(
       prefecture: rand(1..47),
       start_year: rand(2010..2020),
       start_month: rand(1..12),
-      teens: "10代"
+      teens: "10代",
+      rank: "A-"
     },
     {
       account_name: "Sara",
@@ -34,7 +35,8 @@ User.create!(
       prefecture: rand(1..47),
       start_year: rand(2010..2020),
       start_month: rand(1..12),
-      teens: "20代"
+      teens: "20代",
+      rank: "B+"
     },
     {
       account_name: "Tom",
@@ -48,7 +50,8 @@ User.create!(
       prefecture: rand(1..47),
       start_year: rand(2010..2020),
       start_month: rand(1..12),
-      teens: "30代"
+      teens: "30代",
+      rank: "D+"
     },
     {
       account_name: "Tomas",
@@ -62,7 +65,8 @@ User.create!(
       prefecture: rand(1..47),
       start_year: rand(2010..2020),
       start_month: rand(1..12),
-      teens: "20代"
+      teens: "20代",
+      rank: "E"
     }
   ]
 )
@@ -241,13 +245,55 @@ User.find(4).rounds.create!(
   ]
 )
 
-17.times do |n|
+2.times do |n|
   18.times do |i|
     Round.find(n + 1).scores.create!(
       hole_number: i + 1,
       par_count: rand(3..5),
       stroke_count: rand(3..7),
       putt_count: rand(0..2),
+      fairway_keep: rand(0..1),
+      ob_count: rand(0..1),
+      penalty_count: rand(0..1)
+    )
+  end
+end
+
+2.times do |n|
+  18.times do |i|
+    Round.find(n + 3).scores.create!(
+      hole_number: i + 1,
+      par_count: rand(3..5),
+      stroke_count: rand(4..7),
+      putt_count: rand(1..3),
+      fairway_keep: rand(0..1),
+      ob_count: rand(0..1),
+      penalty_count: rand(0..1)
+    )
+  end
+end
+
+2.times do |n|
+  18.times do |i|
+    Round.find(n + 5).scores.create!(
+      hole_number: i + 1,
+      par_count: rand(3..5),
+      stroke_count: rand(6..9),
+      putt_count: rand(1..3),
+      fairway_keep: rand(0..1),
+      ob_count: rand(0..1),
+      penalty_count: rand(0..1)
+    )
+  end
+end
+
+11.times do |n|
+  18.times do |i|
+    Round.find(n + 7).scores.create!(
+      hole_number: i + 1,
+      par_count: rand(3..5),
+      stroke_count: rand(7..10),
+      putt_count: rand(1..4),
       fairway_keep: rand(0..1),
       ob_count: rand(0..1),
       penalty_count: rand(0..1)

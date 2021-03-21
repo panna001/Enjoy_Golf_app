@@ -12,7 +12,8 @@
             <th><%= sort_link(@q, :account_name, "アカウント名") %></th>
             <th><%= sort_link(@q, :prefecture, "エリア") %></th>
             <th><%= sort_link(@q, :teens, "年齢層") %></th>
-            <th>アベレージ</th>
+            <th><%= sort_link(@q, :rank, "ランク") %></th>
+            <th><%= sort_link(@q, :average,"平均") %></th>
             <th>ゴルフ歴</th>
             <th></th>
           </tr>
@@ -30,7 +31,14 @@
             <td><%= user.teens %></td>
             <td>
               <% unless user.rounds.blank? %>
-                <%= user.round_sort.sum(:stroke_count).values.inject(:+) / user.round_count.round(1) %>
+                <%= user.rank %>
+              <% else %>
+                <span>未登録</span>
+              <% end %>
+            </td>
+            <td>
+              <% unless user.rounds.blank? %>
+                <%= user.get_average_score(:stroke_count) %>
               <% else %>
                 <span>未登録</span>
               <% end %>

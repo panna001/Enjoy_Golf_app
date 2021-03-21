@@ -50,6 +50,7 @@
                 <%= link_to "スコア登録", new_user_round_path(@user), class: "btn btn-sm btn-outline-warning shadow"  %>
               <% end %>
             </div>
+            <p>ランク：<%= @user.rank %></p>
             <p>アベレージ：<%= @score %></p>
             <p>パット：<%= @putt %></p>
           </div>

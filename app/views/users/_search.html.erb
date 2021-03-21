@@ -22,5 +22,9 @@
     <%= f.radio_button :teens_eq, "70代" %>70代
     <%= f.radio_button :teens_eq, "80代" %>80代
   </div>
+  <div class="mb-2">
+    <%= f.label :rank, "ランク" %>：
+    <%= f.collection_check_boxes :rank_in, User.all.group(:rank).order(average: :desc), :rank, :rank %>
+  </div>
   <%= f.submit %>
 <% end %>
