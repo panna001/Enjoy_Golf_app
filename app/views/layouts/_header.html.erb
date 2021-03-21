@@ -14,31 +14,22 @@
         <% end %>
 
         <ul class="navbar-nav d-flex align-items-center">
-          <li class="nav-item">
-            <%= link_to "＋", new_post_path, class: "mr-1 btn btn-sm btn-secondary rounded-circle" %>
-          </li>
+          <li class="nav-item"><%= link_to "New", new_post_path, class: "nav-link text-light" %></li>
+          <li class="nav-item"><%= link_to "Search", users_path, class: "nav-link text-light" %></li>
           <li class="nav-item">
             <% if unchecked_notifications.any? %>
-              <%= link_to notifications_path, class: "nav-link text-light" do %>
-                <i class="fas fa-bell fa-lg" style="color: gold;"></i>
-              <% end %>
+              <%= link_to "Notice", notifications_path, class: "nav-link text-warning" %>
             <% else %>
-              <%= link_to notifications_path, class: "nav-link text-light rounded-circle" do %>
-                <i class="fas fa-bell fa-lg"></i>
-              <% end %>
+              <%= link_to "Notice", notifications_path, class: "nav-link text-light" %>
             <% end %>
           </li>
             <!--chatリンク後々作成？-->
             <!--｜-->
             <!--｜-->
+          <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, class: "nav-link text-light", method: :delete %></li>
           <li class="nav-item">
             <%= link_to user_path(current_user), class: "nav-link text-light" do %>
               <%= attachment_image_tag current_user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to destroy_user_session_path, class: "nav-link text-light", method: :delete do %>
-              <i class="fas fa-sign-out-alt fa-lg"></i>
             <% end %>
           </li>
         </ul>
