@@ -6,11 +6,9 @@ class ApplicationController < ActionController::Base
     posts_path
   end
 
-
-
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :sex, :email, :prefecture, :phone_number, :start_year, :start_month])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :sex, :email, :prefecture, :phone_number, :start_year, :start_month, :teens])
   end
 end

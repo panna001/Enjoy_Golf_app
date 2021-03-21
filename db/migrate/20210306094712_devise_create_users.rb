@@ -39,8 +39,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :profile_image_id
       t.string :introduction
       t.integer :prefecture
-      t.date :start_year
+      t.integer :start_year
       t.integer :start_month
+      t.string :teens
+      t.string :rank
+      t.float :average
       t.timestamps null: false
     end
 
