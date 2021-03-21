@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
-    @posts = Post.all.includes(:comments, :user).order(created_at: :desc)
+    # 検索機能
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.includes(:comments, :user).order(created_at: :desc)
+    # @posts = Post.all.includes(:comments, :user).order(created_at: :desc)
   end
 
   def show
@@ -12,7 +15,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
@@ -28,7 +31,7 @@ class PostsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-  
+
   def update
     @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
@@ -37,20 +40,20 @@ class PostsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     post = current_user.posts.find(params[:id])
     post.destroy
     redirect_back(fallback_location: root_path)
   end
-  
+
   def bookmarks
     @bookmark_posts = current_user.bookmark_posts.includes(:user).order(created_at: :desc)
   end
-  
+
   private
   def post_params
     params.require(:post).permit(:post_image, :body)
   end
-  
+
 end

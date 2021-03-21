@@ -50,7 +50,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @scores.slice(0..8).each.with_index do |score, i| %>
+          <% @round.scores.slice(0..8).each.with_index do |score, i| %>
           <tr>
             <td><%= i + 1 %></td>
             <td><%= score.par_count %></td>
@@ -63,12 +63,12 @@
           <% end %>
           <tr>
             <td>OUT</td>
-            <td><%= @scores.slice(0..8).pluck(:par_count).sum %></td>
-            <td><%= @scores.slice(0..8).pluck(:stroke_count).sum %></td>
-            <td><%= @scores.slice(0..8).pluck(:putt_count).sum %></td>
-            <td><%= @scores.slice(0..8).pluck(:ob_count).sum %></td>
-            <td><%= @scores.slice(0..8).pluck(:penalty_count).sum %></td>
-            <td><%= @scores.slice(0..8).pluck(:stroke_count).sum - @scores.slice(0..8).pluck(:par_count).sum %></td>
+            <td><%= @round.scores.slice(0..8).pluck(:par_count).sum %></td>
+            <td><%= @round.scores.slice(0..8).pluck(:stroke_count).sum %></td>
+            <td><%= @round.scores.slice(0..8).pluck(:putt_count).sum %></td>
+            <td><%= @round.scores.slice(0..8).pluck(:ob_count).sum %></td>
+            <td><%= @round.scores.slice(0..8).pluck(:penalty_count).sum %></td>
+            <td><%= @round.scores.slice(0..8).pluck(:stroke_count).sum - @round.scores.slice(0..8).pluck(:par_count).sum %></td>
           </tr>
         </tbody>
       </table>
@@ -88,7 +88,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @scores.slice(9..17).each.with_index do |score, i| %>
+          <% @round.scores.slice(9..17).each.with_index do |score, i| %>
           <tr>
             <td><%= i + 10 %></td>
             <td><%= score.par_count %></td>
@@ -101,21 +101,21 @@
           <% end %>
           <tr>
             <td>IN</td>
-            <td><%= @scores.slice(9..17).pluck(:par_count).sum %></td>
-            <td><%= @scores.slice(9..17).pluck(:stroke_count).sum %></td>
-            <td><%= @scores.slice(9..17).pluck(:putt_count).sum %></td>
-            <td><%= @scores.slice(9..17).pluck(:ob_count).sum %></td>
-            <td><%= @scores.slice(9..17).pluck(:penalty_count).sum %></td>
-            <td><%= @scores.slice(9..17).pluck(:stroke_count).sum - @scores.slice(0..8).pluck(:par_count).sum %></td>
+            <td><%= @round.scores.slice(9..17).pluck(:par_count).sum %></td>
+            <td><%= @round.scores.slice(9..17).pluck(:stroke_count).sum %></td>
+            <td><%= @round.scores.slice(9..17).pluck(:putt_count).sum %></td>
+            <td><%= @round.scores.slice(9..17).pluck(:ob_count).sum %></td>
+            <td><%= @round.scores.slice(9..17).pluck(:penalty_count).sum %></td>
+            <td><%= @round.scores.slice(9..17).pluck(:stroke_count).sum - @round.scores.slice(0..8).pluck(:par_count).sum %></td>
           </tr>
           <tr>
             <th>TOTAL</th>
-            <th><%= @scores.sum(:par_count) %></th>
-            <th><%= @scores.sum(:stroke_count) %></th>
-            <th><%= @scores.sum(:putt_count) %></th>
-            <th><%= @scores.sum(:ob_count) %></th>
-            <th><%= @scores.sum(:penalty_count) %></th>
-            <th><%= @scores.sum(:stroke_count) - @scores.sum(:par_count) %></th>
+            <th><%= @round.scores.sum(:par_count) %></th>
+            <th><%= @round.scores.sum(:stroke_count) %></th>
+            <th><%= @round.scores.sum(:putt_count) %></th>
+            <th><%= @round.scores.sum(:ob_count) %></th>
+            <th><%= @round.scores.sum(:penalty_count) %></th>
+            <th><%= @round.scores.sum(:stroke_count) - @round.scores.sum(:par_count) %></th>
           </tr>
         </tbody>
       </table>

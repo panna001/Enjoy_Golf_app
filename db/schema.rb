@@ -127,8 +127,10 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
     t.string "profile_image_id"
     t.string "introduction"
     t.integer "prefecture"
-    t.date "start_year"
+    t.integer "start_year"
     t.integer "start_month"
+    t.string "teens"
+    t.string "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
