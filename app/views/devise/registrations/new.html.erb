@@ -35,8 +35,13 @@
 
         <div class="field mb-3">
           <%= f.label :start_year, "ゴルフ開始年月" %><br />
-          <%= f.select :start_year, ((Date.today.year - 70)..(Date.today.year))  %>
+          <%= f.select :start_year, ((Date.today.year - 70)..(Date.today.year)), selected: Date.today.year  %>
           <%= f.select :start_month, (1..12) %>
+        </div>
+
+        <div class="field mb-3">
+          <%= f.label :teens, "年齢層" %><br />
+          <%= f.select :teens, ["10代","20代","30代","40代","50代","60代","70代","80代"], {}  %>
         </div>
 
         <div class="field mb-3">
