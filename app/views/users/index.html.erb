@@ -18,36 +18,7 @@
             <th class="d-none d-md-table-cell"></th>
           </tr>
         </thead>
-        <tbody>
-          <% @users.each_with_index do |user,i| %>
-          <tr>
-            <td>
-              <%= link_to user_path(user) do %>
-                <%= attachment_image_tag user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
-              <% end %>
-            </td>
-            <td><%= link_to user.account_name, user_path(user) %></td>
-            <td><%= user.prefecture %></td>
-            <td><%= user.teens %></td>
-            <td>
-              <% unless user.rounds.blank? %>
-                <%= user.rank %>
-              <% else %>
-                <span>未登録</span>
-              <% end %>
-            </td>
-            <td>
-              <% unless user.rounds.blank? %>
-                <%= user.get_average_score(:stroke_count) %>
-              <% else %>
-                <span>未登録</span>
-              <% end %>
-            </td>
-            <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
-            <td class="d-none d-md-table-cell"><%= render "users/follow_btn", user:user %></td>
-          </tr>
-        <% end %>
-        </tbody>
+        <%= render "users/user_tbody", users:@users %>
       </table>
       <p class="d-inline-block mx-auto"><%= paginate @users %></p>
     </div>

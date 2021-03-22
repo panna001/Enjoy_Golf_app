@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-6 mx-auto text-center">
       <p>
-        <strong>EnjoyGolf</strong>は<br>
+        <span class="font-weight-bold">EnjoyGolf</span>は<br>
         ゴルフ好きの投稿をみることができます。<br>
         実力の近い人を探してフォローしてみましょう。<br>
         ログイン後にコメント・いいね・フォローをすることができます。<br>
@@ -10,18 +10,54 @@
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-lg-4 text-center">
-      <h1>New</h1>
-      新規投稿3件表示
+    <div class="col-lg-4">
+      <h1 class="text-center mb-3">New</h1>
+      <% @new_posts.each do |post| %>
+        <%= render "posts/card", post:post %>
+      <% end %>
     </div>
-    <div class="col-lg-4 text-center">
-      <h1>Faborite</h1>
-      人気投稿3件表示
+    <div class="col-lg-4">
+      <h1 class="text-center mb-3">Faborite</h1>
+      <% @favorite_posts.each do |post| %>
+        <%= render "posts/card", post:post %>
+      <% end %>
     </div>
-    <div class="col-lg-4 text-center">
-      <h1>Ranking</h1>
-      男性ランキング3件表示<br>
-      女性ランキング3件表示
+    <div class="col-lg-4">
+      <h1 class="text-center mb-3">Score Ranking</h1>
+      <div class="mb-5">
+        <u><h3 class="text-center mb-3">Men</h3></u>
+        <table class="table table-sm table-light border shadow">
+          <thead class="thead-dark">
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Area</th>
+              <th>Age</th>
+              <th>Rank</th>
+              <th>Ave</th>
+              <th>Carrer</th>
+            </tr>
+          </thead>
+          <%= render "users/user_tbody", users:@ranking_men %>
+        </table>
+      </div>
+      <div class="mb-5">
+        <u><h3 class="text-center mb-3">Women</h3></u>
+        <table class="table table-sm table-light border shadow">
+          <thead class="thead-dark">
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Area</th>
+              <th>Age</th>
+              <th>Rank</th>
+              <th>Ave</th>
+              <th>Carrer</th>
+            </tr>
+          </thead>
+          <%= render "users/user_tbody", users:@ranking_women %>
+        </table>
+      </div>
     </div>
   </div>
 </div>
