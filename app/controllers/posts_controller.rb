@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     # 検索機能
     @q = Post.ransack(params[:q])
     @posts = @q.result.includes(:comments, :user).order(created_at: :desc)
-    # @posts = Post.all.includes(:comments, :user).order(created_at: :desc)
+    @posts = Post.where(user_id: current_user.followings.pluck(:follower_id)).order(created_at: :desc)
   end
 
   def show
