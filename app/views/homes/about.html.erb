@@ -10,13 +10,17 @@
     </div>
   </div>
   <div class="row mt-5">
-    <div class="col-lg-4 text-center">
-      <h1>New</h1>
-      新規投稿3件表示
+    <div class="col-lg-4">
+      <h1 class="text-center">New</h1>
+      <% @new_posts.each do |post| %>
+        <%= render "posts/card", post:post %>
+      <% end %>
     </div>
-    <div class="col-lg-4 text-center">
-      <h1>Faborite</h1>
-      人気投稿3件表示
+    <div class="col-lg-4">
+      <h1 class="text-center">Faborite</h1>
+      <% @favorite_posts.each do |post| %>
+        <%= render "posts/card", post:post %>
+      <% end %>
     </div>
     <div class="col-lg-4 text-center">
       <h1>Ranking</h1>
