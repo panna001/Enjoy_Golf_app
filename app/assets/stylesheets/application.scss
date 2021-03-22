@@ -17,15 +17,25 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
- * {
-  color: #606060;
-  font-size: 14px;
+ header {
+  background-color: #003f8e;
  }
 
  body {
+  padding: 5px 0;
+  color: #043c78;
+  font-size: 14px;
+  margin-top: 59px;
   background-color: #f4f9ff;
  }
 
+ i {
+  font-size: 20px;
+ }
+
+header {
+ font-size: 18px;
+}
 
  a {
   color: #7f7fff;
