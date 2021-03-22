@@ -1,25 +1,25 @@
-<div class="container mt-4">
-  <h4 class="text-center">ユーザー一覧<%= "(#{@users.count}人)" %></h4>
+<div class="container my-4">
+  <h4 class="text-center mb-3">ユーザー一覧<%= "(#{@users.count}人)" %></h4>
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <%= render "users/search", q:@q %>
     </div>
-    <div class="col-lg-8">
-      <table class="table">
-        <thead>
+    <div class="col-lg-9 mt-4 mt-lg-0">
+      <table class="table table-light table-hover shadow">
+        <thead class="thead-dark">
           <tr>
             <th></th>
-            <th><%= sort_link(@q, :account_name, "アカウント名") %></th>
-            <th><%= sort_link(@q, :prefecture, "エリア") %></th>
-            <th><%= sort_link(@q, :teens, "年齢層") %></th>
-            <th><%= sort_link(@q, :rank, "ランク") %></th>
-            <th><%= sort_link(@q, :average,"平均") %></th>
-            <th>ゴルフ歴</th>
-            <th></th>
+            <th><%= sort_link(@q, :account_name, "Name") %></th>
+            <th><%= sort_link(@q, :prefecture, "Area") %></th>
+            <th><%= sort_link(@q, :teens, "Age") %></th>
+            <th><%= sort_link(@q, :rank, "Rank") %></th>
+            <th><%= sort_link(@q, :average,"Ave") %></th>
+            <th class="d-none d-md-table-cell"><%= sort_link(@q, :start_year, "Experience") %></th>
+            <th class="d-none d-md-table-cell"></th>
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %>
+          <% @users.each_with_index do |user,i| %>
           <tr>
             <td>
               <%= link_to user_path(user) do %>
@@ -43,12 +43,13 @@
                 <span>未登録</span>
               <% end %>
             </td>
-            <td><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
-            <td><%= render "users/follow_btn", user:user %></td>
+            <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
+            <td class="d-none d-md-table-cell"><%= render "users/follow_btn", user:user %></td>
           </tr>
         <% end %>
         </tbody>
       </table>
+      <p class="d-inline-block mx-auto"><%= paginate @users %></p>
     </div>
   </div>
 </div>
