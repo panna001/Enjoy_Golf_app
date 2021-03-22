@@ -17,3 +17,24 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+ * {
+  color: #404040;
+  font-size: 14px;
+ }
+
+ body {
+  background-color: #f4f9ff;
+ }
+
+
+ a {
+  color: #7f7fff;
+ }
+
+ a:hover {
+  color: #4d4d99;
+ }
+
+ .pagination {
+   justify-content: center;
+ }
