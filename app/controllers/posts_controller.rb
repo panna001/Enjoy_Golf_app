@@ -10,6 +10,9 @@ class PostsController < ApplicationController
     @near_score_user = unfollow_users.where.not(average: nil).each.min_by{|x| (x.average - current_user.average).abs} unless current_user.average == nil
     @near_start_user = unfollow_users.each.min_by{|x| (x.start_year - current_user.start_year).abs}
     @eq_area_user = unfollow_users.find_by(prefecture: current_user.prefecture)
+
+    # コメント用
+    @comment = Comment.new
   end
 
   def all
@@ -19,6 +22,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    # コメント用
+    @comment = Comment.new
   end
 
   def new
