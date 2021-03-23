@@ -6,6 +6,8 @@
     <% end %>
     <div class="ml-auto">
       <% unless controller.controller_name == "homes" %>
+        <%= "Rank #{post.user.rank}" %>
+        <%= post.user.average %>
         <% if post.user == current_user %>
           <%= link_to edit_post_path(post) do %>
             <i class="fas fa-edit"></i>

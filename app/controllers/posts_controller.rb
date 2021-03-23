@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     # 検索機能
-    @q = Post.where(user_id: current_user.followings.pluck(:follower_id)).ransack(params[:q])
+    @q = Post.where(user_id: current_user.followings.pluck(:follower_id).push(current_user.id)).ransack(params[:q])
     @posts = @q.result.includes(:comments, :user).order(created_at: :desc)
     # おすすめ機能
     unfollow_users = User.where.not(id: current_user.followings.pluck(:follower_id)).where.not(id: current_user.id)
