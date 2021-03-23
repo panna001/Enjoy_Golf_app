@@ -32,9 +32,9 @@
   font-size: 20px;
  }
 
-header {
- font-size: 18px;
-}
+ header {
+  font-size: 16px;
+ }
 
  a {
   color: #0091ff;
@@ -47,3 +47,12 @@ header {
  .pagination {
    justify-content: center;
  }
+
+ table {
+ }
+// サイドバー固定
+ .sidebar_fixed {
+  position: sticky;
+  top: 80px;
+}
+

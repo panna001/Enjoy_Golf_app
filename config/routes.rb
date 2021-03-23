@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get :followers, on: :member
     resources :rounds, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
+  get "/all" => "posts#all"
   resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
     resource :favorites, only: [:create, :destroy]
