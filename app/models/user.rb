@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
   has_many :rooms, through: :user_rooms
-  
+
   validates :account_name, :first_name, :last_name, :sex, :prefecture, :teens, presence: true
   validates :account_name, uniqueness: true
   validates :introduction, length: { maximum: 100}
@@ -124,6 +124,10 @@ class User < ApplicationRecord
       rank = "E"
     end
     return  rank
+  end
+
+  def unfollow
+    
   end
 
 end

@@ -3,9 +3,17 @@ class PostsController < ApplicationController
 
   def index
     # 検索機能
+    @q = Post.where(user_id: current_user.followings.pluck(:follower_id)).ransack(params[:q])
+    @posts = @q.result.includes(:comments, :user).order(created_at: :desc)
+    unfollow_users = User.where.not(id: current_user.followings.pluck(:follower_id)).where.not(id: current_user.id)
+    @near_score_user = unfollow_users.where.not(average: nil).each.min_by{|x| (x.average - current_user.average).abs} unless current_user.average == nil
+    @near_start_user = unfollow_users.each.min_by{|x| (x.start_year - current_user.start_year).abs}
+    @eq_area_user = unfollow_users.find_by(prefecture: current_user.prefecture)
+  end
+
+  def index_all
     @q = Post.ransack(params[:q])
     @posts = @q.result.includes(:comments, :user).order(created_at: :desc)
-    @posts = Post.where(user_id: current_user.followings.pluck(:follower_id)).order(created_at: :desc)
   end
 
   def show

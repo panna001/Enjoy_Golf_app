@@ -1,0 +1,32 @@
+<table class="table table-sm table-light">
+  <thead>
+    <tr>
+      <td></td>
+      <td>Name</td>
+      <td>Ave</td>
+      <td>Carrer</td>
+      <td>Area</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to user_path(user) do %>
+          <%= attachment_image_tag user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to user.account_name, user_path(user) %>
+      </td>
+      <td>
+        <%= user.average %>
+      </td>
+      <td>
+        <%= "#{user.experience_year}年#{user.experience_month}ヶ月" %>
+      </td>
+      <td>
+        <%= user.prefecture %>
+      </td>
+    </tr>
+  </tbody>
+</table>
