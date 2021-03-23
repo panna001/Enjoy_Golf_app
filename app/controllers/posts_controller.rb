@@ -5,6 +5,8 @@ class PostsController < ApplicationController
     # 検索機能
     @q = Post.where(user_id: current_user.followings.pluck(:follower_id)).ransack(params[:q])
     @posts = @q.result.includes(:comments, :user).order(created_at: :desc)
+    
+    # おすすめ機能
     unfollow_users = User.where.not(id: current_user.followings.pluck(:follower_id)).where.not(id: current_user.id)
     @near_score_user = unfollow_users.where.not(average: nil).each.min_by{|x| (x.average - current_user.average).abs} unless current_user.average == nil
     @near_start_user = unfollow_users.each.min_by{|x| (x.start_year - current_user.start_year).abs}
