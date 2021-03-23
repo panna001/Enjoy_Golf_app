@@ -7,14 +7,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    comment = current_user.comments.new(comment_params)
-    comment.post_id = params[:post_id]
-    if comment.save
+    @comment = current_user.comments.new(comment_params)
+    @comment.post_id = params[:post_id]
+    if @comment.save
       # 通知機能
-      comment.post.create_notification_comment!(current_user, comment.id)
-      redirect_to post_path(comment.post)
+      @comment.post.create_notification_comment!(current_user, @comment.id)
     else
-      render :new
+      render :index
     end
   end
 

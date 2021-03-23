@@ -11,7 +11,7 @@
     </div>
     <div class="col-12 col-lg-5 col-md-8 mx-auto mx-lg-0 order-md-0">
       <% @posts.each do |post| %>
-        <%= render "posts/card", post:post %>
+        <%= render "posts/card", post:post, comment:@comment %>
       <% end %>
     </div>
   </div>

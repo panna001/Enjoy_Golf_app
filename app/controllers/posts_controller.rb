@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_comment, only:[:index, :show, :all]
 
   def index
     # 検索機能
@@ -10,20 +11,16 @@ class PostsController < ApplicationController
     @near_score_user = unfollow_users.where.not(average: nil).each.min_by{|x| (x.average - current_user.average).abs} unless current_user.average == nil
     @near_start_user = unfollow_users.each.min_by{|x| (x.start_year - current_user.start_year).abs}
     @eq_area_user = unfollow_users.find_by(prefecture: current_user.prefecture)
-
-    # コメント用
-    @comment = Comment.new
   end
 
   def all
     @q = Post.ransack(params[:q])
     @posts = @q.result.includes(:comments, :user).order(created_at: :desc)
+
   end
 
   def show
     @post = Post.find(params[:id])
-    # コメント用
-    @comment = Comment.new
   end
 
   def new
@@ -68,6 +65,11 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:post_image, :body)
+  end
+
+# コメント用
+  def set_comment
+    @comment = Comment.new
   end
 
 end
