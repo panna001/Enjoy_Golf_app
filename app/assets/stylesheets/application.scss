@@ -37,11 +37,11 @@
  }
 
  a {
-  color: #0091ff;
+  color: #0068b7;
  }
 
  a:hover {
-  color: #005799;
+  color: #0091ff;
  }
 
  .pagination {
@@ -54,3 +54,9 @@
   top: 80px;
 }
 
+// 独自設定クラス
+ .check-body {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ }
