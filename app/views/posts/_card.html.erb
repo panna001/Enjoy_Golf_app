@@ -17,8 +17,8 @@
           <% end %>
         <% else %>
       <!--aboutページでは非表示-->
-          <span class="follow-btn">
-            <%= render "relationships/btn", post:post %>
+          <span class="follow-btn_<%= post.user.id %>">
+            <%= render "relationships/btn", user:post.user %>
           </span>
         <% end %>
       <% end %>
@@ -48,7 +48,7 @@
         <p class="check-body mb-0"><%= post.body %></p>
         <span class="read-more d-inline-block text-secondary" style="cursor: pointer;">続きを読む</span>
         <p class="d-none mb-0"><%= safe_join(post.body.split("\n"), tag(:br)) %></p>
-        
+
       <% else %>
         <p class="mb-0"><%= post.body %></p>
       <% end %>

@@ -1,7 +1,7 @@
 <!--非同期にしたい-->
 
-<% if post.user.followed_by?(current_user) %>
-  <%= link_to "フォロー中", user_relationships_path(post.user), class: "btn btn-sm btn-primary", method: :delete %>
+<% if user.followed_by?(current_user) %>
+  <%= link_to "フォロー中", user_relationships_path(user), class: "btn btn-sm btn-primary", remote:true, method: :delete %>
 <% else %>
-  <%= link_to "フォローする", user_relationships_path(post.user), class: "btn btn-sm btn-outline-primary", method: :post %>
+  <%= link_to "フォローする", user_relationships_path(user), class: "btn btn-sm btn-outline-primary", remote:true, method: :post %>
 <% end %>
