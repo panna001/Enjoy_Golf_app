@@ -43,26 +43,29 @@
       <% end %>
     </ul>
     <div class="card-text">
-      <!--jsで投稿内容を開く-->
-      <p class="check-body"><%= post.body %></p>
-        <span class="read-more d-inline-block mb-3 text-secondary" style="cursor: pointer;">続きを読む</span>
-
+      <!--jqueryで投稿内容を開く-->
+      <% if post.body.length >= 30 || /\R/.match?(post.body) %>
+        <p class="check-body mb-0"><%= post.body %></p>
+        <span class="read-more d-inline-block text-secondary" style="cursor: pointer;">続きを読む</span>
+        <p class="d-none mb-0"><%= safe_join(post.body.split("\n"), tag(:br)) %></p>
+        
+      <% else %>
+        <p class="mb-0"><%= post.body %></p>
+      <% end %>
       <!--コメント非同期-->
       <div id="comment-area_<%= post.id %>">
         <%= render "posts/comment", post:post %>
       </div>
+      <span class="text-secondary d-block text-right", style="font-size: 14px"><%= "#{time_ago_in_words(post.created_at)} ago" %></span>
 
-
-      <p class="text-secondary", style="font-size: 14px"><%= "#{time_ago_in_words(post.created_at)} ago" %></p>
-
+      <!--コメントフォーム（toggle）-->
       <span class="comment-new d-inline-block text-secondary" style="cursor: pointer;">Comment</span>
       <div class="d-none">
         <%= form_with(model:[post, comment], local: false) do |f| %>
-          <div><%= f.text_area :post_comment, placeholder: "コメントをここに", class: "form-control" %></div>
-          <div class="text-right"><%= f.submit "送信", class: "btn btn-sm btn-outline-secondary" %></div>
+          <div><%= f.text_area :post_comment, placeholder: "comment", class: "form-control mt-2" %></div>
+          <div class="text-right mt-2"><%= f.submit "送信", class: "btn btn-sm btn-outline-secondary" %></div>
         <% end %>
       </div>
-
     </div>
   </div>
 </div>
