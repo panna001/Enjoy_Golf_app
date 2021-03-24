@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params)
     @comment.post_id = params[:post_id]
+    @post = Post.find(params[:post_id])
     if @comment.save
       # 通知機能
       @comment.post.create_notification_comment!(current_user, @comment.id)
@@ -35,9 +36,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = current_user.comments.find_by(post_id: params[:post_id])
-    comment.destroy
-    redirect_back(fallback_location: root_path)
+    @comment = current_user.comments.find_by(post_id: params[:post_id])
+    @post = Post.find(params[:post_id])
+    @comment.destroy
   end
 
   private

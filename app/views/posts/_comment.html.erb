@@ -1,43 +1,43 @@
-<%= post.comments.count %>件コメント
-<span class="more text-success" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">more...</span>
-<% post.comments.first(2).each do |comment| %>
-  <div class="row">
-    <div class="col">
-      <%= link_to user_path(comment.user) do %>
-        <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
-        <%= comment.user.account_name %>
-      <% end %>
-      <% if current_user == comment.user %>
-        <%= link_to edit_post_comment_path(post_id: post, id: comment) do %>
-          <i class="fas fa-edit" style="font-size: 16px;"></i>
-        <% end %>
-        <%= link_to post_comment_path(post_id: post, id: comment), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "text-right" do %>
-          <i class="fas fa-trash-alt" style="font-size: 16px;"></i>
-        <% end %>
-      <% end %>
-      <p><%= comment.post_comment %></p>
-    </div>
-  </div>
-<% end %>
-
-<div class="collapse" id="collapseExample">
-  <% post.comments.offset(2).each do |comment| %>
-    <div class="row">
-      <div class="col">
-        <%= link_to user_path(comment.user) do %>
-          <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
-          <%= comment.user.account_name %>
-        <% end %>
-        <% if current_user == comment.user %>
-          <%= link_to edit_post_comment_path(post_id: post, id: comment) do %>
-            <i class="fas fa-edit"></i>
+  <%= post.comments.count %>件コメント
+  <span class="more text-success" data-toggle="collapse" href="#collapseExample" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">more...</span>
+    <% post.comments.first(2).each do |comment| %>
+      <div class="row">
+        <div class="col">
+          <%= link_to user_path(comment.user) do %>
+            <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
+            <%= comment.user.account_name %>
           <% end %>
-          <%= link_to post_comment_path(post_id: post, id: comment), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-            <i class="fas fa-trash-alt"></i>
+          <% if current_user == comment.user %>
+            <%= link_to edit_post_comment_path(post_id: post, id: comment) do %>
+              <i class="fas fa-edit" style="font-size: 16px;"></i>
+            <% end %>
+            <%= link_to post_comment_path(post_id: post, id: comment), remote: true, method: :delete do %>
+              <i class="fas fa-trash-alt" style="font-size: 16px;"></i>
+            <% end %>
           <% end %>
-        <% end %>
-        <p><%= comment.post_comment %></p>
+          <p><%= comment.post_comment %></p>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+
+  <div class="collapse" id="collapseExample">
+    <% post.comments.offset(2).each do |comment| %>
+      <div class="row">
+        <div class="col">
+          <%= link_to user_path(comment.user) do %>
+            <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
+            <%= comment.user.account_name %>
+          <% end %>
+          <% if current_user == comment.user %>
+            <%= link_to edit_post_comment_path(post_id: post, id: comment) do %>
+              <i class="fas fa-edit" style="font-size: 16px;"></i>
+            <% end %>
+            <%= link_to post_comment_path(post_id: post, id: comment), remote: true, method: :delete do %>
+              <i class="fas fa-trash-alt" style="font-size: 16px;"></i>
+            <% end %>
+          <% end %>
+          <p><%= comment.post_comment %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
