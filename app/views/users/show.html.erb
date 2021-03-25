@@ -12,7 +12,7 @@
             <%= link_to "編集", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary d-inline-block shadow ml-2" %>
           <% else %>
             <%= link_to "チャット", chat_path(@user.id), class: "btn btn-sm btn-outline-secondary d-inline-block shadow ml-2" %>
-            <%= render "relationships/btn", user:@user %>
+            <span class="ml-2"><%= render "relationships/btn", user:@user %></span>
           <% end %>
           <% if @user == current_user %>
             <%= link_to "スコア登録", new_user_round_path(@user), class: "btn btn-sm btn-outline-warning shadow ml-2"  %>
@@ -23,10 +23,10 @@
         </div>
         <!--〜〜〜〜〜〜〜-->
       </div>
-      <div class="col mt-2">
+      <div class="col text-center text-md-left mt-2">
 
-        <span class="d-inline-block mr-ms-2"><%= "投稿 #{@user.posts.count} 件" %></span>
-        <span class="d-inline-block mr-ms-2">
+        <span class="d-inline-block mr-sm-2"><%= "投稿 #{@user.posts.count} 件" %></span>
+        <span class="d-inline-block mr-sm-2">
           <%= link_to followings_user_path(@user), class: "text-dark" do %>
             <%= "フォロー #{@user.followings.count} 人" %>
           <% end %>
@@ -48,20 +48,20 @@
     </div>
   </div>
   <div class="row my-4">
-    <div class="col col-md-8 mx-auto">
+    <div class="col-9 mx-auto">
       <div class="row">
-        <div class="col-10 mx-auto col-md-4">
+        <div class="col-md-4">
           <p class="mb-0">ゴルフ歴：<%= "#{@user.experience_year}年#{@user.experience_month}ヶ月" %></p>
           <p class="mb-0">都道府県：<%= @user.prefecture %></p>
           <p class="mb-0">年齢層：<%= @user.teens %></p>
         </div>
         <% if @user.scores.present? %>
-          <div class="col-10 mx-auto col-md-4">
+          <div class="col-md-4">
             <p class="mb-0">ランク：<%= @user.rank %></p>
             <p class="mb-0">アベレージ：<%= @score %></p>
             <p class="mb-0">パット：<%= @putt %></p>
           </div>
-          <div class="col-10 mx-auto col-md-4">
+          <div class="col-md-4">
             <!--スコアについて記載-->
             <p class="mb-0">フェアウェイキープ率：<%= @fairway_keep_rate %>%</p>
             <p class="mb-0">パーオン率：<%= @par_on_rate %>%</p>
@@ -80,7 +80,7 @@
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pt-5 border-top">
     <% @user.posts.each do |post| %>
-     <%= render "users/card", post:post %>
+     <%= render "users/card", post:post, comment:@comment %>
     <% end %>
   </div>
 </div>

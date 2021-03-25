@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @users = User.all.order(average: :asc)
     @user = User.find(params[:id])
     unless @user.rounds.blank?
       @score = @user.get_average_score(:stroke_count)

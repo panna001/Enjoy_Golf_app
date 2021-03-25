@@ -126,8 +126,15 @@ class User < ApplicationRecord
     return  rank
   end
 
-  def unfollow
-    
-  end
+# 順位表示
+  # def rank_search
+  #   rank = 1
+  #   self.find_each do |user|
+  #     rank += 1
+  #     if self == current_user
+  #       returen rank
+  #     end
+  #   end
+  # end
 
 end
