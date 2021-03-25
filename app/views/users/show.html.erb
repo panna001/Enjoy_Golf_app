@@ -1,66 +1,71 @@
 <div class="container mt-5">
   <div class="row mx-auto">
-    <div class="col-6 mx-auto col-md-4 text-right">
+    <div class="col-6 mx-auto col-md-4 text-center text-md-right">
       <%= attachment_image_tag @user, :profile_image, fallback: "no-image.jpg", size: "150x150", class: "rounded-circle shadow" %>
     </div>
-    <div class="col-12 col-md-8">
-      <div>
-        <h4 class="text-center d-sm-inline-block"><%= @user.account_name %></h4>
+    <div class="col-11 col-md-8 mx-auto">
+      <div class="my-auto">
+        <h4 class="text-center d-md-inline-block"><%= @user.account_name %></h4>
         <!--修正必要-->
-        <div class="text-center d-sm-inline-block">
+        <div class="text-center d-md-inline-block">
           <% if @user == current_user %>
-            <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary d-inline-block shadow ml-2 my-2" %>
+            <%= link_to "編集", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary d-inline-block shadow ml-2" %>
           <% else %>
-            <%= link_to "チャット", chat_path(@user.id), class: "btn btn-sm btn-outline-secondary d-inline-block shadow ml-2 my-2" %>
+            <%= link_to "チャット", chat_path(@user.id), class: "btn btn-sm btn-outline-secondary d-inline-block shadow ml-2" %>
             <%= render "relationships/btn", user:@user %>
           <% end %>
           <% if @user == current_user %>
-            <%= link_to "スコア登録", new_user_round_path(@user), class: "btn btn-sm btn-outline-warning shadow ml-2 my-2"  %>
+            <%= link_to "スコア登録", new_user_round_path(@user), class: "btn btn-sm btn-outline-warning shadow ml-2"  %>
           <% end %>
           <% if @user.scores.present? %>
-            <%= link_to "スコア一覧", user_rounds_path(@user), class: "btn btn-sm btn-outline-success shadow ml-2 my-2" %>
+            <%= link_to "スコア一覧", user_rounds_path(@user), class: "btn btn-sm btn-outline-success shadow ml-2" %>
           <% end %>
         </div>
         <!--〜〜〜〜〜〜〜-->
       </div>
-      <span class="d-inline-block mr-3"><%= "投稿 #{@user.posts.count} 件" %></span>
-      <span class="d-inline-block mr-3">
-        <%= link_to followings_user_path(@user), class: "text-dark" do %>
-          フォロー<span class="following-count"><%= @user.followings.count %></span> 人
-        <% end %>
-      </span>
-      <span class="d-inline-block mr-3">
-        <%= link_to followers_user_path(@user), class: "text-dark" do %>
-          <%= "フォロワー #{@user.followers.count} 人" %>
-        <% end %>
-      </span>
-      <span>
-        <%= link_to "ブックマーク", bookmarks_posts_path %>
-      </span>
+      <div class="col mt-2">
 
-      <p><%= @user.first_name + @user.last_name %></p>
-      <p><%= @user.introduction %></p>
+        <span class="d-inline-block mr-ms-2"><%= "投稿 #{@user.posts.count} 件" %></span>
+        <span class="d-inline-block mr-ms-2">
+          <%= link_to followings_user_path(@user), class: "text-dark" do %>
+            <%= "フォロー #{@user.followings.count} 人" %>
+          <% end %>
+        </span>
+        <span class="d-inline-block mr-sm-2">
+          <%= link_to followers_user_path(@user), class: "text-dark" do %>
+            <%= "フォロワー #{@user.followers.count} 人" %>
+          <% end %>
+        </span>
+        <% if @user == current_user %>
+          <span class="d-block d-sm-inline-block" >
+            <%= link_to "ブックマーク", bookmarks_posts_path, class: "text-dark" %>
+          </span>
+        <% end %>
+        <p class="my-2"><%= @user.first_name + @user.last_name %></p>
+        <p><%= @user.introduction %></p>
+      </div>
+
     </div>
   </div>
   <div class="row my-4">
-    <div class="col-10 col-md-8 mx-auto">
+    <div class="col col-md-8 mx-auto">
       <div class="row">
         <div class="col-10 mx-auto col-md-4">
-          <p>ゴルフ歴：<%= "#{@user.experience_year}年#{@user.experience_month}ヶ月" %></p>
-          <p>都道府県：<%= @user.prefecture %></p>
-          <p>年齢層：<%= @user.teens %></p>
+          <p class="mb-0">ゴルフ歴：<%= "#{@user.experience_year}年#{@user.experience_month}ヶ月" %></p>
+          <p class="mb-0">都道府県：<%= @user.prefecture %></p>
+          <p class="mb-0">年齢層：<%= @user.teens %></p>
         </div>
         <% if @user.scores.present? %>
           <div class="col-10 mx-auto col-md-4">
-            <p>ランク：<%= @user.rank %></p>
-            <p>アベレージ：<%= @score %></p>
-            <p>パット：<%= @putt %></p>
+            <p class="mb-0">ランク：<%= @user.rank %></p>
+            <p class="mb-0">アベレージ：<%= @score %></p>
+            <p class="mb-0">パット：<%= @putt %></p>
           </div>
           <div class="col-10 mx-auto col-md-4">
             <!--スコアについて記載-->
-            <p>フェアウェイキープ率：<%= @fairway_keep_rate %>%</p>
-            <p>パーオン率：<%= @par_on_rate %>%</p>
-            <p>アンダーパーオン率：<%= @under_par_on_rate %>%</p>
+            <p class="mb-0">フェアウェイキープ率：<%= @fairway_keep_rate %>%</p>
+            <p class="mb-0">パーオン率：<%= @par_on_rate %>%</p>
+            <p class="mb-0">アンダーパーオン率：<%= @under_par_on_rate %>%</p>
           </div>
         <!--ゴルフ歴-->
         <% else %>
