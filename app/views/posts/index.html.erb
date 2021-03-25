@@ -1,4 +1,5 @@
-<div class="container py-4 px-0">
+<div class="container py-4">
+  <p class="d-block d-md-none text-center h5"><%= link_to "投稿検索", all_path %></p>
   <div class="row">
     <div class="d-none col-lg-2 d-lg-block">
 
@@ -14,7 +15,6 @@
     </div>
     <div class="d-none col-lg-3 col-md-4 d-md-block">
       <div class="sidebar_fixed">
-        <p class="text-center h5"><%= link_to "Search Article", all_path %></p>
         <h5 class="text-center mb-4">おすすめ</h5>
         <% unless @near_score_user == nil %>
           <p class="text-center">スコアが近い</p>
@@ -28,6 +28,7 @@
           <p class="text-center">都道府県が同じ</p>
           <%= render "posts/recommended", user:@eq_area_user %>
         <% end %>
+        <p class="text-center h5"><%= link_to "投稿検索", all_path %></p>
       </div>
     </div>
   </div>

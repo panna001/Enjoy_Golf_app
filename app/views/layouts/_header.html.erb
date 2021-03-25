@@ -3,19 +3,10 @@
     <div class="container">
       <% if user_signed_in? %>
         <%= link_to "LOGO", posts_path, class: "navbar-brand" %>
-        <!--検索機能-->
-        <% if controller.controller_name == "posts" && action_name == "index" %>
-          <div classs="search-box d-none d-md-block">
-            <%= search_form_for @q do |f| %>
-              <%= f.search_field :body_cont, class: "text-secondary rounded px-1 border d-none d-md-inline-block", style: "font-size: 13px; opacity: 0.9; background-color: white;" %>
-              <%= f.submit class: "btn btn-sm btn-light rounded text-secondary ml-1 d-none d-md-inline-block", style: "padding: 0.5px 3px; opacity: 0.9; background-color: white" %>
-            <% end %>
-          </div>
-        <% end %>
 
         <ul class="navbar-nav d-flex align-items-center">
           <li class="nav-item"><%= link_to "New", new_post_path, class: "nav-link text-light" %></li>
-          <li class="nav-item"><%= link_to "Search", users_path, class: "nav-link text-light" %></li>
+          <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link text-light" %></li>
           <li class="nav-item">
             <% if unchecked_notifications.any? %>
               <%= link_to "Notice", notifications_path, class: "nav-link text-warning" %>
@@ -23,9 +14,6 @@
               <%= link_to "Notice", notifications_path, class: "nav-link text-light" %>
             <% end %>
           </li>
-            <!--chatリンク後々作成？-->
-            <!--｜-->
-            <!--｜-->
           <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, class: "nav-link text-light", method: :delete %></li>
           <li class="nav-item">
             <%= link_to user_path(current_user) do %>
