@@ -12,8 +12,14 @@
           <%= link_to edit_post_path(post) do %>
             <i class="fas fa-edit"></i>
           <% end %>
-          <%= link_to post_path(post), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-            <i class="fas fa-trash-alt"></i>
+          <% if action_name == "show" %>
+            <%= link_to post_path(post, key: "show"), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          <% else %>
+            <%= link_to post_path(post), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
           <% end %>
         <% else %>
       <!--aboutページでは非表示-->

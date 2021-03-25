@@ -65,3 +65,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
  }
+
+.profile_image {
+ object-fit: cover;
+}

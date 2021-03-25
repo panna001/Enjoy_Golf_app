@@ -1,35 +1,37 @@
-<div class="col col-md-8 col-lg-6 mx-auto border-bottom mt-2">
-  <div class="row">
-    <div class="col-9">
-      <span>
-        <%= link_to user_path(notification.visitor) do %>
-          <%= attachment_image_tag notification.visitor, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
-          <strong><%= notification.visitor.account_name %></strong>
-        <% end %>
-          <%= "さんが" %>
-
-        <% case notification.action %>
-        <% when "follow" %>
-          <%= "あなたをフォローしました。" %>
-        <% when "favorite" %>
-          <%= link_to "あなたの投稿", post_path(notification.post), class: "font-weight-bold" %>
-          <%= "にいいねしました" %>
-        <% when "comment" %>
-          <% if notification.post.user.id == notification.visited.id %>
-            <%= link_to "あなたの投稿", post_path(notification.post), class: "font-weight-bold" %>
-          <% else %>
-            <%= link_to post_path(notification.post), class: "font-weight-bold" do %>
-              <%= attachment_image_tag notification.post.user, :profile_image, fallback: "no-image.jpg", size: "30x30" %>
-              <strong><%= "#{notification.post.user.account_name}さんの投稿に" %></strong>
+<table class="table table-light col col-md-8 col-lg-6 mx-auto shadow">
+  <tbody>
+    <% notifications.each do |notification| %>
+      <tr>
+        <td>
+          <span>
+            <%= link_to user_path(notification.visitor) do %>
+              <%= attachment_image_tag notification.visitor, :profile_image, fallback: "no-image.jpg", size: "30x30", class: "rounded-circle" %>
+              <strong><%= notification.visitor.account_name %></strong>
             <% end %>
-          <% end %>
-          <%= "にコメントしました" %>
-          <p class="text-muted"><%= Comment.find(notification.comment_id).post_comment %></p>
-        <% end %>
-      </span>
-    </div>
-    <div class="col-3">
-      <p class="text-right text-muted"><%= time_ago_in_words(notification.created_at) %></p>
-    </div>
-  </div>
-</div>
+              <%= "さんが" %>
+            <% case notification.action %>
+            <% when "follow" %>
+              <%= "あなたをフォローしました。" %>
+            <% when "favorite" %>
+              <%= link_to "あなたの投稿", post_path(notification.post), class: "font-weight-bold" %>
+              <%= "にいいねしました" %>
+            <% when "comment" %>
+              <% if notification.post.user.id == notification.visited.id %>
+                <%= link_to "あなたの投稿", post_path(notification.post), class: "font-weight-bold" %>
+              <% else %>
+                <%= link_to post_path(notification.post), class: "font-weight-bold" do %>
+                  <%= attachment_image_tag notification.post.user, :profile_image, fallback: "no-image.jpg", size: "30x30" %>
+                  <strong><%= "#{notification.post.user.account_name}さんの投稿に" %></strong>
+                <% end %>
+              <% end %>
+              <%= "にコメントしました" %>
+              <p class="text-muted m-0"><%= Comment.find(notification.comment_id).post_comment %></p>
+            <% end %>
+          </span>
+          <p class="text-muted m-0 text-right"><%= time_ago_in_words(notification.created_at) %> ago</p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

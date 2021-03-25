@@ -12,7 +12,9 @@
           <span style="font-size: 14px;"><%= follow.first_name + follow.last_name %></span>
         </td>
         <td class="text-center follow-btn_<%= follow.id %>">
-          <%= render "relationships/btn", user:follow %>
+          <% unless follow == current_user %>
+            <%= render "relationships/btn", user:follow %>
+          <% end %>
         </td>
       </tr>
     <% end %>
