@@ -55,7 +55,11 @@ class PostsController < ApplicationController
   def destroy
     post = current_user.posts.find(params[:id])
     post.destroy
-    redirect_back(fallback_location: root_path)
+    if params[:key] == "show"
+      redirect_to user_path current_user
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def bookmarks
