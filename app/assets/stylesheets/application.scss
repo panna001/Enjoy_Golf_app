@@ -18,14 +18,13 @@
  @import 'font-awesome';
 
  header {
-  background-color: #003f8e;
+  background-color: #003a66;
  }
 
  body {
-  padding: 5px 0;
   color: #043c78;
   font-size: 14px;
-  margin-top: 59px;
+  padding-top: 59px;
   background-color: #f4f9ff;
  }
 
@@ -33,18 +32,36 @@
   font-size: 20px;
  }
 
-header {
- font-size: 18px;
-}
+ header {
+  font-size: 16px;
+ }
 
  a {
-  color: #7f7fff;
+  color: #0068b7;
  }
 
  a:hover {
-  color: #4d4d99;
+  color: #0091ff;
  }
 
  .pagination {
    justify-content: center;
+ }
+
+// サイドバー固定
+ .sidebar_fixed {
+  position: sticky;
+  top: 80px;
+}
+
+.card-img-top {
+ height: 300px;
+ object-fit: cover;
+}
+
+// 独自設定クラス
+ .check-body {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
  }

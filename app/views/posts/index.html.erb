@@ -3,13 +3,32 @@
     <div class="d-none col-lg-2 d-lg-block">
 
     </div>
-    <div class="col-lg-5 col-md-9 mx-auto mx-lg-0">
-      <% @posts.each do |post| %>
-        <%= render "posts/card", post:post %>
+    <div class="col-lg-5 col-md-8">
+      <% if @posts.empty? %>
+        <p class="text-center mt-5">フォローすると投稿がフォローした人の投稿が表示されます。</p>
+      <% else %>
+        <% @posts.each do |post| %>
+          <%= render "posts/card", post:post, comment: @comment %>
+        <% end %>
       <% end %>
     </div>
-    <div class="d-none col-lg-3 d-lg-block">
-
+    <div class="d-none col-lg-3 col-md-4 d-md-block">
+      <div class="sidebar_fixed">
+        <p class="text-center h5"><%= link_to "Search Article", all_path %></p>
+        <h5 class="text-center mb-4">おすすめ</h5>
+        <% unless @near_score_user == nil %>
+          <p class="text-center">スコアが近い</p>
+          <%= render "posts/recommended", user:@near_score_user %>
+        <% end %>
+        <% unless @near_start_user == nil %>
+          <p class="text-center">ゴルフ歴が近い</p>
+          <%= render "posts/recommended", user:@near_start_user %>
+        <% end %>
+        <% unless @eq_area_user == nil %>
+          <p class="text-center">都道府県が同じ</p>
+          <%= render "posts/recommended", user:@eq_area_user %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

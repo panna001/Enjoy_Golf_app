@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :user_rooms, dependent: :destroy
   has_many :rooms, through: :user_rooms
-  
+
   validates :account_name, :first_name, :last_name, :sex, :prefecture, :teens, presence: true
   validates :account_name, uniqueness: true
   validates :introduction, length: { maximum: 100}
@@ -125,5 +125,16 @@ class User < ApplicationRecord
     end
     return  rank
   end
+
+# 順位表示
+  # def rank_search
+  #   rank = 1
+  #   self.find_each do |user|
+  #     rank += 1
+  #     if self == current_user
+  #       returen rank
+  #     end
+  #   end
+  # end
 
 end

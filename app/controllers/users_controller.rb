@@ -3,10 +3,12 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result.includes(:rounds, :scores).order(id: :desc).page(params[:page]).per(3)
+    @users = @q.result.includes(:rounds, :scores).order(id: :desc).page(params[:page]).per(10)
   end
 
   def show
+    @comment = Comment.new
+    @users = User.all.order(average: :asc)
     @user = User.find(params[:id])
     unless @user.rounds.blank?
       @score = @user.get_average_score(:stroke_count)

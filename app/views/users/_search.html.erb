@@ -31,7 +31,7 @@
       </tr>
       <tr>
         <th><%= f.label :rank, "Rank" %></th>
-        <td><%= f.collection_check_boxes :rank_in, User.all.group(:rank).order(average: :asc), :rank, :rank %></td>
+        <td><%= f.collection_check_boxes :rank_in, User.all.where.not(rank: nil).group(:rank).order(average: :asc), :rank, :rank %></td>
       </tr>
     </tbody>
   </table>

@@ -1,19 +1,20 @@
-<% model.each do |follow| %>
-  <div class="row">
-    <div class="col text-right">
-      <%= link_to user_path(follow) do %>
-        <%= attachment_image_tag follow, :profile_image, fallback: "no-image.jpg", size: "50x50", class: "rounded-circle" %>
-      <% end %>
-    </div>
-    <div class="col-lg-2 col-4">
-      <p class="text-center">
-        <strong><%= link_to follow.account_name, user_path(follow) %></strong><br>
-        <span style="font-size: 14px;"><%= follow.first_name + follow.last_name %></span>
-      </p>
-    </div>
-    <div class="col d-flex align-items-center text-left">
-      <!--非同期＋部分テンプレート化修正検討-->
-      <%= render "users/follow_btn", user:follow %>
-    </div>
-  </div>
-<% end %>
+<table class="table table-sm table-light col-md-6 col-lg-5 mx-auto shadow">
+  <tbody>
+    <% model.each do |follow| %>
+      <tr>
+        <td class="text-center">
+          <%= link_to user_path(follow) do %>
+            <%= attachment_image_tag follow, :profile_image, fallback: "no-image.jpg", size: "50x50", class: "rounded-circle" %>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <strong><%= link_to follow.account_name, user_path(follow) %></strong><br>
+          <span style="font-size: 14px;"><%= follow.first_name + follow.last_name %></span>
+        </td>
+        <td class="text-center follow-btn_<%= follow.id %>">
+          <%= render "relationships/btn", user:follow %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
