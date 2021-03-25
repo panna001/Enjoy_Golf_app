@@ -1,19 +1,19 @@
 <% model.each do |follow| %>
   <div class="row">
-    <div class="col text-right">
+    <div class="col pl-0 text-right">
       <%= link_to user_path(follow) do %>
         <%= attachment_image_tag follow, :profile_image, fallback: "no-image.jpg", size: "50x50", class: "rounded-circle" %>
       <% end %>
     </div>
-    <div class="col-lg-2 col-4">
+    <div class="col-4 px-0 col-lg-2 ">
       <p class="text-center">
         <strong><%= link_to follow.account_name, user_path(follow) %></strong><br>
         <span style="font-size: 14px;"><%= follow.first_name + follow.last_name %></span>
       </p>
     </div>
-    <div class="col d-flex align-items-center text-left">
+    <div class="col pr-0 d-flex align-items-center text-left follow-btn_<%= follow.id %>">
       <!--非同期＋部分テンプレート化修正検討-->
-      <%= render "users/follow_btn", user:follow %>
+      <%= render "relationships/btn", user:follow %>
     </div>
   </div>
 <% end %>

@@ -7,7 +7,7 @@ class RelationshipsController < ApplicationController
     # 通知機能
     follow.create_notification_follow!(current_user)
     # 非同期にしたい
-    @user = User.find(params[:user_id])
+    @follower = User.find(params[:user_id])
     # binding.pry
   end
 
@@ -15,7 +15,7 @@ class RelationshipsController < ApplicationController
     follow = current_user.active_relationships.find_by(follower_id: params[:user_id])
     follow.destroy
     # 非同期にしたい
-    @user = User.find(params[:user_id])
+    @follower = User.find(params[:user_id])
   end
 
 end

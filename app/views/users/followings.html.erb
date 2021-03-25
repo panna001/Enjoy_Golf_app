@@ -5,6 +5,6 @@
   <% if @followings.blank? %>
     <p class="text-center">フォローしましょう</p>
   <% else %>
-    <%= render "users/follow", model:@followings, user: @user %>
+    <%= render "users/follow", model:@followings %>
   <% end %>
 </div>
