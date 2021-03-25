@@ -16,15 +16,15 @@
   }
 
   .BgCarouselItem:nth-child(1) {
-    background-image: url(mv/mv_4.jpg);
+    background-image: image-url(mv/mv_4.jpg);
   }
 
   .BgCarouselItem:nth-child(2) {
-    background-image: url(mv/mv_sanset.jpg);
+    background-image: image-url(mv/mv_sanset.jpg);
   }
 
   .BgCarouselItem:nth-child(3) {
-    background-image: url(mv/mv_lake.jpg);
+    background-image: image-url(mv/mv_lake.jpg);
   }
 
   .BgCarouselItem h1 {
