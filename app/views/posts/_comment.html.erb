@@ -1,0 +1,21 @@
+<% if post.comments.count > 0 %>
+  <span class="text-secondary" data-toggle="collapse" href="#collapseExample<%= post.id %>" data-target="#collapseExample<%= post.id %>" aria-expanded="false" aria-controls="collapseExample<%= post.id %>" style="cursor: pointer;"><%= post.comments.count %>件のコメントを見る</span>
+<% else %>
+  <p></p>
+<% end %>
+<div class="collapse" id="collapseExample<%= post.id %>">
+  <% post.comments.each do |comment| %>
+    <div>
+      <%= link_to comment.user.account_name, user_path(comment.user) %>
+      <% if current_user == comment.user %>
+        <%= link_to edit_post_comment_path(post_id: post, id: comment) do %>
+          <i class="fas fa-edit" style="font-size: 14px;"></i>
+        <% end %>
+        <%= link_to post_comment_path(post_id: post, id: comment), remote: true, method: :delete do %>
+          <i class="fas fa-trash-alt" style="font-size: 14px;"></i>
+        <% end %>
+      <% end %>
+      <span class="d-inline-block ml-2"><%= comment.post_comment %></span>
+    </div>
+  <% end %>
+</div>

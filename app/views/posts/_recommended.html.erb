@@ -1,0 +1,18 @@
+<table class="table table-sm table-light shadow">
+  <thead>
+    <tr>
+      <td style="width: 70px">Name</td>
+      <td>Ave</td>
+      <td>Carrer</td>
+      <td>Area</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to user.account_name, user_path(user) %></td>
+      <td><%= user.average %></td>
+      <td><%= "#{user.experience_year}年" %></td>
+      <td><%= user.prefecture %></td>
+    </tr>
+  </tbody>
+</table>

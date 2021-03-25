@@ -1,9 +1,9 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-lg-6 mx-auto">
-      <% if @bookmark_posts.exists? %>
+      <% unless @bookmark_posts.nil? %>
         <% @bookmark_posts.each do |post| %>
-          <%= render "posts/card", post:post %>
+          <%= render "posts/card", post:post, comment:@comment %>
         <% end %>
       <% else %>
         <p class="text-center">

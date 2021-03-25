@@ -17,3 +17,52 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+ header {
+  font-size: 16px;
+  background-color: #003a66;
+ }
+
+ body {
+  color: #043c78;
+  font-size: 14px;
+  padding-top: 56px;
+  background-color: #f4f9ff;
+ }
+
+ i {
+  font-size: 20px;
+ }
+
+ a {
+  color: #0068b7;
+ }
+
+ a:hover {
+  color: #0091ff;
+ }
+
+ .pagination {
+   justify-content: center;
+ }
+
+// サイドバー固定
+ .sidebar_fixed {
+  position: sticky;
+  top: 80px;
+}
+
+.card-img-top {
+ height: 300px;
+ object-fit: cover;
+}
+
+// 独自設定クラス
+ .check-body {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+ }
+
+.profile_image {
+ object-fit: cover;
+}

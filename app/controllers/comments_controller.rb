@@ -1,20 +1,20 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @comment = Comment.new
     @post = Post.find(params[:post_id])
   end
-  
+
   def create
-    comment = current_user.comments.new(comment_params)
-    comment.post_id = params[:post_id]
-    if comment.save
+    @comment = current_user.comments.new(comment_params)
+    @comment.post_id = params[:post_id]
+    @post = Post.find(params[:post_id])
+    if @comment.save
       # 通知機能
-      comment.post.create_notification_comment!(current_user, comment.id)
-      redirect_to post_path(comment.post)
+      @comment.post.create_notification_comment!(current_user, @comment.id)
     else
-      render :new
+      render :index
     end
   end
 
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-  
+
   def update
     comment = current_user.comments.find_by(post_id: params[:post_id])
     if comment.update(comment_params)
@@ -34,13 +34,13 @@ class CommentsController < ApplicationController
       render :new
     end
   end
-  
+
   def destroy
-    comment = current_user.comments.find_by(post_id: params[:post_id])
-    comment.destroy
-    redirect_back(fallback_location: root_path)
+    @comment = current_user.comments.find_by(post_id: params[:post_id])
+    @post = Post.find(params[:post_id])
+    @comment.destroy
   end
-  
+
   private
   def comment_params
     params.require(:comment).permit(:post_comment)

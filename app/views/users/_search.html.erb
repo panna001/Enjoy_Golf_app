@@ -1,30 +1,39 @@
 <%= search_form_for q do |f| %>
-  <div class="mb-2"><%= f.search_field :account_name_or_introduction_cont, placeholder: "アカウント名,説明文" %></div>
-  <div class="mb-2">
-    <%= f.label :prefecture, "都道府県" %>：
-    <%= f.select :prefecture_eq, User.prefectures.to_a, {include_blank: "指定なし"} %>
-  </div>
-  <div class="mb-2">
-    <%= f.label :sex, "性別" %>：
-    <%= f.radio_button :sex_eq, "", checked: true %>指定なし
-    <%= f.radio_button :sex_eq, 1 %>男
-    <%= f.radio_button :sex_eq, 2 %>女
-  </div>
-  <div class="mb-2">
-    <%= f.label :teens, "年齢層" %>：
-    <%= f.radio_button :teens_eq, "", checked: true %>指定なし
-    <%= f.radio_button :teens_eq, "10代" %>10代
-    <%= f.radio_button :teens_eq, "20代" %>20代
-    <%= f.radio_button :teens_eq, "30代" %>30代
-    <%= f.radio_button :teens_eq, "40代" %>40代
-    <%= f.radio_button :teens_eq, "50代" %>50代
-    <%= f.radio_button :teens_eq, "60代" %>60代
-    <%= f.radio_button :teens_eq, "70代" %>70代
-    <%= f.radio_button :teens_eq, "80代" %>80代
-  </div>
-  <div class="mb-2">
-    <%= f.label :rank, "ランク" %>：
-    <%= f.collection_check_boxes :rank_in, User.all.group(:rank).order(average: :desc), :rank, :rank %>
-  </div>
-  <%= f.submit %>
+
+  <div class="mb-2"><%= f.search_field :account_name_or_introduction_cont, placeholder: "アカウント名,説明文", class: "form-control shadow" %></div>
+  <table class="table table-sm table-light border shadow">
+    <tbody>
+      <tr>
+        <th style="width: 50px;"><%= f.label :prefecture, "Area" %></th>
+        <td><%= f.select :prefecture_eq, User.prefectures.to_a, {include_blank: "指定なし"} %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :sex, "Sex" %></th>
+        <td>
+          <%= f.radio_button :sex_eq, "", checked: true %>指定なし
+          <%= f.radio_button :sex_eq, 1 %>男
+          <%= f.radio_button :sex_eq, 2 %>女
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :teens, "Age" %></th>
+        <td>
+          <%= f.radio_button :teens_eq, "", checked: true %>指定なし
+          <%= f.radio_button :teens_eq, "10代" %>10代
+          <%= f.radio_button :teens_eq, "20代" %>20代
+          <%= f.radio_button :teens_eq, "30代" %>30代
+          <%= f.radio_button :teens_eq, "40代" %>40代
+          <%= f.radio_button :teens_eq, "50代" %>50代
+          <%= f.radio_button :teens_eq, "60代" %>60代
+          <%= f.radio_button :teens_eq, "70代" %>70代
+          <%= f.radio_button :teens_eq, "80代" %>80代
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :rank, "Rank" %></th>
+        <td><%= f.collection_check_boxes :rank_in, User.all.where.not(rank: nil).group(:rank).order(average: :asc), :rank, :rank %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= f.submit class: "btn btn-sm btn-dark shadow" %>
 <% end %>
