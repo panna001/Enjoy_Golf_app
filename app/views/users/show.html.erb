@@ -11,7 +11,7 @@
             <%= link_to "編集", edit_user_path(@user), class: "btn btn-sm btn-outline-secondary d-inline-block shadow ml-2" %>
           <% else %>
             <%= link_to "チャット", chat_path(@user.id), class: "btn btn-sm btn-outline-secondary d-inline-block shadow ml-2" %>
-            <span class="ml-2"><%= render "relationships/btn", user:@user %></span>
+            <span class="ml-2 follow-btn_<%= @user.id %>"><%= render "relationships/btn", user:@user %></span>
           <% end %>
           <% if @user == current_user %>
             <%= link_to "スコア登録", new_user_round_path(@user), class: "btn btn-sm btn-outline-warning shadow ml-2"  %>
