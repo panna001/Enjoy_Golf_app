@@ -1,10 +1,12 @@
-<div class="col p-3">
-  <div class="card">
+<div class="col px-0 px-sm-5 p-md-3">
+  <div class="card border-0">
     <%= link_to post_path(post) do %>
-    <%= attachment_image_tag post, :post_image, size: "100%", class: "card-img-top" %>
-  <% end %>
-    <div class="card-body p-3">
-      <ul class="p-0">
+    <div class="img-wrapper">
+      <%= attachment_image_tag post, :post_image, class: "card-img-top" %>
+    </div>
+    <% end %>
+    <div class="card-body py-2">
+      <ul class="p-0 mb-0">
         <li class="list-inline-item"><i class="fas fa-comment-dots"></i><span class="ml-1"><%= post.comments.count %></span></li>
         <!--aboutページでは非表示-->
         <% unless controller.controller_name == "homes" %>
@@ -20,22 +22,20 @@
       </ul>
       <div class="card-text">
         <!--jqueryで投稿内容を開く-->
-        <% if post.body.length >= 24 || /\R/.match?(post.body) %>
-          <p class="check-body mb-0"><%= post.body %></p>
-          <span class="read-more d-inline-block text-secondary" style="cursor: pointer;">続きを読む</span>
+          <span><%= truncate(post.body, length: 14, omission: "...")  %></span>
+          <% if post.body.length >= 14 %>
+            <span class="read-more text-muted", style="cursor: pointer; font-size: 14px;">続きを読む</span>
+          <% end %>
           <p class="d-none mb-0"><%= safe_join(post.body.split("\n"), tag(:br)) %></p>
-        <% else %>
-          <p class="mb-0"><%= post.body %></p>
-          <p><br></p>
-        <% end %>
         <!--コメント非同期-->
         <div id="comment-area_<%= post.id %>">
           <%= render "posts/comment", post:post %>
         </div>
         <span class="text-secondary d-block text-right", style="font-size: 14px"><%= "#{time_ago_in_words(post.created_at)} ago" %></span>
 
+
         <!--コメントフォーム（toggle）-->
-        <span class="comment-new d-inline-block text-secondary" style="cursor: pointer;">Comment</span>
+        <span class="comment-new text-secondary" style="cursor: pointer;">Comment</span>
         <div class="d-none">
           <%= form_with(model:[post, comment], local: false) do |f| %>
             <div><%= f.text_area :post_comment, placeholder: "comment", class: "form-control mt-2" %></div>

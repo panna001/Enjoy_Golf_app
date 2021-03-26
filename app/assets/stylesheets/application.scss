@@ -24,6 +24,7 @@
 
  body {
   color: #043c78;
+  font-size: 15px;
   padding-top: 56px;
   background-color: #f4f9ff;
  }
@@ -48,12 +49,27 @@
  .sidebar_fixed {
   position: sticky;
   top: 80px;
-}
+ }
 
-.card-img-top {
- height: 300px;
- object-fit: cover;
-}
+ // 画像トリミング
+ .img-wrapper {
+   position: relative;
+ }
+
+ .img-wrapper:before {
+  content: '';
+  display: block;
+  padding-top: 75%; /* アスペクト比(横に対する縦の長さ) */
+ }
+
+ .card-img-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
 
 // 独自設定クラス
  .check-body {
@@ -62,6 +78,6 @@
   text-overflow: ellipsis;
  }
 
-.profile_image {
- object-fit: cover;
-}
+ .profile_image {
+  object-fit: cover;
+ }

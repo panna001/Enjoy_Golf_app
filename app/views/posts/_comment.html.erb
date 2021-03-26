@@ -1,7 +1,7 @@
 <% if post.comments.count > 0 %>
   <span class="text-secondary" data-toggle="collapse" href="#collapseExample<%= post.id %>" data-target="#collapseExample<%= post.id %>" aria-expanded="false" aria-controls="collapseExample<%= post.id %>" style="cursor: pointer;"><%= post.comments.count %>件のコメントを見る</span>
 <% else %>
-  <p></p>
+  <span><br></span>
 <% end %>
 <div class="collapse" id="collapseExample<%= post.id %>">
   <% post.comments.each do |comment| %>
