@@ -20,14 +20,13 @@
       </ul>
       <div class="card-text">
         <!--jqueryで投稿内容を開く-->
-        <% if post.body.length >= 30 || /\R/.match?(post.body) %>
+        <% if post.body.length >= 24 || /\R/.match?(post.body) %>
           <p class="check-body mb-0"><%= post.body %></p>
           <span class="read-more d-inline-block text-secondary" style="cursor: pointer;">続きを読む</span>
           <p class="d-none mb-0"><%= safe_join(post.body.split("\n"), tag(:br)) %></p>
-
         <% else %>
           <p class="mb-0"><%= post.body %></p>
-          <p></p>
+          <p><br></p>
         <% end %>
         <!--コメント非同期-->
         <div id="comment-area_<%= post.id %>">
