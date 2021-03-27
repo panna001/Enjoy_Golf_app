@@ -3,11 +3,11 @@ class Relationship < ApplicationRecord
   belongs_to :follower, class_name: "User"
 
   # 通知機能
-  def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
+  def create_notification_follow!(current_user, target_user_id)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", follower_id, target_user_id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
-        visited_id: id,
+        visited_id: follower_id,
         action: 'follow'
       )
     end

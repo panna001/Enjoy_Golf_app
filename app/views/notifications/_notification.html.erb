@@ -28,7 +28,7 @@
               <p class="text-muted m-0"><%= Comment.find(notification.comment_id).post_comment %></p>
             <% end %>
           </span>
-          <p class="text-muted m-0 text-right"><%= time_ago_in_words(notification.created_at) %> ago</p>
+          <p class="text-muted m-0 text-right"><%= time_ago_in_words(notification.created_at) %>前</p>
         </td>
       </tr>
     <% end %>

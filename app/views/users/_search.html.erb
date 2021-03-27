@@ -1,7 +1,7 @@
 <%= search_form_for q do |f| %>
 
   <div class="mb-2"><%= f.search_field :account_name_or_introduction_cont, placeholder: "アカウント名,説明文", class: "form-control shadow" %></div>
-  <table class="table table-sm table-light border shadow">
+  <table class="table table-sm table-light shadow">
     <tbody>
       <tr>
         <th style="width: 50px;"><%= f.label :prefecture, "Area" %></th>
@@ -35,5 +35,5 @@
       </tr>
     </tbody>
   </table>
-  <%= f.submit class: "btn btn-sm btn-dark shadow" %>
+  <%= f.submit class: "btn btn-secondary shadow" %>
 <% end %>

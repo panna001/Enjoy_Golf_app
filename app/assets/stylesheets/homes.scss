@@ -4,7 +4,7 @@
 
   .BgCarousel {
     width: 100vw;
-    height: calc(100vh - 56px);
+    height: calc(100vh - 62px);
   }
 
   .BgCarouselItem {
@@ -16,19 +16,19 @@
   }
 
   .BgCarouselItem:nth-child(1) {
-    background-image: image-url("mv/mv_4.jpg");
+    background-image: url("mv/mv_4.jpg");
   }
 
   .BgCarouselItem:nth-child(2) {
-    background-image: image-url("mv/mv_sanset.jpg");
+    background-image: url("mv/mv_sanset.jpg");
   }
 
   .BgCarouselItem:nth-child(3) {
-    background-image: image-url("mv/mv_lake.jpg");
+    background-image: url("mv/mv_lake.jpg");
   }
 
   .BgCarouselItem h1 {
-    font-size: 80px;
+    font-size: 75px;
     color: #FFFFFF;
     opacity: 0.8;
   }
