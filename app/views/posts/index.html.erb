@@ -1,5 +1,4 @@
 <div class="container py-4">
-  <p class="d-block d-md-none text-center h5"><%= link_to "投稿検索", all_path %></p>
   <div class="row">
     <div class="d-none col-lg-2 d-lg-block">
 
@@ -28,7 +27,6 @@
           <p class="text-center">都道府県が同じ</p>
           <%= render "posts/recommended", user:@eq_area_user %>
         <% end %>
-        <p class="text-center h5"><%= link_to "投稿検索", all_path %></p>
       </div>
     </div>
   </div>
