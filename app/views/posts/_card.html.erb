@@ -52,27 +52,26 @@
     </ul>
     <div class="card-text">
       <!--jqueryで投稿内容を開く-->
-        <span><%= truncate(post.body, length: 14, omission: "...")  %></span>
-        <% if post.body.length >= 14 %>
-          <span class="read-more text-muted", style="cursor: pointer; font-size: 14px;">続きを読む</span>
+        <span><%= truncate(post.body, length: 18, omission: "...")  %></span>
+        <% if post.body.length >= 18 %>
+          <span class="read-more text-muted", style="cursor: pointer; font-size: 14px;">続き</span>
         <% end %>
         <p class="d-none mb-0"><%= safe_join(post.body.split("\n"), tag(:br)) %></p>
       <!--コメント非同期-->
       <div id="comment-area_<%= post.id %>">
         <%= render "posts/comment", post:post %>
       </div>
-      <span class="text-secondary d-block text-right", style="font-size: 14px"><%= "#{time_ago_in_words(post.created_at)} ago" %></span>
+      <span class="text-secondary d-block text-right", style="font-size: 12px"><%= "#{time_ago_in_words(post.created_at)}前" %></span>
 
       <!--コメントフォーム（toggle）-->
-      <% unless controller.controller_name == "homes" %>
-        <span class="comment-new d-inline-block text-secondary" style="cursor: pointer;">Comment</span>
-        <div class="d-none">
-          <%= form_with(model:[post, comment], local: false) do |f| %>
-            <div><%= f.text_area :post_comment, placeholder: "comment", class: "form-control mt-2" %></div>
-            <div class="text-right mt-2"><%= f.submit "送信", class: "btn btn-sm btn-outline-secondary" %></div>
-          <% end %>
-        </div>
-      <% end %>
     </div>
   </div>
+  <% unless controller.controller_name == "homes" %>
+    <div class="card-footer p-0 bg-white">
+      <%= form_with(model:[post, comment], local: false) do |f| %>
+        <%= f.text_area :post_comment, placeholder: "comment", rows: "1", class: "p-2 d-inline-block form-control", style: "width: calc(100% - 61px);" %>
+        <%= f.submit "送信", class: "btn position-absolute bottom-0 text-muted" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

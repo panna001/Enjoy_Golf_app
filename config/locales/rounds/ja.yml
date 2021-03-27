@@ -1,0 +1,10 @@
+ja:
+  activerecode:
+    models:
+      round: ラウンド
+    attributes:
+      place: 場所
+      wather: 天気
+      wind: 風
+
+

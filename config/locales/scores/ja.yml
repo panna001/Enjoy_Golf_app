@@ -1,0 +1,13 @@
+ja:
+  activerecode:
+    models:
+      score: スコア
+    attributes:
+      hole_number: ホール番号
+      par_count: パー回数
+      stroke_count: 打数
+      putt_count: パット回数
+      fairway_keep: フェアウェイ回数
+      ob_count: OB回数
+      penalty_count: ペナルティ回数
+      

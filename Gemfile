@@ -62,6 +62,7 @@ gem 'carrierwave'
 gem 'chartkick'
 gem 'kaminari'
 gem 'font-awesome-sass'
+gem 'rails-i18n'
 
 gem 'dotenv-rails'
 group :production do

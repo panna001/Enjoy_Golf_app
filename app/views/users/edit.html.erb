@@ -1,6 +1,6 @@
 <div class="container my-4">
     <div class="col col-md-6 mx-auto">
-
+      <%= render "layouts/error_messages", model:@user %>
       <%= form_with model: @user, local:true do |f| %>
 
         <div class="field mb-3">
