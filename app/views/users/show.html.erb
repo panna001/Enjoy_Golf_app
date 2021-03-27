@@ -16,7 +16,7 @@
           <% if @user == current_user %>
             <%= link_to "スコア登録", new_user_round_path(@user), class: "btn btn-sm btn-outline-warning shadow ml-2"  %>
           <% end %>
-          <% if @user.scores.present? %>
+          <% if @user.rounds.present? %>
             <%= link_to "スコア一覧", user_rounds_path(@user), class: "btn btn-sm btn-outline-success shadow ml-2" %>
           <% end %>
         </div>
@@ -43,7 +43,6 @@
           <span><%= @user.introduction %></span>
         </div>
       </div>
-
     </div>
   </div>
   <div class="row mt-3">
@@ -56,7 +55,7 @@
             Age：<%= @user.teens %>
           </p>
         </div>
-        <% if @user.scores.present? %>
+        <% if @user.rounds.present? %>
           <div class="col-md-4 d-md-flex justify-content-center">
             <p>
               Rank：<%= @user.rank %><br>
@@ -68,7 +67,6 @@
             <p>
               Fairway：<%= @fairway_keep_rate %>%<br>
               Par_on：<%= @par_on_rate %>%<br>
-              Under_Par_on：<%= @under_par_on_rate %>%
             </p>
           </div>
         <% else %>
@@ -79,7 +77,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pt-4 border-top">
     <% @user.posts.each do |post| %>

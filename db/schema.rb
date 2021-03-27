@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_chats_on_room_id"
-    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -88,23 +86,15 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
     t.string "place"
     t.string "weather"
     t.string "wind"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_rounds_on_user_id"
-  end
-
-  create_table "scores", force: :cascade do |t|
-    t.integer "round_id"
-    t.integer "hole_number"
-    t.integer "par_count"
     t.integer "stroke_count"
     t.integer "putt_count"
+    t.integer "par_on"
     t.integer "fairway_keep"
     t.integer "ob_count"
     t.integer "penalty_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["round_id"], name: "index_scores_on_round_id"
+    t.index ["user_id"], name: "index_rounds_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|
@@ -112,8 +102,6 @@ ActiveRecord::Schema.define(version: 2021_03_08_120352) do
     t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_user_rooms_on_room_id"
-    t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

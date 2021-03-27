@@ -54,7 +54,6 @@
       <!--jqueryで投稿内容を開く-->
         <span><%= truncate(post.body, length: 18, omission: "...")  %></span>
         <% if post.body.length >= 18 %>
-<<<<<<< HEAD
           <span class="read-more text-muted", style="cursor: pointer;">続き</span>
         <% end %>
         <p class="d-none mb-0"><%= safe_join(post.body.split("\n"), tag(:br)) %></p>

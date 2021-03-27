@@ -8,14 +8,13 @@ class UsersController < ApplicationController
 
   def show
     @comment = Comment.new
-    @users = User.all.order(average: :asc)
+    # @users = User.all.order(average: :asc)
     @user = User.find(params[:id])
     unless @user.rounds.blank?
-      @score = @user.get_average_score(:stroke_count)
-      @putt = @user.get_average_score(:putt_count)
-      @fairway_keep_rate = @user.get_fairway_keep_rate.round(1)
-      @par_on_rate = @user.get_on_rate(2).round(1)
-      @under_par_on_rate = @user.get_on_rate(3).round(1)
+      @score = @user.average.round(1)
+      @putt = @user.get_average_score(:putt_count).round(1)
+      @fairway_keep_rate = (@user.get_average_score(:fairway_keep) * 100 / 18).round(1)
+      @par_on_rate = (@user.get_average_score(:par_on) * 100 / 18).round(1)
     end
   end
 
