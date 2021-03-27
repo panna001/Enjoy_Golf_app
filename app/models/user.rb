@@ -74,17 +74,6 @@ class User < ApplicationRecord
     passive_relationships.where(following_id: user.id).present?
   end
 
-# 通知機能
-  def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
-    if temp.blank?
-      notification = current_user.active_notifications.new(
-        visited_id: id,
-        action: 'follow'
-      )
-    end
-    notification.save if notification.valid?
-  end
 
   # スコア関連情報取得
   def get_average_score(column)

@@ -25,9 +25,12 @@
       </td>
       <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
       <!--aboutページでは非表示-->
-      <% unless controller.controller_name == "homes" %>
-        <td class="d-none d-md-table-cell"><%= render "users/follow_btn", user:user %></td>
-      <% end %>
+      <td class="d-none d-md-table-cell follow-btn_<%= user.id %>">
+        <% if controller.controller_name == "homes" || user == current_user %>
+        <% else %>
+          <%= render "relationships/btn", user:user %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </tbody>

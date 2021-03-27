@@ -23,13 +23,23 @@
 
 $(document).on('turbolinks:load', function(){
   $('.read-more').on('click', function(){
-    $(this).removeClass("d-inline-block");
+    $(this).prev('span').addClass("d-none");
     $(this).addClass("d-none");
-    $(this).prev('p').addClass("d-none");
     $(this).next('p').removeClass("d-none");
   });
 
   $('.comment-new').on('click', function(){
     $(this).next('div').toggleClass("d-none");
   });
+
 });
+
+$(document).on('change keyup keydown paste cut', 'textarea', function(){
+  if ($(this).outerHeight() > this.scrollHeight){
+    $(this).height(1);
+  };
+  while ($(this).outerHeight() < this.scrollHeight){
+    $(this).height($(this).height() + 1)
+  };
+});
+

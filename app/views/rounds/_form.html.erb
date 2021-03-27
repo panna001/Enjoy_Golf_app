@@ -1,5 +1,6 @@
 <%= form_with(model:[user, round], local: true) do |f| %>
   <div class="container pt-4">
+    <%= render "layouts/error_messages", model:round %>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-4">
@@ -24,11 +25,11 @@
       </div>
       <div class="col-md-2"></div>
     </div>
-    
+
     <div class="row d-flex justify-content-center pt-2">
       <%= f.submit class: "btn btn-secondary " %>
     </div>
-    
+
     <div class="row">
       <div class="col-10 mx-auto pt-5">
         <table class="table table-sm table-bordered text-center">
@@ -62,7 +63,7 @@
           </tbody>
         </table>
       </div>
-      
+
       <div class="col-10 mx-auto pt-5">
         <table class="table table-sm table-bordered text-center">
           <thead>
