@@ -54,7 +54,7 @@
       <!--jqueryで投稿内容を開く-->
         <span><%= truncate(post.body, length: 18, omission: "...")  %></span>
         <% if post.body.length >= 18 %>
-          <span class="read-more text-muted", style="cursor: pointer; font-size: 14px;">続き</span>
+          <span class="read-more text-muted", style="cursor: pointer;">続き</span>
         <% end %>
         <p class="d-none mb-0"><%= safe_join(post.body.split("\n"), tag(:br)) %></p>
       <!--コメント非同期-->
