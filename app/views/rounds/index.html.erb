@@ -1,59 +1,67 @@
 <div class="container my-4">
-  <div class="row mb-4">
-    <div class="col"></div>
-    <div class="col-3 text-center">
-      <h2 class="font-weight-bold">Average</h2>
-      <span class="h4 font-weight-bold"><%= @score %></span>
-    </div>
-    <div class="col-3 text-center">
+  <div class="row mb-3">
+    <div class="col-12 col-md-4 text-center order-md-1">
       <h2 class="font-weight-bold">Rank</h2>
       <span class="h2 font-weight-bold"><%= @user.rank %></span>
     </div>
-    <div class="col-3 text-center font-weight-bold">
+    <div class="col-12 col-md-4 text-center order-md-0">
+      <h2 class="font-weight-bold">Average</h2>
+      <span class="h4 font-weight-bold"><%= @score %></span>
+    </div>
+    <div class="col-12 col-md-4 text-center order-md-2">
       <h2 class="font-weight-bold">Putt</h2>
       <span class="h4 font-weight-bold"><%= @putt %></span>
     </div>
-    <div class="col"></div>
   </div>
-  <div class="row my-5">
+  <div class="row my-4">
     <div class="col">
-      <%= line_chart @round_data, curve: false, messages: {empty: "No data"}, label: "Value" %>
+      <%= line_chart [{name: "スコア", data: @stroke_data}, {name: "パット", data: @putt_data}] , curve: false, messages: {empty: "No data"}, label: "Value" %>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-9">
       <% if @rounds.present? %>
-      <table class="table table-bordered">
+      <table class="table table-sm table-bordered bg-light shadow text-center">
         <tbody>
+          <tr>
+            <th>year</th>
+            <% @rounds.each do |round| %>
+              <td>
+                <%= round.play_date.strftime("%Y") %>
+              </td>
+            <% end %>
+          </tr>
           <tr>
             <th>day</th>
             <% @rounds.each do |round| %>
-              <td><%= link_to round.play_date.strftime("%Y/%m/%d"), user_round_path(@user, round) %></td>
+              <td>
+                <%= link_to round.play_date.strftime("%m/%d"), user_round_path(@user, round) %>
+              </td>
             <% end %>
           </tr>
           <tr>
             <th>score</th>
             <% @rounds.each do |round| %>
-              <td><%= round.scores.sum(:stroke_count) %></td>
+              <td><%= round.stroke_count %></td>
             <% end %>
           </tr>
           <tr>
             <th>putt</th>
             <% @rounds.each do |round| %>
-              <td><%= round.scores.sum(:putt_count) %></td>
+              <td><%= round.putt_count %></td>
             <% end %>
           </tr>
         </tbody>
       </table>
+      <%= paginate @rounds %>
       <% else %>
         <p class="text-center">ラウンド情報はありません</p>
       <% end %>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 text-center text-md-left">
       <p>フェアウェイキープ率：<%= @fairway_keep_rate %>%</p>
       <p>パーオン率：<%= @par_on_rate %>%</p>
-      <p>アンダーパーオン率：<%= @under_par_on_rate %>%</p>
-      <%= link_to "スコア入力", new_user_round_path(@user), class: "btn btn-sm btn-outline-secondary shadow"  %>
+      <%= link_to "スコア入力", new_user_round_path(@user), class: "btn btn-light shadow"  %>
     </div>
   </div>
 </div>

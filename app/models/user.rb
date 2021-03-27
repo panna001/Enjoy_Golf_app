@@ -74,18 +74,9 @@ class User < ApplicationRecord
     passive_relationships.where(following_id: user.id).present?
   end
 
-
   # スコア関連情報取得
   def get_average_score(column)
-    self.scores.order(id: :DESC).limit(5).group(:round_id).sum(column).values.inject(:+) / self.rounds.limit(5).count.to_f.round(1)
-  end
-
-  def get_on_rate(i)
-    self.scores.order(id: :DESC).limit(90).map{|s|s.par_count - (s.stroke_count - s.putt_count)}.count(i) / self.scores.limit(90).count.to_f * 100
-  end
-
-  def get_fairway_keep_rate
-    self.scores.order(id: :DESC).limit(90).pluck(:fairway_keep).count("○") / self.scores.limit(90).count.to_f * 100
+    self.rounds.order(id: :desc).average(column)
   end
 
   # ランク判定
