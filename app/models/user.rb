@@ -74,7 +74,6 @@ class User < ApplicationRecord
     passive_relationships.where(following_id: user.id).present?
   end
 
-
   # スコア関連情報取得
   def get_average_score(column)
     self.rounds.order(id: :desc).average(column)

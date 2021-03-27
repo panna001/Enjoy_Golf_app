@@ -1,6 +1,7 @@
 <%= form_with(model:[user, round], local: true) do |f| %>
   <div class="container py-4">
     <div class="col col-sm-9 col-md-8 mx-auto">
+      <%= render "layouts/error_messages", model:round %>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
