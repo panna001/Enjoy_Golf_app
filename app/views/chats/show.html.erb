@@ -5,7 +5,7 @@
       <% @chats.each do |chat| %>
         <% if chat.user_id == current_user.id %>
           <div class="col-9 ml-auto mb-2">
-            <div class="d-flex justify-content-end">
+            <div class="messages d-flex justify-content-end" data-id=<%= chat.id %>>
               <div class="text-muted text-right d-flex align-items-end", style="font-size: 10px;"><%= chat.created_at.strftime("%m/%d %H:%M") %></div>
               <span class="text-break p-2 mx-2 d-inline-block border", style="background-color: #7f7fff; color: white; border-radius: 15px;"><%= chat.message %></span>
             </div>
