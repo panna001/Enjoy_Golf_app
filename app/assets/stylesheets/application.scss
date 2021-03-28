@@ -18,15 +18,11 @@
  @import 'font-awesome';
 
  header {
-<<<<<<< HEAD
   height: 62px;
   font-size: 20px;
  }
 
 .navbar {
-=======
-  font-size: 16px;
->>>>>>> 71b9e8080d616ae31356c2211ce560c4aedb3720
   background-color: #003a66;
 }
 // ハンバーガーメニュー設定
@@ -98,12 +94,12 @@
   object-fit: cover;
  }
 
-.form-control {
+.card_footer .form-control {
  border-color: white;
  resize: none;
 }
 
-.form-control:focus {
+.card_footer .form-control:focus {
  border-color: white;
  box-shadow: none;
 }
