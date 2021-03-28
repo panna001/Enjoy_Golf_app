@@ -13,14 +13,14 @@
         <% unless user.rounds.blank? %>
           <%= user.rank %>
         <% else %>
-          <span>未登録</span>
+          <span>--</span>
         <% end %>
       </td>
       <td>
         <% unless user.rounds.blank? %>
           <%= user.get_average_score(:stroke_count) %>
         <% else %>
-          <span>未登録</span>
+          <span>--</span>
         <% end %>
       </td>
       <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>

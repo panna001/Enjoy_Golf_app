@@ -83,7 +83,7 @@ class User < ApplicationRecord
   def rank_check
     score = self.get_average_score(:stroke_count)
     if score < 72
-      rank = "S"
+      rank = "AA"
     elsif score < 81
       rank = "A+"
     elsif score < 90
@@ -107,14 +107,14 @@ class User < ApplicationRecord
   end
 
 # 順位表示
-  # def rank_search
-  #   rank = 1
-  #   self.find_each do |user|
-  #     rank += 1
-  #     if self == current_user
-  #       returen rank
-  #     end
-  #   end
-  # end
+  def self.get_ranking(user_id)
+    record = self.all
+    for i in 1..self.count do
+      if record[i-1].id == user_id
+        return i
+      end
+    end
+    return nil
+  end
 
 end

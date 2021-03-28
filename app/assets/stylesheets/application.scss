@@ -17,6 +17,10 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+ * {
+  font-family: 'Kiwi Maru', serif;
+ }
+
  header {
 <<<<<<< HEAD
   height: 62px;
@@ -98,12 +102,12 @@
   object-fit: cover;
  }
 
-.form-control {
+.card-footer .form-control {
  border-color: white;
  resize: none;
 }
 
-.form-control:focus {
+.card-footer .form-control:focus {
  border-color: white;
  box-shadow: none;
 }
