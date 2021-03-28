@@ -32,6 +32,10 @@ $(document).on('turbolinks:load', function(){
     $(this).next('div').toggleClass("d-none");
   });
 
+  $('.detail-btn').on('click', function(){
+    $(this).next().slideToggle();
+  });
+
 });
 
 $(document).on('change keyup keydown paste cut', 'textarea', function(){

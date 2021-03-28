@@ -45,25 +45,33 @@
       </div>
     </div>
   </div>
-  <div class="row mt-3">
-    <div class="col col-sm-10 col-lg-9 mx-auto">
-      <div class="row text-center text-md-left">
-        <div class="col-md-4 d-md-flex justify-content-center">
+  <p class="detail-btn d-sm-none text-center text-muted">詳細</p>
+  <div class="row mt-3 d-sm-block", style="display: none;">
+    <div class="col col-lg-9 mx-auto">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4  text-center text-md-left">
+        <div class="col d-md-flex justify-content-center">
+          <p>
+            ランキング<br>
+            <%= "#{@ranking}位 / #{@users.count}人中" %><br>
+            <%= "(上位#{(@ranking * 100 / @users.count).round(1)}%)" %>
+          </p>
+        </div>
+        <div class="col d-md-flex justify-content-center">
           <p>
             Carrer：<%= "#{@user.experience_year}年#{@user.experience_month}ヶ月" %><br>
-            Prefecture：<%= @user.prefecture %><br>
+            Pref：<%= @user.prefecture %><br>
             Age：<%= @user.teens %>
           </p>
         </div>
         <% if @user.rounds.present? %>
-          <div class="col-md-4 d-md-flex justify-content-center">
+          <div class="col d-md-flex justify-content-center">
             <p>
               Rank：<%= @user.rank %><br>
               Ave：<%= @score %><br>
               Putt：<%= @putt %>
             </p>
           </div>
-          <div class="col-md-4 d-md-flex justify-content-center">
+          <div class="col d-md-flex justify-content-center">
             <p>
               Fairway：<%= @fairway_keep_rate %>%<br>
               Par_on：<%= @par_on_rate %>%<br>
