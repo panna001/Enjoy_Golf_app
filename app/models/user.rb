@@ -83,7 +83,7 @@ class User < ApplicationRecord
   def rank_check
     score = self.get_average_score(:stroke_count)
     if score < 72
-      rank = "S"
+      rank = "AA"
     elsif score < 81
       rank = "A+"
     elsif score < 90

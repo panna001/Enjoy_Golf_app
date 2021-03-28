@@ -1,17 +1,17 @@
 <div class="container mt-4">
   <div class="row">
     <div class="col-lg-6 mx-auto">
-      <% unless @bookmark_posts.nil? %>
-        <% @bookmark_posts.each do |post| %>
-          <%= render "posts/card", post:post, comment:@comment %>
-        <% end %>
-      <% else %>
+      <% if @bookmark_posts.empty? %>
         <p class="text-center">
           <i class="fas fa-tag "></i><br>
           後でもう一度見たい写真や動画を保存できます。<br>
           保存したことが他の人に通知されることはなく、<br>
           そのコンテンツも他の人には表示されません。<br>
         </p>
+      <% else %>
+        <% @bookmark_posts.each do |post| %>
+          <%= render "posts/card", post:post, comment:@comment %>
+        <% end %>
       <% end %>
     </div>
   </div>

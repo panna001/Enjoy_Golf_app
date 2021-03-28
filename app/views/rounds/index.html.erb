@@ -24,7 +24,7 @@
       <table class="table table-sm table-bordered bg-light shadow text-center">
         <tbody>
           <tr>
-            <th>year</th>
+            <th class="bg-secondary text-light">year</th>
             <% @rounds.each do |round| %>
               <td>
                 <%= round.play_date.strftime("%Y") %>
@@ -32,7 +32,7 @@
             <% end %>
           </tr>
           <tr>
-            <th>day</th>
+            <th class="bg-secondary text-light">day</th>
             <% @rounds.each do |round| %>
               <td>
                 <%= link_to round.play_date.strftime("%m/%d"), user_round_path(@user, round) %>
@@ -40,13 +40,21 @@
             <% end %>
           </tr>
           <tr>
-            <th>score</th>
+            <th class="bg-secondary text-light">place</th>
+            <% @rounds.each do |round| %>
+              <td>
+                <%= round.place %>
+              </td>
+            <% end %>
+          </tr>
+          <tr>
+            <th class="bg-secondary text-light">score</th>
             <% @rounds.each do |round| %>
               <td><%= round.stroke_count %></td>
             <% end %>
           </tr>
           <tr>
-            <th>putt</th>
+            <th class="bg-secondary text-light">putt</th>
             <% @rounds.each do |round| %>
               <td><%= round.putt_count %></td>
             <% end %>
