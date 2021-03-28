@@ -3,13 +3,14 @@ class UsersController < ApplicationController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result.includes(:rounds, :scores).order(id: :desc).page(params[:page]).per(10)
+    @users = @q.result.includes(:rounds).order(id: :desc).page(params[:page]).per(10)
   end
 
   def show
     @comment = Comment.new
-    # @users = User.all.order(average: :asc)
+    @users = User.where.not(average: nil).order(average: :asc)# 順位表示用
     @user = User.find(params[:id])
+    @ranking = @users.get_ranking(@user.id)# 順位表示用
     unless @user.rounds.blank?
       @score = @user.average.round(1)
       @putt = @user.get_average_score(:putt_count).round(1)
