@@ -18,7 +18,7 @@
       </td>
       <td>
         <% unless user.rounds.blank? %>
-          <%= user.get_average_score(:stroke_count) %>
+          <%= user.average.round(1) %>
         <% else %>
           <span>--</span>
         <% end %>

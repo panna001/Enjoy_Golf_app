@@ -34,7 +34,7 @@ class RoundsController < ApplicationController
       average = current_user.get_average_score(:stroke_count)
       rank = current_user.rank_check
       @user.update_attributes(rank: rank, average: average)
-      redirect_to user_round_path(@user, @round)
+      redirect_to user_rounds_path
     else
       render :new
     end

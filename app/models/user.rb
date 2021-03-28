@@ -76,7 +76,7 @@ class User < ApplicationRecord
 
   # スコア関連情報取得
   def get_average_score(column)
-    self.rounds.order(id: :desc).average(column)
+    self.rounds.order(id: :desc).average(column).round(1)
   end
 
   # ランク判定

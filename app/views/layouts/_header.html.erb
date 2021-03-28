@@ -7,10 +7,11 @@
         <span class="navbar-toggler-icon "></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav d-flex align-items-center ml-auto">
-            <li class="nav-item"><%= link_to "New", new_post_path, class: "nav-link text-light" %></li>
-            <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link text-light" %></li>
+
+          <ul class="navbar-nav d-md-flex align-items-center ml-auto d-none ">
             <li class="nav-item"><%= link_to "Articles", all_path, class: "nav-link text-light" %></li>
+            <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link text-light" %></li>
+            <li class="nav-item"><%= link_to "New", new_post_path, class: "nav-link text-light" %></li>
             <li class="nav-item"><%= link_to "Scores", user_rounds_path(current_user), class: "nav-link text-light" %></li>
             <li class="nav-item">
               <% if unchecked_notifications.any? %>
@@ -27,6 +28,23 @@
             </li>
             <li class="nav-item d-md-none"><%= link_to "Mypage", user_path(current_user), class: "nav-link text-light" %></li>
           </ul>
+      <!--トグル時-->
+          <ul class="navbar-nav d-flex align-items-center ml-auto d-md-none">
+            <li class="nav-item"><%= link_to "Articles", all_path, class: "nav-link text-light" %></li>
+            <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link text-light" %></li>
+              <% if unchecked_notifications.any? %>
+                <%= link_to "Notice", notifications_path, class: "nav-link text-warning" %>
+              <% else %>
+                <%= link_to "Notice", notifications_path, class: "nav-link text-light" %>
+              <% end %>
+            </li>
+            <li class="nav-item"><%= link_to "New", new_post_path, class: "nav-link text-light" %></li>
+            <li class="nav-item"><%= link_to "Scores", user_rounds_path(current_user), class: "nav-link text-light" %></li>
+            <li class="nav-item">
+            <li class="nav-item d-md-none"><%= link_to "Mypage", user_path(current_user), class: "nav-link text-light" %></li>
+            <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, class: "nav-link text-light", method: :delete %></li>
+          </ul>
+
         </div>
       </div>
     </nav>
