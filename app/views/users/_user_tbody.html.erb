@@ -23,14 +23,14 @@
           <span>--</span>
         <% end %>
       </td>
-      <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
       <!--aboutページでは非表示-->
-      <td class="d-none d-md-table-cell follow-btn_<%= user.id %>">
-        <% if controller.controller_name == "homes" || user == current_user %>
-        <% else %>
+      <% if controller.controller_name == "homes" || user == current_user %>
+      <% else %>
+      <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
+        <td class="d-none d-md-table-cell follow-btn_<%= user.id %>">
           <%= render "relationships/btn", user:user %>
-        <% end %>
-      </td>
+        </td>
+      <% end %>
     </tr>
   <% end %>
 </tbody>
