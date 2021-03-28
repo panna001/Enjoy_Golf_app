@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   validates :account_name, :first_name, :last_name, :sex, :prefecture, :teens, presence: true
   validates :account_name, uniqueness: true
+  validates :account_name, length: {maximum: 12}
   validates :introduction, length: { maximum: 100}
 
 
