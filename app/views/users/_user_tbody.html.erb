@@ -28,7 +28,7 @@
       <% else %>
         <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
         <td class="d-none d-md-table-cell follow-btn_<%= user.id %>">
-          <% if user == current_user %>
+          <% unless user == current_user %>
             <%= render "relationships/btn", user:user %>
           <% end %>
         </td>
