@@ -22,9 +22,11 @@ class RoundsController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @user = User.find(params[:user_id])
     @round = current_user.rounds.build
-    # @round.scores.build
+    unless @user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def create
@@ -41,8 +43,11 @@ class RoundsController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:user_id])
     @round = current_user.rounds.find(params[:id])
+    unless @user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
