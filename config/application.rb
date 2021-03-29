@@ -17,5 +17,7 @@ module EnjoyGolf
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.i18n.default_locale = :ja
+    # 2回目以降の送信でもボタン有効化
+    config.action_view.automatically_disable_submit_tag = false
   end
 end
