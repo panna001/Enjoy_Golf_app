@@ -64,8 +64,14 @@ class RoundsController < ApplicationController
   end
 
   def destroy
+    @user = current_user
     @round = current_user.rounds.find(params[:id])
     @round.destroy
+    unless current_user.rounds.empty?
+      rank = current_user.rank_check
+      average = current_user.get_average_score(:stroke_count)
+      @user.update_attributes(rank: rank, average: average)
+    end
     redirect_to user_rounds_path(current_user)
   end
 
