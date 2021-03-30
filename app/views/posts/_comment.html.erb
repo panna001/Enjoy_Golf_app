@@ -11,7 +11,7 @@
         <%= link_to edit_post_comment_path(post_id: post, id: comment) do %>
           <i class="fas fa-edit" style="font-size: 14px;"></i>
         <% end %>
-        <%= link_to post_comment_path(post_id: post, id: comment), remote: true, method: :delete do %>
+        <%= link_to post_comment_path(post_id: post, id: comment), remote: true, method: :delete, data: {confirm: "本当に削除しますか？"} do %>
           <i class="fas fa-trash-alt" style="font-size: 14px;"></i>
         <% end %>
       <% end %>

@@ -69,7 +69,7 @@
     <div class="card-footer p-0 bg-white">
       <%= form_with(model:[post, comment], local: false) do |f| %>
         <%= f.text_area :post_comment, placeholder: "comment", rows: "1", class: "p-2 d-inline-block form-control", style: "width: calc(100% - 61px);" %>
-        <%= f.submit "送信", class: "btn position-absolute bottom-0 text-muted" %>
+        <%= f.submit "送信", class: "btn position-absolute bottom-0 text-muted", data: {disable_with: "送信"} %>
       <% end %>
     </div>
   <% end %>

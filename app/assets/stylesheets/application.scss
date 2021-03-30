@@ -27,9 +27,10 @@
  }
 
 .navbar {
-  height: 62px;
   background-color: #003a66;
+  min-height: 62px;
 }
+
 // ハンバーガーメニュー設定
  .navbar-toggler {
   background-color: #003a66;
