@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     @post = Post.find(params[:post_id])
     favorite = current_user.favorites.build(post_id: params[:post_id])
@@ -8,10 +8,10 @@ class FavoritesController < ApplicationController
     # 通知機能
     @post.create_notification_favorite!(current_user)
   end
-  
+
   def destroy
     @post = Post.find(params[:post_id])
-    favorite = @post.favorites.find_by(post_id: params[:post_id])
+    favorite = current_user.favorites.find_by(post_id: params[:post_id])
     favorite.destroy
   end
 end

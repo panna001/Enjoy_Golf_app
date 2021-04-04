@@ -22,9 +22,11 @@ class RoundsController < ApplicationController
   end
 
   def new
-    @user = current_user
+    @user = User.find(params[:user_id])
     @round = current_user.rounds.build
-    # @round.scores.build
+    unless @user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def create
@@ -34,15 +36,18 @@ class RoundsController < ApplicationController
       average = current_user.get_average_score(:stroke_count)
       rank = current_user.rank_check
       @user.update_attributes(rank: rank, average: average)
-      redirect_to user_round_path(@user, @round)
+      redirect_to user_rounds_path
     else
       render :new
     end
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:user_id])
     @round = current_user.rounds.find(params[:id])
+    unless @user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
@@ -59,8 +64,14 @@ class RoundsController < ApplicationController
   end
 
   def destroy
+    @user = current_user
     @round = current_user.rounds.find(params[:id])
     @round.destroy
+    unless current_user.rounds.empty?
+      rank = current_user.rank_check
+      average = current_user.get_average_score(:stroke_count)
+      @user.update_attributes(rank: rank, average: average)
+    end
     redirect_to user_rounds_path(current_user)
   end
 

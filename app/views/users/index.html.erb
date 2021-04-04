@@ -5,17 +5,17 @@
       <%= render "users/search", q:@q %>
     </div>
     <div class="col-lg-9 mt-4 mt-lg-0 order-lg-0">
-      <table class="table table-light table-striped shadow">
+      <table class="table table-sm table-light table-striped shadow">
         <thead class="thead-dark">
           <tr>
-            <th class="d-none d-md-table-cell"></th>
+            <th class="d-none d-md-table-cell" style="width: 40px"></th>
             <th><%= sort_link(@q, :account_name, "Name") %></th>
-            <th><%= sort_link(@q, :prefecture, "Area") %></th>
-            <th><%= sort_link(@q, :teens, "Age") %></th>
-            <th><%= sort_link(@q, :rank, "Rank") %></th>
-            <th><%= sort_link(@q, :average,"Ave") %></th>
-            <th class="d-none d-md-table-cell"><%= sort_link(@q, :start_year, "Experience") %></th>
-            <th class="d-none d-md-table-cell"></th>
+            <th style="min-width: 60px;"><%= sort_link(@q, :prefecture, "Area") %></th>
+            <th style="min-width: 50px;"><%= sort_link(@q, :teens, "Age") %></th>
+            <th style="min-width: 50px;"><%= sort_link(@q, :rank, "Rank") %></th>
+            <th style="min-width: 50px;"><%= sort_link(@q, :average,"Ave") %></th>
+            <th class="d-none d-md-table-cell" style="min-width: 50px;"><%= sort_link(@q, :start_year, "Experience") %></th>
+            <th class="d-none d-md-table-cell" style="width: 120px"></th>
           </tr>
         </thead>
         <%= render "users/user_tbody", users:@users %>

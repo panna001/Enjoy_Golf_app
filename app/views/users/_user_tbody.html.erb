@@ -18,19 +18,21 @@
       </td>
       <td>
         <% unless user.rounds.blank? %>
-          <%= user.get_average_score(:stroke_count) %>
+          <%= user.average.round(1) %>
         <% else %>
           <span>--</span>
         <% end %>
       </td>
-      <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
       <!--aboutページでは非表示-->
-      <td class="d-none d-md-table-cell follow-btn_<%= user.id %>">
-        <% if controller.controller_name == "homes" || user == current_user %>
-        <% else %>
-          <%= render "relationships/btn", user:user %>
-        <% end %>
-      </td>
+      <% if controller.controller_name == "homes" %>
+      <% else %>
+        <td class="d-none d-md-table-cell"><%= "#{user.experience_year}年#{user.experience_month}ヶ月" %></td>
+        <td class="d-none d-md-table-cell follow-btn_<%= user.id %>">
+          <% unless user == current_user %>
+            <%= render "relationships/btn", user:user %>
+          <% end %>
+        </td>
+      <% end %>
     </tr>
   <% end %>
 </tbody>

@@ -28,10 +28,12 @@
   </div>
 
   <div class="row text-center mt-3">
-    <div class="col">
-      <%= link_to "編集", edit_user_round_path(@user, @round), class: "btn btn-success shadow d-inline-block mx-5" %>
-      <%= link_to "削除", user_round_path(@user, @round), class: "btn btn-danger shadow d-inline-block mx-5", method: :delete %>
-    </div>
+    <% if @user == current_user %>
+      <div class="col">
+        <%= link_to "編集", edit_user_round_path(@user, @round), class: "btn btn-success shadow d-inline-block mx-5" %>
+        <%= link_to "削除", user_round_path(@user, @round), class: "btn btn-danger shadow d-inline-block mx-5", method: :delete %>
+      </div>
+    <% end %>
   </div>
 
 </div>

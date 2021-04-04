@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+
+
 User.create!(
   [
     {
@@ -21,7 +24,6 @@ User.create!(
       start_year: rand(2010..2020),
       start_month: rand(1..12),
       teens: "10代",
-      rank: "A-"
     },
     {
       account_name: "Sara",
@@ -36,7 +38,6 @@ User.create!(
       start_year: rand(2010..2020),
       start_month: rand(1..12),
       teens: "20代",
-      rank: "B+"
     },
     {
       account_name: "Tom",
@@ -51,7 +52,6 @@ User.create!(
       start_year: rand(2010..2020),
       start_month: rand(1..12),
       teens: "30代",
-      rank: "D+"
     },
     {
       account_name: "Tomas",
@@ -66,7 +66,6 @@ User.create!(
       start_year: rand(2010..2020),
       start_month: rand(1..12),
       teens: "20代",
-      rank: "E"
     }
   ]
 )
@@ -123,180 +122,3 @@ User.find(4).posts.create!(
   ]
 )
 
-User.find(1).rounds.create!(
-  [
-    {
-      play_date: "2020/10/01",
-      place: "ローズウッド",
-      weather: "くもり",
-      wind: "無風"
-    },
-    {
-      play_date: "2020/10/02",
-      place: "阪奈CC",
-      weather: "晴れ",
-      wind: "強風"
-    }
-  ]
-)
-
-User.find(2).rounds.create!(
-  [
-    {
-      play_date: "2020/11/01",
-      place: "白鵬CC",
-      weather: "雨",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/11/02",
-      place: "高槻CC",
-      weather: "晴れ",
-      wind: "無風"
-    }
-  ]
-)
-
-User.find(3).rounds.create!(
-  [
-    {
-      play_date: "2020/12/01",
-      place: "東條CC",
-      weather: "くもり",
-      wind: "強風"
-    },
-    {
-      play_date: "2020/12/02",
-      place: "阪奈CC",
-      weather: "雪",
-      wind: "強風"
-    }
-  ]
-)
-
-User.find(4).rounds.create!(
-  [
-    {
-      play_date: "2020/01/01",
-      place: "パインレークCC",
-      weather: "晴れ",
-      wind: "無風"
-    },
-    {
-      play_date: "2020/01/02",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/03/02",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/04/02",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/05/02",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/06/01",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/07/02",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/08/02",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/09/02",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/10/02",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-    {
-      play_date: "2020/11/01",
-      place: "東大阪CC",
-      weather: "晴れ",
-      wind: "弱風"
-    },
-  ]
-)
-
-2.times do |n|
-  18.times do |i|
-    Round.find(n + 1).scores.create!(
-      hole_number: i + 1,
-      par_count: rand(3..5),
-      stroke_count: rand(3..7),
-      putt_count: rand(0..2),
-      fairway_keep: rand(0..1),
-      ob_count: rand(0..1),
-      penalty_count: rand(0..1)
-    )
-  end
-end
-
-2.times do |n|
-  18.times do |i|
-    Round.find(n + 3).scores.create!(
-      hole_number: i + 1,
-      par_count: rand(3..5),
-      stroke_count: rand(4..7),
-      putt_count: rand(1..3),
-      fairway_keep: rand(0..1),
-      ob_count: rand(0..1),
-      penalty_count: rand(0..1)
-    )
-  end
-end
-
-2.times do |n|
-  18.times do |i|
-    Round.find(n + 5).scores.create!(
-      hole_number: i + 1,
-      par_count: rand(3..5),
-      stroke_count: rand(6..9),
-      putt_count: rand(1..3),
-      fairway_keep: rand(0..1),
-      ob_count: rand(0..1),
-      penalty_count: rand(0..1)
-    )
-  end
-end
-
-11.times do |n|
-  18.times do |i|
-    Round.find(n + 7).scores.create!(
-      hole_number: i + 1,
-      par_count: rand(3..5),
-      stroke_count: rand(7..10),
-      putt_count: rand(1..4),
-      fairway_keep: rand(0..1),
-      ob_count: rand(0..1),
-      penalty_count: rand(0..1)
-    )
-  end
-end

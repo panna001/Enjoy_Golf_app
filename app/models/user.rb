@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   validates :account_name, :first_name, :last_name, :sex, :prefecture, :teens, presence: true
   validates :account_name, uniqueness: true
+  validates :account_name, length: {maximum: 12}
   validates :introduction, length: { maximum: 100}
 
 
@@ -76,14 +77,14 @@ class User < ApplicationRecord
 
   # スコア関連情報取得
   def get_average_score(column)
-    self.rounds.order(id: :desc).average(column)
+    self.rounds.order(id: :desc).average(column).round(1)
   end
 
   # ランク判定
   def rank_check
     score = self.get_average_score(:stroke_count)
     if score < 72
-      rank = "S"
+      rank = "AA"
     elsif score < 81
       rank = "A+"
     elsif score < 90

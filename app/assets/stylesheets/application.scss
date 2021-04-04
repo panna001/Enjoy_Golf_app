@@ -22,13 +22,15 @@
  }
 
  header {
-  height: 62px;
   font-size: 20px;
+  height: 62px;
  }
 
-.navbar {
+ header .navbar {
   background-color: #003a66;
+  min-height: 62px;
 }
+
 // ハンバーガーメニュー設定
  .navbar-toggler {
   background-color: #003a66;
@@ -98,12 +100,12 @@
   object-fit: cover;
  }
 
-.card_footer .form-control {
+.card-footer .form-control {
  border-color: white;
  resize: none;
 }
 
-.card_footer .form-control:focus {
+.card-footer .form-control:focus {
  border-color: white;
  box-shadow: none;
 }

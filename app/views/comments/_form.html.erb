@@ -4,7 +4,7 @@
       <%= form_with(model:[post, comment], local: true) do |f| %>
         <div class="form_group">
           <%= f.text_area :post_comment, placeholder: "コメントをここに", rows: "10", class: "form-control mb-3" %>
-          <%= f.submit btn, class: "btn btn-secondary" %>
+          <%= f.submit btn, class: "btn btn-secondary", data: {disable_with: '送信中'}  %>
         </div>
       <% end %>
     </div>
