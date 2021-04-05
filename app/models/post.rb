@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   validates :body, :post_image, presence: true
   attachment :post_image
