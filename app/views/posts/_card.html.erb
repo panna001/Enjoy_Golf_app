@@ -46,6 +46,12 @@
         <li class="list-inline-item bookmark-link_<%= post.id %>">
           <%= render "bookmarks/link", post:post %>
         </li>
+        <!--#AI機能タグ-->
+        <% post.tags.each do |tag| %>
+          <li class="small list-inline-item rounded p-1 text-light bg-primary">
+            <%= tag.name %>
+          </li>
+        <% end %>
       <% else %>
         <li class="d-inline-block"><i class="fas fa-thumbs-up"></i><span class="ml-1"><%= post.favorites.count %></span></li>
       <% end %>
